@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh8t0k16e0hbc"]
+
+[ext_resource type="Script" uid="uid://d2kvfji2k4nem" path="res://main.gd" id="1_ig7tw"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ig7tw")
+
+[node name="CharacterSpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0

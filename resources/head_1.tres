@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BodyParts" load_steps=3 format=3 uid="uid://0e28heygj815"]
+
+[ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyParts.gd" id="1_ji1gi"]
+[ext_resource type="Texture2D" uid="uid://bgcfq0ju4m7m8" path="res://characters/parts/heads/head_1.png" id="2_uochc"]
+
+[resource]
+script = ExtResource("1_ji1gi")
+texture = ExtResource("2_uochc")
+partType = 1
+id = 1
+metadata/_custom_type_script = "uid://cs5i51dwnlfjd"

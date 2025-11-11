@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BodyParts" load_steps=3 format=3 uid="uid://c2ee35ttyx7aw"]
+
+[ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyParts.gd" id="1_pxlbg"]
+[ext_resource type="Texture2D" uid="uid://bwb3j32xm421w" path="res://characters/parts/eyes/eyes_2.png" id="2_uuv48"]
+
+[resource]
+script = ExtResource("1_pxlbg")
+texture = ExtResource("2_uuv48")
+partType = 5
+id = 1
+metadata/_custom_type_script = "uid://cs5i51dwnlfjd"
