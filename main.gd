@@ -1,19 +1,33 @@
 extends Node2D
 @onready var spawn_timer: Timer = %CharacterSpawnTimer
 @onready var happiness_bar: ProgressBar = %HappinessBar
+@onready var gameover_text: Label = %GameOverText
 
 var characterScene = preload("res://scenes/Character.tscn")
 
 var target_config: Dictionary  = {}
 var characters: Character
 const MAX_PART_ID: int = 2
-
+var is_gameover: bool = false
 
 func _ready():
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	spawn_timer.start()
 	
 	print("Target Config: ", generate_new_target())
+	
+func _process(_delta: float) -> void:
+	if is_gameover:
+		spawn_timer.stop()
+	
+	if happiness_bar.value == 0:
+		gameover_text.text = "Happiness is 0\nYou Lose!"
+		is_gameover = true
+		return
+	elif happiness_bar.value == 100:
+		gameover_text.text = "Happiness is 100\nYou Win!"
+		is_gameover = true
+		return
 
 func generate_new_target() -> Dictionary:
 	target_config = {}
@@ -35,7 +49,7 @@ func spawn_person():
 	characterInstance.character_clicked.connect(_on_character_clicked)
 	pass
 
-func _on_character_clicked(_character):
+func _on_character_clicked(_character: Character) -> void:
 	if _character.is_hailed:
 		return
 	
@@ -46,4 +60,4 @@ func _on_character_clicked(_character):
 	else:
 		print("Sconosciuto salutato")
 		happiness_bar.value -= 10
-		
+	pass
