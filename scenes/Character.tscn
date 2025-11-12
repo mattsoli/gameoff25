@@ -11,6 +11,7 @@ size = Vector2(271, 414)
 
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_3i3nt")
+multi_click_interval = 0.5
 
 [node name="Head" type="Node2D" parent="."]
 position = Vector2(-1, -147)

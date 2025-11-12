@@ -16,25 +16,63 @@ enum ClickType {
 @onready var noseSlot: Sprite2D = $Nose/Sprite2D
 @onready var mouthSlot: Sprite2D = $Mouth/Sprite2D
 
+const MAX_PART_ID: int = 2
+var config: Dictionary = {}
+
 var speed: float = 50.0
 var direction: Vector2
 var is_direction_left: bool
-var caracteristics: Dictionary = {}
-const MAX_PART_ID: int = 2
+
 var is_hailed: bool = false
+
+# Click variables
+@export var hold_time: float = 2.0
 var click_type: ClickType
+var click_count: int = 0
+var hold_timer: float = 0.0
+var click_timer: float = 0.0
+@export var multi_click_interval: float = 2.0
+var holding: bool = false
+var mouse_down_time: float = 0.0
 
 signal character_clicked(character)
+signal character_hold_click(character)
+signal character_multi_click(character)
 
 func _ready() -> void:
-	caracteristics = generate_random_body_config()
+	config = generate_random_body_config()
 
 	var clickArea = %ClickCollider
 	clickArea.input_event.connect(_on_input_event)
 	
+func _process(delta: float) -> void:
+	# Se il pulsante è tenuto premuto, aggiorna il tempo
+	if holding:
+		hold_timer += delta
+		if hold_timer >= hold_time:
+			holding = false
+			emit_signal("character_hold_click", self)
+	
+	# Gestione timeout per multi-click
+	if click_count > 0:
+		click_timer += delta
+		if click_timer > multi_click_interval:
+			# Se è passato troppo tempo dall'ultimo click, decidiamo se era singolo o multiplo
+			if click_count == 1:
+				print("click singolo")
+				emit_signal("character_clicked", self)
+			elif click_count > 1:
+				print("multi click")
+				emit_signal("character_multi_click", self, click_count)
+			click_count = 0
+			click_timer = 0.0
+
+
+	
 func set_character(_is_direction_left: bool) -> void:
 	click_type = ClickType.values().pick_random() 
-	print(click_type)
+	print("Character config:", config)
+	print("Character click type:", click_type)
 	if _is_direction_left:
 		direction = Vector2.LEFT
 	else:
@@ -72,6 +110,19 @@ func _physics_process(_delta: float ) -> void:
 			pass
 			#queue_free()
 
-func _on_input_event(_viewport, event, _shape_idx) -> void:
-	if event is InputEventMouseButton and event.pressed:
-		emit_signal("character_clicked", self)
+func _on_input_event(_viewport: Object, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.pressed:
+				# Mouse premuto: inizia il timer di hold
+				holding = true
+				hold_timer = 0.0
+				mouse_down_time = Time.get_ticks_msec()
+			else:
+				# Mouse rilasciato: interrompi il hold
+				holding = false
+				hold_timer = 0.0
+				
+				# Gestione multi-click
+				click_count += 1
+				click_timer = 0.0

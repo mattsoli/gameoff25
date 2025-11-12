@@ -61,15 +61,25 @@ func spawn_person():
 	
 	characterInstance.global_position = spawnPosition.global_position
 	
-	characterInstance.character_clicked.connect(_on_character_clicked)
+	match characterInstance.click_type:
+		Character.ClickType.SINGLE:
+			characterInstance.character_clicked.connect(_on_character_clicked)
+		Character.ClickType.MULTI:
+			characterInstance.character_multi_click.connect(_on_character_clicked)
+		Character.ClickType.HOLD:
+			characterInstance.character_hold_click.connect(_on_character_clicked)
 	pass
 
 func _on_character_clicked(_character: Character) -> void:
 	if _character.is_hailed:
 		return
 	
+	hail_character(_character)
+	
+		
+func hail_character(_character: Character) -> void:
 	_character.is_hailed = true
-	if(target_config == _character.caracteristics):
+	if(target_config == _character.config):
 		print("Character riconosciuto")
 		happiness_bar.value += 10
 	else:

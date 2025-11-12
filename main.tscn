@@ -43,6 +43,7 @@ script = ExtResource("1_ig7tw")
 
 [node name="CharacterSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+wait_time = 5.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
