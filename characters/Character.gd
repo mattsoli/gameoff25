@@ -15,16 +15,17 @@ var direction: Vector2 = Vector2.RIGHT
 var is_target: bool = false
 var caracteristics: Dictionary = {}
 const MAX_PART_ID: int = 2
+var is_hailed: bool = false
 
 signal character_clicked(character)
 
-func _ready():
+func _ready() -> void:
 	caracteristics = generate_random_body_config()
 
 	var clickArea = %ClickCollider
 	clickArea.input_event.connect(_on_input_event)
 	
-func generate_random_body_config():
+func generate_random_body_config() -> Dictionary:
 	var body_config: Dictionary = {}
 	
 	for part_type in BodyParts.PartsType.values():
@@ -42,13 +43,13 @@ func generate_random_body_config():
 		
 	return body_config
 
-func _physics_process(_delta):
+func _physics_process(_delta: float ) -> void:
 	velocity = direction * speed
 	move_and_slide()
 	
 	if position.x > get_viewport_rect().size.x + 100:
 		queue_free()
 
-func _on_input_event(_viewport, event, _shape_idx):
+func _on_input_event(_viewport, event, _shape_idx) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		emit_signal("character_clicked", self)
