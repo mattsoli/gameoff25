@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh8t0k16e0hbc"]
+[gd_scene load_steps=6 format=3 uid="uid://dh8t0k16e0hbc"]
 
 [ext_resource type="Script" uid="uid://d2kvfji2k4nem" path="res://main.gd" id="1_ig7tw"]
 
@@ -26,12 +26,23 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="Curve2D" id="Curve2D_ig7tw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -8, 194, 0, 0, 0, 0, -13, 500, 0, 0, 0, 0, -105, 498, 0, 0, 0, 0, -111, 206, 0, 0, 0, 0, -8, 201)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_0xm2m"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 158, 479, 0, 0, 0, 0, 78, 474, 0, 0, 0, 0, 80, 144, 0, 0, 0, 0, 149, 138, 0, 0, 0, 0, 157, 473)
+}
+point_count = 5
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ig7tw")
 
 [node name="CharacterSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 5.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -70,3 +81,25 @@ theme_override_font_sizes/font_size = 64
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[node name="SpawnZoneLeft" type="Path2D" parent="."]
+position = Vector2(-100, 0)
+curve = SubResource("Curve2D_ig7tw")
+
+[node name="SpawnPositionLeft" type="PathFollow2D" parent="SpawnZoneLeft"]
+unique_name_in_owner = true
+position = Vector2(-8, 201)
+rotation = -0.048505608
+progress = 1490.645
+
+[node name="SpawnZoneRight" type="Path2D" parent="."]
+position = Vector2(1200, 50)
+curve = SubResource("Curve2D_0xm2m")
+
+[node name="SpawnPositionRight" type="PathFollow2D" parent="SpawnZoneRight"]
+unique_name_in_owner = true
+position = Vector2(158, 479)
+rotation = -3.0791738
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0

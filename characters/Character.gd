@@ -1,6 +1,12 @@
 extends CharacterBody2D
 class_name Character
 
+enum ClickType {
+	SINGLE,
+	MULTI,
+	HOLD
+}
+
 @onready var earsSlot: Sprite2D = $Ears/Sprite2D
 @onready var headSlot: Sprite2D = $Head/Sprite2D
 @onready var bodySlot: Sprite2D = $Body/Sprite2D
@@ -11,11 +17,12 @@ class_name Character
 @onready var mouthSlot: Sprite2D = $Mouth/Sprite2D
 
 var speed: float = 50.0
-var direction: Vector2 = Vector2.RIGHT
-var is_target: bool = false
+var direction: Vector2
+var is_direction_left: bool
 var caracteristics: Dictionary = {}
 const MAX_PART_ID: int = 2
 var is_hailed: bool = false
+var click_type: ClickType
 
 signal character_clicked(character)
 
@@ -24,6 +31,15 @@ func _ready() -> void:
 
 	var clickArea = %ClickCollider
 	clickArea.input_event.connect(_on_input_event)
+	
+func set_character(_is_direction_left: bool) -> void:
+	click_type = ClickType.values().pick_random() 
+	print(click_type)
+	if _is_direction_left:
+		direction = Vector2.LEFT
+	else:
+		direction = Vector2.RIGHT
+	pass
 	
 func generate_random_body_config() -> Dictionary:
 	var body_config: Dictionary = {}
@@ -47,8 +63,14 @@ func _physics_process(_delta: float ) -> void:
 	velocity = direction * speed
 	move_and_slide()
 	
-	if position.x > get_viewport_rect().size.x + 100:
-		queue_free()
+	# FIX DESTROY CHARACTERS
+	if is_direction_left:
+		if position.x > get_viewport_rect().size.x:
+			queue_free()
+	else:
+		if position.x > -100:
+			pass
+			#queue_free()
 
 func _on_input_event(_viewport, event, _shape_idx) -> void:
 	if event is InputEventMouseButton and event.pressed:

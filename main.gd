@@ -42,9 +42,24 @@ func _on_spawn_timer_timeout():
 	spawn_person()
 
 func spawn_person():
-	var characterInstance = characterScene.instantiate() as CharacterBody2D
+	var characterInstance = characterScene.instantiate() as Character
 	add_child(characterInstance)
-	characterInstance.position.y = 300.0
+	
+	var spawnSide: int = randi_range(0, 1)
+	var spawnPosition: PathFollow2D
+	
+	characterInstance.set_character(spawnSide)
+	
+	if spawnSide == 0:
+		# LEFT
+		spawnPosition = %SpawnPositionLeft
+	elif spawnSide == 1:
+		# RIGHT
+		spawnPosition = %SpawnPositionRight
+		
+	spawnPosition.progress_ratio = randf()
+	
+	characterInstance.global_position = spawnPosition.global_position
 	
 	characterInstance.character_clicked.connect(_on_character_clicked)
 	pass

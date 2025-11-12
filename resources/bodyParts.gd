@@ -16,6 +16,3 @@ enum PartsType {
 @export var texture: Texture2D
 @export var partType: PartsType
 @export var id: int
-
-func _init():
-	pass
