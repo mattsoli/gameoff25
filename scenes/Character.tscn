@@ -13,7 +13,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_dwpd4"]
 size = Vector3(1, 1.8676758, 1)
 
-[node name="Character3d" type="CharacterBody3D"]
+[node name="Character" type="CharacterBody3D"]
 script = ExtResource("1_25pii")
 comicsOk = ExtResource("2_fwsyb")
 comicsError = ExtResource("3_25pii")
