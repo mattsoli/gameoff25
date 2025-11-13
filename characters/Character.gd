@@ -70,24 +70,23 @@ func _process(delta: float) -> void:
 				comicsSprite.texture = comicsOk if is_target else comicsError
 	
 	if click_count > 0:
-		click_timer += delta
-		
+		comicsSprite.visible = true
 		if click_type == ClickType.SINGLE:
+			print("click singolo")
+			
 			emit_signal("character_clicked", self)
 			
-			print("click singolo")
-			comicsSprite.visible = true
 			comicsSprite.texture = comicsOk if is_target else comicsError
 			click_count = 0
 			click_timer = 0.0
 			
 		if click_type == ClickType.MULTI:
+			click_timer += delta
+			comicsSprite.texture = comicsChecking 
+			
 			if click_timer > multi_click_interval:
 				if click_count > 1:
 					print("multi click", click_count)
-					comicsSprite.visible = true
-					comicsSprite.texture = comicsChecking
-					
 					if click_count >= max_click_count:
 						emit_signal("character_multi_clicked", self)
 						comicsSprite.texture = comicsOk if is_target else comicsError
