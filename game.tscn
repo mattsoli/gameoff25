@@ -30,7 +30,7 @@ corner_radius_bottom_left = 5
 [sub_resource type="Curve3D" id="Curve3D_wiwsh"]
 closed = true
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.25714874, -0.48013854, -5.277566, 0, 0, 0, 0, 0, 0, 0.095048904, -0.7740221, -1.0069311),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.25714874, 1.1310184, -5.277566, 0, 0, 0, 0, 0, 0, 0.095048904, -0.7740221, -1.0069311),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -120,7 +120,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionLeft" type="PathFollow3D" parent="SpawnPathLeft"]
 unique_name_in_owner = true
-transform = Transform3D(-0.9992649, -0.0026020554, 0.0378395, -2.3282704e-10, 0.9976252, 0.06860202, -0.037929058, 0.06855278, -0.9969054, 0.25714874, -0.48013854, -5.277566)
+transform = Transform3D(-0.99925697, -0.015442366, 0.034642775, 0, 0.9133469, 0.4071301, -0.037928756, 0.40683883, -0.91268575, 0.25714874, 1.1310184, -5.277566)
 
 [node name="SpawnPathRight" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.102182, 0.9383073, 1.2553856)
@@ -128,7 +128,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionRight" type="PathFollow3D" parent="SpawnPathRight"]
 unique_name_in_owner = true
-transform = Transform3D(-0.9992649, -0.0026020533, 0.0378395, -2.3282704e-10, 0.99762434, 0.06860202, -0.037929058, 0.06855272, -0.9969054, 0.25714874, -0.48013854, -5.277566)
+transform = Transform3D(-0.99925697, -0.015442352, 0.034642775, 0, 0.91334605, 0.4071301, -0.037928756, 0.40683848, -0.91268575, 0.25714874, 1.1310184, -5.277566)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24675632, 3.9321048, 12.114763)
