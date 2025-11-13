@@ -35,24 +35,24 @@ var is_target: bool = false
 
 # Click variables
 @export var hold_time: float = 2.0
-var click_type: ClickType
-var click_count: int = 0
 @export var max_click_count: int = 0
 @export var multi_click_interval: float = 2.0
+var click_type: ClickType
+var click_count: int = 0
 var hold_timer: float = 0.0
 var click_timer: float = 0.0
 var holding: bool = false
 var mouse_down_time: float = 0.0
 
-signal character_clicked(character)
-signal character_hold_clicked(character)
-signal character_multi_clicked(character)
+signal character_clicked(character: Character)
+signal character_hold_clicked(character: Character)
+signal character_multi_clicked(character: Character)
 
 func _ready() -> void:
 	config = generate_random_body_config()
 	comicsSprite.visible = false
 
-	var clickArea = %ClickCollider
+	var clickArea: Area2D = %ClickCollider
 	clickArea.input_event.connect(_on_input_event)
 	
 func _process(delta: float) -> void:
@@ -116,7 +116,7 @@ func set_character(_is_direction_left: bool, _target_config: Dictionary) -> void
 	click_type = ClickType.values().pick_random() 
 	move_direction = Vector2.LEFT if _is_direction_left else Vector2.RIGHT
 	
-	var click_type_name = ClickType.keys()[click_type]
+	var click_type_name: String = ClickType.keys()[click_type]
 	
 	print("Character config: ", config)
 	print("Character click type: ", click_type_name)
@@ -125,8 +125,8 @@ func set_character(_is_direction_left: bool, _target_config: Dictionary) -> void
 func generate_random_body_config() -> Dictionary:
 	var body_config: Dictionary = {}
 	
-	for part_type in BodyParts.PartsType.values():
-		var part_name = BodyParts.PartsType.keys()[part_type]
+	for part_type: int in BodyParts.PartsType.values():
+		var part_name: String = BodyParts.PartsType.keys()[part_type]
 		
 		body_config[part_name] = randi_range(1, MAX_PART_ID)
 		
