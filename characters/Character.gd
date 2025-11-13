@@ -47,25 +47,27 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	# Se il pulsante è tenuto premuto, aggiorna il tempo
+	if is_hailed: return
+	
 	if holding:
 		hold_timer += delta
 		if hold_timer >= hold_time:
 			holding = false
 			emit_signal("character_hold_click", self)
 	
-	# Gestione timeout per multi-click
 	if click_count > 0:
 		click_timer += delta
 		if click_type == ClickType.SINGLE:
-			if click_count == 1:
-					print("click singolo")
-					emit_signal("character_clicked", self)
+			print("click singolo")
+			emit_signal("character_clicked", self)
+			click_count = 0
+			click_timer = 0.0
+			
 		if click_type == ClickType.MULTI:
 			if click_timer > multi_click_interval:
-				# Se è passato troppo tempo dall'ultimo click, decidiamo se era singolo o multiplo
 				if click_count > 1:
 					print("multi click")
-					emit_signal("character_multi_click", self, click_count)
+					emit_signal("character_multi_click", self)
 				click_count = 0
 				click_timer = 0.0
 

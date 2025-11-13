@@ -57,6 +57,8 @@ func spawn_person():
 		# RIGHT
 		spawnPosition = %SpawnPositionRight
 		
+		# spawnPosition = %SpawnPositionLeft if spawnSide == 0 else %SpawnPositionRight
+		
 	spawnPosition.progress_ratio = randf()
 	
 	characterInstance.global_position = spawnPosition.global_position

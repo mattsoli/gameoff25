@@ -28,13 +28,13 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="Curve2D" id="Curve2D_ig7tw"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -8, 194, 0, 0, 0, 0, -13, 500, 0, 0, 0, 0, -105, 498, 0, 0, 0, 0, -111, 206, 0, 0, 0, 0, -8, 201)
+"points": PackedVector2Array(0, 0, 0, 0, -9, 500, 0, 0, 0, 0, -111, 500, 0, 0, 0, 0, -111, 206, 0, 0, 0, 0, -7.9999924, 207.73993, 0, 0, 0, 0, -9, 500)
 }
 point_count = 5
 
 [sub_resource type="Curve2D" id="Curve2D_0xm2m"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 158, 479, 0, 0, 0, 0, 78, 474, 0, 0, 0, 0, 80, 144, 0, 0, 0, 0, 149, 138, 0, 0, 0, 0, 157, 473)
+"points": PackedVector2Array(0, 0, 0, 0, 208, 462, 0, 0, 0, 0, 80, 462, 0, 0, 0, 0, 80, 144, 0, 0, 0, 0, 208, 142, 0, 0, 0, 0, 208, 462)
 }
 point_count = 5
 
@@ -84,23 +84,24 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="SpawnZoneLeft" type="Path2D" parent="."]
-position = Vector2(-100, 0)
+position = Vector2(-118.05826, -35.457626)
+scale = Vector2(1.2427185, 1.0949153)
 curve = SubResource("Curve2D_ig7tw")
 
 [node name="SpawnPositionLeft" type="PathFollow2D" parent="SpawnZoneLeft"]
 unique_name_in_owner = true
-position = Vector2(-8, 201)
-rotation = -0.048505608
+position = Vector2(-9, 500)
+rotation = 1.5742179
 progress = 1490.645
 
 [node name="SpawnZoneRight" type="Path2D" parent="."]
-position = Vector2(1200, 50)
+position = Vector2(1072, 48)
 curve = SubResource("Curve2D_0xm2m")
 
 [node name="SpawnPositionRight" type="PathFollow2D" parent="SpawnZoneRight"]
 unique_name_in_owner = true
-position = Vector2(158, 479)
-rotation = -3.0791738
+position = Vector2(208, 462)
+rotation = 3.1415927
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
