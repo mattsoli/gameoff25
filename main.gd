@@ -76,7 +76,6 @@ func _on_character_clicked(_character: Character) -> void:
 	
 	hail_character(_character)
 	
-		
 func hail_character(_character: Character) -> void:
 	_character.is_hailed = true
 	if(target_config == _character.config):

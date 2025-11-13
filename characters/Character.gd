@@ -56,23 +56,25 @@ func _process(delta: float) -> void:
 	# Gestione timeout per multi-click
 	if click_count > 0:
 		click_timer += delta
-		if click_timer > multi_click_interval:
-			# Se è passato troppo tempo dall'ultimo click, decidiamo se era singolo o multiplo
+		if click_type == ClickType.SINGLE:
 			if click_count == 1:
-				print("click singolo")
-				emit_signal("character_clicked", self)
-			elif click_count > 1:
-				print("multi click")
-				emit_signal("character_multi_click", self, click_count)
-			click_count = 0
-			click_timer = 0.0
+					print("click singolo")
+					emit_signal("character_clicked", self)
+		if click_type == ClickType.MULTI:
+			if click_timer > multi_click_interval:
+				# Se è passato troppo tempo dall'ultimo click, decidiamo se era singolo o multiplo
+				if click_count > 1:
+					print("multi click")
+					emit_signal("character_multi_click", self, click_count)
+				click_count = 0
+				click_timer = 0.0
 
 
-	
 func set_character(_is_direction_left: bool) -> void:
 	click_type = ClickType.values().pick_random() 
 	print("Character config:", config)
 	print("Character click type:", click_type)
+	
 	if _is_direction_left:
 		direction = Vector2.LEFT
 	else:
