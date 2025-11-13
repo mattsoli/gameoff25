@@ -4,7 +4,6 @@ class_name Character
 
 enum ClickType {
 	SINGLE,
-	MULTI,
 	HOLD
 }
 
@@ -31,17 +30,15 @@ var is_target: bool = false
 
 # Click variables
 @export var hold_time: float = 1.5  # Tempo per considerare un hold (secondi)
-@export var max_click_count: int = 3  # Numero di click necessari per multi-click
 var click_type: ClickType
-var click_count: int = 0
+var is_clicked: bool
 var hold_timer: float = 0.0
 var holding: bool = false
 var mouse_down_time: float = 0.0
-var click_processed: bool = false  # Flag per evitare doppi processing
+var click_processed: bool = false  
 
 signal character_clicked(character: Character)
 signal character_hold_clicked(character: Character)
-signal character_multi_clicked(character: Character)
 
 func _ready() -> void:
 	config = generate_random_body_config()
@@ -60,19 +57,10 @@ func _process(delta: float) -> void:
 		return
 
 	# Gestione SINGLE click - attiva subito al primo click
-	if click_type == ClickType.SINGLE and click_count == 1:
+	if is_clicked:
 		print("Click singolo")
 		emit_signal("character_clicked", self)
 		check_is_target()
-		click_count = 0
-
-	# Gestione MULTI click - attiva quando raggiunge il count richiesto
-	if click_type == ClickType.MULTI and click_count >= max_click_count:
-		print("Multi click completato: %d click" % click_count)
-		emit_signal("character_multi_clicked", self)
-		check_is_target()
-		click_count = 0
-
 
 func check_is_target() -> void:
 	click_processed = true
@@ -158,10 +146,5 @@ func _on_input_event(_camera: Camera3D, event: InputEvent, _position: Vector3, _
 				print("Hold interrotto (durata: %.2f secondi)" % press_duration)
 				return
 			
-			# Per SINGLE e MULTI click
 			if click_type != ClickType.HOLD:
-				click_count += 1
-				if click_type == ClickType.MULTI:
-					comicsSprite.visible = true
-					comicsSprite.texture = comicsChecking
-				print("Click registrato: %d/%d" % [click_count, max_click_count if click_type == ClickType.MULTI else 1])
+				is_clicked = true
