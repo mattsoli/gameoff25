@@ -1,6 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://dh8t0k16e0hbc"]
+[gd_scene load_steps=7 format=3 uid="uid://dh8t0k16e0hbc"]
 
 [ext_resource type="Script" uid="uid://d2kvfji2k4nem" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://ccrx2y0rvfg56" path="res://background/background.jpg" id="2_0xm2m"]
+
+[sub_resource type="Curve2D" id="Curve2D_ig7tw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -6.4374924, 460.30957, 0, 0, 0, 0, -109.43749, 460.30957, 0, 0, 0, 0, -109.43749, 350.71204, 0, 0, 0, 0, -102.99999, 394.5511, 0, 0, 0, 0, -6.4374924, 394.5511, 0, 0, 0, 0, -6.4374924, 467.6161)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_0xm2m"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 208, 462, 0, 0, 0, 0, 80, 462, 0, 0, 0, 0, 80, 392, 0, 0, 0, 0, 208, 392, 0, 0, 0, 0, 208, 462)
+}
+point_count = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
 bg_color = Color(0.14503565, 0.28519025, 0.17762923, 1)
@@ -26,24 +39,35 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="Curve2D" id="Curve2D_ig7tw"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -9, 500, 0, 0, 0, 0, -111, 500, 0, 0, 0, 0, -110.99999, 324.64398, 0, 0, 0, 0, -7.9999924, 324.64398, 0, 0, 0, 0, -9, 500)
-}
-point_count = 5
-
-[sub_resource type="Curve2D" id="Curve2D_0xm2m"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 208, 462, 0, 0, 0, 0, 80, 462, 0, 0, 0, 0, 80, 272, 0, 0, 0, 0, 208, 272, 0, 0, 0, 0, 208, 462)
-}
-point_count = 5
-
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ig7tw")
 
 [node name="CharacterSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 5.0
+
+[node name="SpawnZoneLeft" type="Path2D" parent="."]
+position = Vector2(-120.00001, 64)
+scale = Vector2(1.2427185, 1.0949153)
+curve = SubResource("Curve2D_ig7tw")
+
+[node name="SpawnPositionLeft" type="PathFollow2D" parent="SpawnZoneLeft"]
+unique_name_in_owner = true
+position = Vector2(-6.4374924, 467.6161)
+rotation = 1.5707964
+progress = 1490.645
+
+[node name="SpawnZoneRight" type="Path2D" parent="."]
+position = Vector2(1072, 112)
+curve = SubResource("Curve2D_0xm2m")
+
+[node name="SpawnPositionRight" type="PathFollow2D" parent="SpawnZoneRight"]
+unique_name_in_owner = true
+position = Vector2(208, 462)
+rotation = 3.1415927
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -83,25 +107,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="SpawnZoneLeft" type="Path2D" parent="."]
-position = Vector2(-118.05826, -35.457626)
-scale = Vector2(1.2427185, 1.0949153)
-curve = SubResource("Curve2D_ig7tw")
-
-[node name="SpawnPositionLeft" type="PathFollow2D" parent="SpawnZoneLeft"]
-unique_name_in_owner = true
-position = Vector2(-9, 500.00003)
-rotation = 1.576499
-progress = 1490.645
-
-[node name="SpawnZoneRight" type="Path2D" parent="."]
-position = Vector2(1072, 48)
-curve = SubResource("Curve2D_0xm2m")
-
-[node name="SpawnPositionRight" type="PathFollow2D" parent="SpawnZoneRight"]
-unique_name_in_owner = true
-position = Vector2(208, 462)
-rotation = 3.1415927
-
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(503.99997, 352)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_0xm2m")
