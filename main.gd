@@ -17,17 +17,19 @@ func _ready():
 	print("Target Config: ", generate_new_target())
 	
 func _process(_delta: float) -> void:
+	handle_gameover()
+
+func handle_gameover() -> void:
 	if is_gameover:
 		spawn_timer.stop()
 	
 	if happiness_bar.value == 0:
 		gameover_text.text = "Happiness is 0\nYou Lose!"
 		is_gameover = true
-		return
+		
 	elif happiness_bar.value == 100:
 		gameover_text.text = "Happiness is 100\nYou Win!"
 		is_gameover = true
-		return
 
 func generate_new_target() -> Dictionary:
 	target_config = {}

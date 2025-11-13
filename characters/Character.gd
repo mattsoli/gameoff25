@@ -25,7 +25,8 @@ enum ClickType {
 const MAX_PART_ID: int = 2
 var config: Dictionary = {}
 
-var speed: float = 50.0
+@export var speed: float = 50.0
+@export var max_speed: float = 100.0
 var move_direction: Vector2
 var is_direction_left: bool
 
@@ -57,6 +58,23 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_hailed: return
 	
+	handle_hold_click(delta)
+	
+	if click_count > 0:
+		comicsSprite.visible = true
+		
+		handle_single_click()
+		handle_multi_clicks(delta)	
+		
+
+func check_is_target() -> void:
+	if is_target:
+		comicsSprite.texture = comicsOk
+	else:
+		comicsSprite.texture = comicsError
+		speed = max_speed
+
+func handle_hold_click(delta: float) -> void:
 	if click_type == ClickType.HOLD:
 		if holding:
 			hold_timer += delta
@@ -67,41 +85,42 @@ func _process(delta: float) -> void:
 				emit_signal("character_hold_clicked", self)
 				
 				holding = false
-				comicsSprite.texture = comicsOk if is_target else comicsError
-	
-	if click_count > 0:
-		comicsSprite.visible = true
-		if click_type == ClickType.SINGLE:
-			print("click singolo")
-			
-			emit_signal("character_clicked", self)
-			
-			comicsSprite.texture = comicsOk if is_target else comicsError
-			click_count = 0
-			click_timer = 0.0
-			
-		if click_type == ClickType.MULTI:
+				check_is_target()
+				
+func handle_multi_clicks(delta: float) -> void:
+	if click_type == ClickType.MULTI:
 			click_timer += delta
 			comicsSprite.texture = comicsChecking 
 			
 			if click_timer > multi_click_interval:
 				if click_count > 1:
-					print("multi click", click_count)
+					print("multi click: ", click_count)
 					if click_count >= max_click_count:
 						emit_signal("character_multi_clicked", self)
-						comicsSprite.texture = comicsOk if is_target else comicsError
+						
+						check_is_target()
+							
 						click_count = 0
 					click_timer = 0.0
 
+func handle_single_click() -> void:
+	if click_type == ClickType.SINGLE:
+		print("click singolo")
+		emit_signal("character_clicked", self)
+		check_is_target()
+		click_count = 0
+		click_timer = 0.0
 
 func set_character(_is_direction_left: bool, _target_config: Dictionary) -> void:
 	is_target = _target_config == config
 	click_type = ClickType.values().pick_random() 
 	move_direction = Vector2.LEFT if _is_direction_left else Vector2.RIGHT
 	
-	print("Character config:", config)
-	print("Character click type:", click_type)
-	print("Character is target:", is_target)
+	var click_type_name = ClickType.keys()[click_type]
+	
+	print("Character config: ", config)
+	print("Character click type: ", click_type_name)
+	print("Character is target: ", is_target)
 	
 func generate_random_body_config() -> Dictionary:
 	var body_config: Dictionary = {}
@@ -143,7 +162,7 @@ func _on_input_event(_viewport: Object, event: InputEvent, _shape_idx: int) -> v
 				hold_timer = 0.0
 				mouse_down_time = Time.get_ticks_msec()
 			else:
-				# Mouse rilasciato: interrompi il hold
+				# Mouse rilasciato: interrompi l'hold
 				holding = false
 				hold_timer = 0.0
 				
