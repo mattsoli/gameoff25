@@ -35,7 +35,7 @@ _data = {
 }
 point_count = 2
 
-[node name="main3d" type="Node3D"]
+[node name="game" type="Node3D"]
 script = ExtResource("1_e2o6t")
 hail_point = 10
 
@@ -120,7 +120,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionLeft" type="PathFollow3D" parent="SpawnPathLeft"]
 unique_name_in_owner = true
-transform = Transform3D(-0.99926525, -0.0026020554, 0.037839513, -2.3282712e-10, 0.9976252, 0.06860204, -0.037929073, 0.06855278, -0.99690574, 0.25714874, -0.48013854, -5.277566)
+transform = Transform3D(-0.9992652, -0.0026020554, 0.03783951, -2.328271e-10, 0.9976252, 0.06860204, -0.03792907, 0.06855278, -0.9969057, 0.25714874, -0.48013854, -5.277566)
 
 [node name="SpawnPathRight" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.102182, 0.9383073, 1.2553856)
@@ -128,7 +128,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionRight" type="PathFollow3D" parent="SpawnPathRight"]
 unique_name_in_owner = true
-transform = Transform3D(-0.99926525, -0.0026020533, 0.037839513, -2.3282712e-10, 0.99762434, 0.06860204, -0.037929073, 0.06855272, -0.99690574, 0.25714874, -0.48013854, -5.277566)
+transform = Transform3D(-0.9992652, -0.0026020533, 0.03783951, -2.328271e-10, 0.99762434, 0.06860204, -0.03792907, 0.06855272, -0.9969057, 0.25714874, -0.48013854, -5.277566)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24675632, 3.9321048, 12.114763)
