@@ -148,7 +148,7 @@ func _on_input_event(_camera: Camera3D, event: InputEvent, _position: Vector3, _
 			mouse_down_time = Time.get_ticks_msec()
 		else:
 			# Mouse rilasciato
-			var press_duration = (Time.get_ticks_msec() - mouse_down_time) / 1000.0
+			var press_duration: float = (Time.get_ticks_msec() - mouse_down_time) / 1000.0
 			
 			# Se era un tentativo di hold ma non è durato abbastanza
 			if click_type == ClickType.HOLD and holding:

@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://chs1pka73kqy5"]
 
 [ext_resource type="Script" uid="uid://yts7jw2ly007" path="res://characters/character_3d.gd" id="1_7rb44"]
-[ext_resource type="Texture2D" uid="uid://bgcfq0ju4m7m8" path="res://characters/parts/heads/head_1.png" id="1_jh07b"]
 [ext_resource type="Texture2D" uid="uid://b5t40yhhqcnbx" path="res://characters/parts/bodies/body_1.png" id="2_8iqph"]
 [ext_resource type="Texture2D" uid="uid://hulre416iost" path="res://characters/parts/eyes/eyes_1.png" id="3_4bjsi"]
 [ext_resource type="Texture2D" uid="uid://3skpvapbr436" path="res://comics/comicError.png" id="3_s3oka"]
 [ext_resource type="Texture2D" uid="uid://cshn075eewv4c" path="res://comics/comicThinking.png" id="4_gt5bg"]
 [ext_resource type="Texture2D" uid="uid://86lge7qikjsx" path="res://comics/comicOk.png" id="5_dwpd4"]
+[ext_resource type="Texture2D" uid="uid://cedt7xyfp0r67" path="res://icon.svg" id="5_s3oka"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jjdr7"]
 
@@ -20,18 +20,11 @@ comicsError = ExtResource("3_s3oka")
 comicsChecking = ExtResource("4_gt5bg")
 speed = 2.0
 max_speed = 6.0
-hold_time = null
-max_click_count = null
-multi_click_interval = 0.1
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_jjdr7")
-disabled = true
 
 [node name="Head" type="Node3D" parent="."]
 
 [node name="Sprite3D" type="Sprite3D" parent="Head"]
-texture = ExtResource("1_jh07b")
+texture = ExtResource("5_s3oka")
 
 [node name="Body" type="Node3D" parent="."]
 
@@ -40,14 +33,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9333848, 0)
 texture = ExtResource("2_8iqph")
 
 [node name="Eyes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
 
 [node name="Sprite3D" type="Sprite3D" parent="Eyes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028167129, 0, 0)
 texture = ExtResource("3_4bjsi")
 
 [node name="ComicsSprite" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9682094, 0.7904177, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9682094, 0.7904177, 0.045987666)
 texture = ExtResource("5_dwpd4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_jjdr7")
+disabled = true
 
 [node name="ClickCollider" type="Area3D" parent="."]
 unique_name_in_owner = true
