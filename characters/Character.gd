@@ -16,72 +16,93 @@ enum ClickType {
 @onready var noseSlot: Sprite2D = $Nose/Sprite2D
 @onready var mouthSlot: Sprite2D = $Mouth/Sprite2D
 
+@export var comicsOk: Texture2D
+@export var comicsError: Texture2D
+@export var comicsChecking: Texture2D
+
+@onready var comicsSprite: Sprite2D = %ComicsSprite
+
 const MAX_PART_ID: int = 2
 var config: Dictionary = {}
 
 var speed: float = 50.0
-var direction: Vector2
+var move_direction: Vector2
 var is_direction_left: bool
 
 var is_hailed: bool = false
+var is_target: bool = false
 
 # Click variables
 @export var hold_time: float = 2.0
 var click_type: ClickType
 var click_count: int = 0
+@export var max_click_count: int = 0
+@export var multi_click_interval: float = 2.0
 var hold_timer: float = 0.0
 var click_timer: float = 0.0
-@export var multi_click_interval: float = 2.0
 var holding: bool = false
 var mouse_down_time: float = 0.0
 
 signal character_clicked(character)
-signal character_hold_click(character)
-signal character_multi_click(character)
+signal character_hold_clicked(character)
+signal character_multi_clicked(character)
 
 func _ready() -> void:
 	config = generate_random_body_config()
+	comicsSprite.visible = false
 
 	var clickArea = %ClickCollider
 	clickArea.input_event.connect(_on_input_event)
 	
 func _process(delta: float) -> void:
-	# Se il pulsante è tenuto premuto, aggiorna il tempo
 	if is_hailed: return
 	
-	if holding:
-		hold_timer += delta
-		if hold_timer >= hold_time:
-			holding = false
-			emit_signal("character_hold_click", self)
+	if click_type == ClickType.HOLD:
+		if holding:
+			hold_timer += delta
+			comicsSprite.visible = true
+			comicsSprite.texture = comicsChecking
+			
+			if hold_timer >= hold_time:
+				emit_signal("character_hold_clicked", self)
+				
+				holding = false
+				comicsSprite.texture = comicsOk if is_target else comicsError
 	
 	if click_count > 0:
 		click_timer += delta
+		
 		if click_type == ClickType.SINGLE:
-			print("click singolo")
 			emit_signal("character_clicked", self)
+			
+			print("click singolo")
+			comicsSprite.visible = true
+			comicsSprite.texture = comicsOk if is_target else comicsError
 			click_count = 0
 			click_timer = 0.0
 			
 		if click_type == ClickType.MULTI:
 			if click_timer > multi_click_interval:
 				if click_count > 1:
-					print("multi click")
-					emit_signal("character_multi_click", self)
-				click_count = 0
-				click_timer = 0.0
+					print("multi click", click_count)
+					comicsSprite.visible = true
+					comicsSprite.texture = comicsChecking
+					
+					if click_count >= max_click_count:
+						emit_signal("character_multi_clicked", self)
+						comicsSprite.texture = comicsOk if is_target else comicsError
+						click_count = 0
+					click_timer = 0.0
 
 
-func set_character(_is_direction_left: bool) -> void:
+func set_character(_is_direction_left: bool, _target_config: Dictionary) -> void:
+	is_target = _target_config == config
 	click_type = ClickType.values().pick_random() 
+	move_direction = Vector2.LEFT if _is_direction_left else Vector2.RIGHT
+	
 	print("Character config:", config)
 	print("Character click type:", click_type)
-	
-	if _is_direction_left:
-		direction = Vector2.LEFT
-	else:
-		direction = Vector2.RIGHT
-	pass
+	print("Character is target:", is_target)
 	
 func generate_random_body_config() -> Dictionary:
 	var body_config: Dictionary = {}
@@ -102,7 +123,7 @@ func generate_random_body_config() -> Dictionary:
 	return body_config
 
 func _physics_process(_delta: float ) -> void:
-	velocity = direction * speed
+	velocity = move_direction * speed
 	move_and_slide()
 	
 	# FIX DESTROY CHARACTERS

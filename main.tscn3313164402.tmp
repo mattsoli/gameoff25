@@ -28,13 +28,13 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="Curve2D" id="Curve2D_ig7tw"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -9, 500, 0, 0, 0, 0, -111, 500, 0, 0, 0, 0, -110.99999, 324.64398, 0, 0, 0, 0, -7.9999924, 324.64398, 0, 0, 0, 0, -9, 500)
+"points": PackedVector2Array(0, 0, 0, 0, -9, 500, 0, 0, 0, 0, -111, 500, 0, 0, 0, 0, -111, 206, 0, 0, 0, 0, -7.9999924, 207.73993, 0, 0, 0, 0, -9, 500)
 }
 point_count = 5
 
 [sub_resource type="Curve2D" id="Curve2D_0xm2m"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 208, 462, 0, 0, 0, 0, 80, 462, 0, 0, 0, 0, 80, 272, 0, 0, 0, 0, 208, 272, 0, 0, 0, 0, 208, 462)
+"points": PackedVector2Array(0, 0, 0, 0, 208, 462, 0, 0, 0, 0, 80, 462, 0, 0, 0, 0, 80, 144, 0, 0, 0, 0, 208, 142, 0, 0, 0, 0, 208, 462)
 }
 point_count = 5
 
@@ -90,8 +90,8 @@ curve = SubResource("Curve2D_ig7tw")
 
 [node name="SpawnPositionLeft" type="PathFollow2D" parent="SpawnZoneLeft"]
 unique_name_in_owner = true
-position = Vector2(-9, 500.00003)
-rotation = 1.576499
+position = Vector2(-9, 500)
+rotation = 1.5742179
 progress = 1490.645
 
 [node name="SpawnZoneRight" type="Path2D" parent="."]

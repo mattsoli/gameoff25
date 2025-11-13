@@ -48,7 +48,7 @@ func spawn_person():
 	var spawnSide: int = randi_range(0, 1)
 	var spawnPosition: PathFollow2D
 	
-	characterInstance.set_character(spawnSide)
+	characterInstance.set_character(spawnSide, target_config)
 	
 	if spawnSide == 0:
 		# LEFT
@@ -67,9 +67,9 @@ func spawn_person():
 		Character.ClickType.SINGLE:
 			characterInstance.character_clicked.connect(_on_character_clicked)
 		Character.ClickType.MULTI:
-			characterInstance.character_multi_click.connect(_on_character_clicked)
+			characterInstance.character_multi_clicked.connect(_on_character_clicked)
 		Character.ClickType.HOLD:
-			characterInstance.character_hold_click.connect(_on_character_clicked)
+			characterInstance.character_hold_clicked.connect(_on_character_clicked)
 	pass
 
 func _on_character_clicked(_character: Character) -> void:
