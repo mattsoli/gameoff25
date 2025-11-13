@@ -5,17 +5,24 @@ extends Node2D
 
 var characterScene: PackedScene = preload("res://scenes/Character.tscn")
 
+@export var hail_point: int 
+
 var target_config: Dictionary  = {}
+var anti_target_config: Dictionary = {}
 var characters: Character
 const MAX_PART_ID: int = 2
 var is_gameover: bool = false
 
 func _ready() -> void:
-	
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	spawn_timer.start()
 	
-	print("Target Config: ", generate_new_target())
+	target_config = generate_new_config()
+	anti_target_config = generate_new_config()
+	
+	print("Target Config: ", target_config)
+	print("Anti Target Config: ", anti_target_config)
+	
 	
 func _process(_delta: float) -> void:
 	handle_gameover()
@@ -32,14 +39,14 @@ func handle_gameover() -> void:
 		gameover_text.text = "Happiness is 100\nYou Win!"
 		is_gameover = true
 
-func generate_new_target() -> Dictionary:
-	target_config = {}
+func generate_new_config() -> Dictionary:
+	var config: Dictionary = {}
 	
 	for part_type: int in BodyParts.PartsType.values():
 		var part_name: String = BodyParts.PartsType.keys()[part_type]
-		target_config[part_name] = randi_range(1, MAX_PART_ID)
+		config[part_name] = randi_range(1, MAX_PART_ID)
 
-	return target_config
+	return config
 	
 func _on_spawn_timer_timeout() -> void:
 	spawn_person()
@@ -75,10 +82,29 @@ func _on_character_clicked(_character: Character) -> void:
 	
 func hail_character(_character: Character) -> void:
 	_character.is_hailed = true
-	if(target_config == _character.config):
+	
+	if is_valid_character(_character.config, target_config, anti_target_config):
 		print("Character riconosciuto")
-		happiness_bar.value += 10
+		happiness_bar.value += hail_point
 	else:
 		print("Sconosciuto salutato")
-		happiness_bar.value -= 10
+		happiness_bar.value -= hail_point
 	pass
+
+func is_valid_character(_character_config: Dictionary, _target_config: Dictionary, _anti_target_config: Dictionary) -> bool:
+	# Verifica che ci sia almeno un elemento che corrisponde al target
+	var has_target_match: bool = false
+	for key: String in _target_config.keys():
+		if _character_config.has(key) and _character_config[key] == _target_config[key]:
+			has_target_match = true
+			break
+	
+	if not has_target_match:
+		return false
+	
+	# Verifica che NON ci siano elementi che corrispondono all'anti-target
+	for key: String in _anti_target_config.keys():
+		if _character_config.has(key) and _character_config[key] == _anti_target_config[key]:
+			return false
+	
+	return true
