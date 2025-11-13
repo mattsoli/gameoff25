@@ -1,0 +1,138 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccc4ybk76fv5p"]
+
+[ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://main_3d.gd" id="1_wiwsh"]
+[ext_resource type="Texture2D" uid="uid://ccrx2y0rvfg56" path="res://background/background.jpg" id="2_pt58c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wiwsh"]
+bg_color = Color(0.14503565, 0.28519025, 0.17762923, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pt58c"]
+bg_color = Color(0.3028484, 0.7013479, 0.2957257, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Curve3D" id="Curve3D_wiwsh"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.25714916, -0.41660094, 0.53551245, 0, 0, 0, 0, 0, 0, 0.56119585, -0.7740221, 2.0489936),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="main3d" type="Node3D"]
+script = ExtResource("1_wiwsh")
+hail_point = 10
+
+[node name="CharacterSpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 4.0
+
+[node name="TargetConfigText" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 184.0
+offset_top = -104.0
+offset_right = 384.0
+offset_bottom = -4.0
+grow_vertical = 0
+size_flags_horizontal = 4
+text = "TARGET"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="AntiTargetConfigText" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -104.0
+offset_right = -184.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+text = "anti target"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="HappinessBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 25.0
+offset_right = 125.0
+offset_bottom = 55.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_wiwsh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pt58c")
+step = 1.0
+value = 90.0
+show_percentage = false
+
+[node name="GameOverText" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="SpawnPathLeft" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.955922, 1.1076546, 0)
+curve = SubResource("Curve3D_wiwsh")
+
+[node name="SpawnPositionLeft" type="PathFollow3D" parent="SpawnPathLeft"]
+unique_name_in_owner = true
+transform = Transform3D(-0.9804121, 0.044426717, -0.19188118, -1.8626454e-09, 0.97422796, 0.22556542, 0.19695716, 0.22114706, -0.95514494, 0.25714916, -0.41660094, 0.53551245)
+
+[node name="SpawnPathRight" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.557117, 0.9383073, 0)
+curve = SubResource("Curve3D_wiwsh")
+
+[node name="SpawnPositionRight" type="PathFollow3D" parent="SpawnPathRight"]
+unique_name_in_owner = true
+transform = Transform3D(-0.9804121, 0.044426713, -0.19188115, -1.8626454e-09, 0.97422785, 0.22556539, 0.19695716, 0.22114703, -0.9551448, 0.25714916, -0.41660094, 0.53551245)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24675632, 3.9321048, 12.114763)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3323565, -4.1286874)
+texture = ExtResource("2_pt58c")
