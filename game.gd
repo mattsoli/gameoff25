@@ -93,8 +93,6 @@ func spawn_person() -> void:
 	match characterInstance.click_type:
 		Character.ClickType.SINGLE:
 			characterInstance.character_clicked.connect(_on_character_clicked)
-		Character.ClickType.MULTI:
-			characterInstance.character_multi_clicked.connect(_on_character_clicked)
 		Character.ClickType.HOLD:
 			characterInstance.character_hold_clicked.connect(_on_character_clicked)
 
