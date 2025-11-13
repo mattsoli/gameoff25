@@ -50,17 +50,20 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_hailed or click_processed:
 		return
+		
+	# Gestione SINGLE click - attiva subito al primo click
+	if is_clicked:
+		print("Click singolo")
+		emit_signal("character_clicked", self)
+		check_is_target()
 
 	# Gestione HOLD CLICK
 	if click_type == ClickType.HOLD and holding:
 		handle_hold_click(delta)
 		return
 
-	# Gestione SINGLE click - attiva subito al primo click
-	if is_clicked:
-		print("Click singolo")
-		emit_signal("character_clicked", self)
-		check_is_target()
+	
+
 
 func check_is_target() -> void:
 	click_processed = true
@@ -133,6 +136,10 @@ func _on_input_event(_camera: Camera3D, event: InputEvent, _position: Vector3, _
 				hold_timer = 0.0
 				comicsSprite.visible = true
 				comicsSprite.texture = comicsChecking
+				
+			if click_type != ClickType.HOLD:
+				is_clicked = true
+				
 			mouse_down_time = Time.get_ticks_msec()
 		else:
 			# Mouse rilasciato

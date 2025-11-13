@@ -120,7 +120,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionLeft" type="PathFollow3D" parent="SpawnPathLeft"]
 unique_name_in_owner = true
-transform = Transform3D(-0.99925697, -0.015442366, 0.034642775, 0, 0.9133469, 0.4071301, -0.037928756, 0.40683883, -0.91268575, 0.25714874, 1.1310184, -5.277566)
+transform = Transform3D(-0.9992569, -0.015442366, 0.034642775, 0, 0.9133469, 0.40713006, -0.037928756, 0.40683883, -0.9126857, 0.25714874, 1.1310184, -5.277566)
 
 [node name="SpawnPathRight" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.102182, 0.9383073, 1.2553856)
@@ -128,7 +128,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionRight" type="PathFollow3D" parent="SpawnPathRight"]
 unique_name_in_owner = true
-transform = Transform3D(-0.99925697, -0.015442352, 0.034642775, 0, 0.91334605, 0.4071301, -0.037928756, 0.40683848, -0.91268575, 0.25714874, 1.1310184, -5.277566)
+transform = Transform3D(-0.9992569, -0.015442352, 0.034642775, 0, 0.91334605, 0.40713006, -0.037928756, 0.40683848, -0.9126857, 0.25714874, 1.1310184, -5.277566)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24675632, 3.9321048, 12.114763)

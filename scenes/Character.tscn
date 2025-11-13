@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://chs1pka73kqy5"]
 
-[ext_resource type="Script" uid="uid://yts7jw2ly007" path="res://characters/character.gd" id="1_25pii"]
+[ext_resource type="Script" uid="uid://x5v7rg6s3l1c" path="res://characters/character.gd" id="1_25pii"]
 [ext_resource type="Texture2D" uid="uid://86lge7qikjsx" path="res://comics/comicOk.png" id="2_fwsyb"]
 [ext_resource type="Texture2D" uid="uid://3skpvapbr436" path="res://comics/comicError.png" id="3_25pii"]
 [ext_resource type="Texture2D" uid="uid://b5t40yhhqcnbx" path="res://characters/parts/bodies/body_1.png" id="3_apuoc"]
