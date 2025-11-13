@@ -1,82 +1,54 @@
-[gd_scene load_steps=9 format=3 uid="uid://waegwyr0og1c"]
+[gd_scene load_steps=10 format=3 uid="uid://chs1pka73kqy5"]
 
-[ext_resource type="Script" uid="uid://c6xlt5nh3m1vc" path="res://characters/character.gd" id="1_3i3nt"]
+[ext_resource type="Script" uid="uid://yts7jw2ly007" path="res://characters/character.gd" id="1_25pii"]
 [ext_resource type="Texture2D" uid="uid://86lge7qikjsx" path="res://comics/comicOk.png" id="2_fwsyb"]
 [ext_resource type="Texture2D" uid="uid://3skpvapbr436" path="res://comics/comicError.png" id="3_25pii"]
 [ext_resource type="Texture2D" uid="uid://b5t40yhhqcnbx" path="res://characters/parts/bodies/body_1.png" id="3_apuoc"]
-[ext_resource type="Texture2D" uid="uid://bgcfq0ju4m7m8" path="res://characters/parts/heads/head_1.png" id="3_fwsyb"]
 [ext_resource type="Texture2D" uid="uid://cshn075eewv4c" path="res://comics/comicThinking.png" id="4_exdhi"]
+[ext_resource type="Texture2D" uid="uid://cedt7xyfp0r67" path="res://icon.svg" id="5_exdhi"]
+[ext_resource type="Texture2D" uid="uid://hulre416iost" path="res://characters/parts/eyes/eyes_1.png" id="7_r87yu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3i3nt"]
-size = Vector2(196, 240)
+[sub_resource type="BoxShape3D" id="BoxShape3D_jjdr7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_53v7d"]
-size = Vector2(256, 296)
+[sub_resource type="BoxShape3D" id="BoxShape3D_dwpd4"]
+size = Vector3(1, 1.8676758, 1)
 
-[node name="Character" type="CharacterBody2D"]
-script = ExtResource("1_3i3nt")
+[node name="Character3d" type="CharacterBody3D"]
+script = ExtResource("1_25pii")
 comicsOk = ExtResource("2_fwsyb")
 comicsError = ExtResource("3_25pii")
 comicsChecking = ExtResource("4_exdhi")
-hold_time = 1.0
-max_click_count = 5
-multi_click_interval = 0.1
+speed = 2.0
+max_speed = 6.0
 
-[node name="Head" type="Node2D" parent="."]
-position = Vector2(-1, -147)
+[node name="Head" type="Node3D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="Head"]
-texture = ExtResource("3_fwsyb")
+[node name="Sprite3D" type="Sprite3D" parent="Head"]
+texture = ExtResource("5_exdhi")
 
-[node name="Eyes" type="Node2D" parent="."]
-position = Vector2(-3, -160)
+[node name="Body" type="Node3D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="Eyes"]
-
-[node name="Body" type="Node2D" parent="."]
-position = Vector2(0, -52)
-
-[node name="Sprite2D" type="Sprite2D" parent="Body"]
+[node name="Sprite3D" type="Sprite3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9333848, 0)
 texture = ExtResource("3_apuoc")
 
-[node name="Ears" type="Node2D" parent="."]
+[node name="Eyes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
 
-[node name="Sprite2D" type="Sprite2D" parent="Ears"]
+[node name="Sprite3D" type="Sprite3D" parent="Eyes"]
+texture = ExtResource("7_r87yu")
 
-[node name="Arms" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Arms"]
-
-[node name="Legs" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Legs"]
-
-[node name="Nose" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Nose"]
-
-[node name="Mouth" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Mouth"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -96)
-shape = SubResource("RectangleShape2D_3i3nt")
-disabled = true
-debug_color = Color(0.9909131, 0, 0.27819842, 0.41960785)
-
-[node name="ClickCollider" type="Area2D" parent="."]
-unique_name_in_owner = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickCollider"]
-position = Vector2(0, -92)
-shape = SubResource("RectangleShape2D_53v7d")
-debug_color = Color(0, 0.6432068, 0.3057623, 0.41960785)
-
-[node name="CanvasLayer" type="CanvasGroup" parent="."]
-position = Vector2(120, -280)
-
-[node name="ComicsSprite" type="Sprite2D" parent="CanvasLayer"]
-unique_name_in_owner = true
-position = Vector2(-8, 48)
+[node name="ComicsSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9682094, 0.7904177, 0.045987666)
 texture = ExtResource("2_fwsyb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_jjdr7")
+disabled = true
+
+[node name="ClickCollider" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickCollider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4338379, 0)
+shape = SubResource("BoxShape3D_dwpd4")

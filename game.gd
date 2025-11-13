@@ -6,13 +6,13 @@ extends Node3D
 @onready var debug_target_text: Label = %TargetConfigText
 @onready var debug_antitarget_text: Label = %AntiTargetConfigText
 
-var characterScene: PackedScene = preload("res://scenes/Character3D.tscn")
+var characterScene: PackedScene = preload("res://scenes/Character.tscn")
 
 @export var hail_point: int 
 
 var target_config: Dictionary = {}
 var anti_target_config: Dictionary = {}
-var characters: Character3D
+var characters: Character
 const MAX_PART_ID: int = 2
 var is_gameover: bool = false
 
@@ -77,7 +77,7 @@ func _on_spawn_timer_timeout() -> void:
 
 
 func spawn_person() -> void:
-	var characterInstance: Character3D = characterScene.instantiate() as Character3D
+	var characterInstance: Character = characterScene.instantiate() as Character
 	add_child(characterInstance)
 
 	var spawnSide: int = randi_range(0, 1)
@@ -91,22 +91,22 @@ func spawn_person() -> void:
 	characterInstance.global_position = spawnPosition.global_position
 
 	match characterInstance.click_type:
-		Character3D.ClickType.SINGLE:
+		Character.ClickType.SINGLE:
 			characterInstance.character_clicked.connect(_on_character_clicked)
-		Character3D.ClickType.MULTI:
+		Character.ClickType.MULTI:
 			characterInstance.character_multi_clicked.connect(_on_character_clicked)
-		Character3D.ClickType.HOLD:
+		Character.ClickType.HOLD:
 			characterInstance.character_hold_clicked.connect(_on_character_clicked)
 
 
-func _on_character_clicked(_character: Character3D) -> void:
+func _on_character_clicked(_character: Character) -> void:
 	if _character.is_hailed:
 		return
 
 	hail_character(_character)
 
 
-func hail_character(_character: Character3D) -> void:
+func hail_character(_character: Character) -> void:
 	_character.is_hailed = true
 
 	if is_valid_character(_character.config, target_config, anti_target_config):
