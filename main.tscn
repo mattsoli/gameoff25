@@ -72,6 +72,41 @@ anchor_mode = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="TargetConfigText" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 184.0
+offset_top = -104.0
+offset_right = 384.0
+offset_bottom = -4.0
+grow_vertical = 0
+size_flags_horizontal = 4
+text = "TARGET"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="AntiTargetConfigText" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -104.0
+offset_right = -184.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+text = "anti target"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
 [node name="HappinessBar" type="ProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true
 anchors_preset = 5

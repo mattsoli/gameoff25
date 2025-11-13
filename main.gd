@@ -2,6 +2,8 @@ extends Node2D
 @onready var spawn_timer: Timer = %CharacterSpawnTimer
 @onready var happiness_bar: ProgressBar = %HappinessBar
 @onready var gameover_text: Label = %GameOverText
+@onready var debug_target_text: Label = %TargetConfigText
+@onready var debug_antitarget_text: Label = %AntiTargetConfigText 
 
 var characterScene: PackedScene = preload("res://scenes/Character.tscn")
 
@@ -18,11 +20,12 @@ func _ready() -> void:
 	spawn_timer.start()
 	
 	target_config = generate_new_config()
+	debug_target_text.text = "Target:\n"+str(target_config)
 	anti_target_config = generate_new_config()
+	debug_antitarget_text.text = "Anti Target:\n"+str(anti_target_config)
 	
 	print("Target Config: ", target_config)
 	print("Anti Target Config: ", anti_target_config)
-	
 	
 func _process(_delta: float) -> void:
 	handle_gameover()
