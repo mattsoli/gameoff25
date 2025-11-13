@@ -21,7 +21,7 @@ func _ready() -> void:
 	
 	target_config = generate_new_config()
 	debug_target_text.text = "Target:\n"+str(target_config)
-	anti_target_config = generate_new_config()
+	anti_target_config = generate_anticonfig(target_config)
 	debug_antitarget_text.text = "Anti Target:\n"+str(anti_target_config)
 	
 	print("Target Config: ", target_config)
@@ -50,6 +50,23 @@ func generate_new_config() -> Dictionary:
 		config[part_name] = randi_range(1, MAX_PART_ID)
 
 	return config
+	
+func generate_anticonfig(_target_config: Dictionary) -> Dictionary:
+	var config: Dictionary = {}
+	
+	for part_type: int in BodyParts.PartsType.values():
+		var part_name: String = BodyParts.PartsType.keys()[part_type]
+		
+		var available_ids: Array = []
+		for id: int in range(1, MAX_PART_ID + 1):
+			if _target_config[part_name] != id:
+				available_ids.append(id)
+		
+		# Scegli un valore diverso dal target
+		config[part_name] = available_ids.pick_random()
+	
+	return config
+
 	
 func _on_spawn_timer_timeout() -> void:
 	spawn_person()
