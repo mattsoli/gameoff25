@@ -5,29 +5,35 @@ extends Node3D
 @onready var gameover_text: Label = %GameOverText
 @onready var debug_target_text: Label = %TargetConfigText
 @onready var debug_antitarget_text: Label = %AntiTargetConfigText
+@onready var target_config: TargetConfig = %TargetConfig
+
+@onready var valid1: Sprite3D = %Valid1
+@onready var valid2: Sprite3D  = %Valid2
+@onready var valid3: Sprite3D  = %Valid3
+
+@onready var invalid1: Sprite3D  = %Invalid1
+@onready var invalid2: Sprite3D  = %Invalid2
 
 var characterScene: PackedScene = preload("res://scenes/Character.tscn")
 
 @export var hail_point: int 
+@export var max_body_parts_to_guess : int
+@export var max_body_parts_to_avoid : int
 
-var target_config: Dictionary = {}
-var anti_target_config: Dictionary = {}
-var characters: Character
-const MAX_PART_ID: int = 2
+const MAX_PART_ID: int = 3
+
 var is_gameover: bool = false
 
 func _ready() -> void:
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	spawn_timer.start()
 
-	target_config = generate_new_config()
-	debug_target_text.text = "Target:\n" + str(target_config)
-
-	anti_target_config = generate_anticonfig(target_config)
-	debug_antitarget_text.text = "Anti Target:\n" + str(anti_target_config)
-
-	print("Target Config: ", target_config)
-	print("Anti Target Config: ", anti_target_config)
+	valid1.texture = target_config.valid_config[0].texture
+	valid2.texture = target_config.valid_config[1].texture
+	valid3.texture = target_config.valid_config[2].texture
+	
+	invalid1.texture = target_config.invalid_config[0].texture
+	#invalid2.texture = target_config.invalid_config[1].texture
 
 func _process(_delta: float) -> void:
 	handle_gameover()
@@ -46,32 +52,6 @@ func handle_gameover() -> void:
 		is_gameover = true
 
 
-func generate_new_config() -> Dictionary:
-	var config: Dictionary = {}
-
-	for part_type: int in BodyParts.PartsType.values():
-		var part_name: String = BodyParts.PartsType.keys()[part_type]
-		config[part_name] = randi_range(1, MAX_PART_ID)
-
-	return config
-
-
-func generate_anticonfig(_target_config: Dictionary) -> Dictionary:
-	var config: Dictionary = {}
-
-	for part_type: int in BodyParts.PartsType.values():
-		var part_name: String = BodyParts.PartsType.keys()[part_type]
-
-		var available_ids: Array = []
-		for id: int in range(1, MAX_PART_ID + 1):
-			if _target_config[part_name] != id:
-				available_ids.append(id)
-
-		config[part_name] = available_ids.pick_random()
-
-	return config
-
-
 func _on_spawn_timer_timeout() -> void:
 	spawn_person()
 
@@ -83,7 +63,7 @@ func spawn_person() -> void:
 	var spawnSide: int = randi_range(0, 1)
 	var spawnPosition: PathFollow3D
 
-	characterInstance.set_character(spawnSide == 0, target_config)
+	characterInstance.set_character(spawnSide == 0, target_config.valid_config, target_config.invalid_config)
 
 	spawnPosition = %SpawnPositionLeft if spawnSide == 0 else %SpawnPositionRight
 	spawnPosition.progress_ratio = randf()
@@ -103,31 +83,12 @@ func _on_character_clicked(_character: Character) -> void:
 
 	hail_character(_character)
 
-
 func hail_character(_character: Character) -> void:
 	_character.is_hailed = true
 
-	if is_valid_character(_character.config, target_config, anti_target_config):
+	if _character.is_target:
 		print("Character riconosciuto")
 		happiness_bar.value += hail_point
 	else:
 		print("Sconosciuto salutato")
 		happiness_bar.value -= hail_point
-
-
-func is_valid_character(_character_config: Dictionary, _target_config: Dictionary, _anti_target_config: Dictionary) -> bool:
-	var has_target_match: bool = false
-
-	for key: String in _target_config.keys():
-		if _character_config.has(key) and _character_config[key] == _target_config[key]:
-			has_target_match = true
-			break
-
-	if not has_target_match:
-		return false
-
-	for key: String in _anti_target_config.keys():
-		if _character_config.has(key) and _character_config[key] == _anti_target_config[key]:
-			return false
-
-	return true

@@ -2,17 +2,17 @@ extends Resource
 
 class_name BodyParts
 
-enum PartsType {
-	#ears,
+enum PartType {
 	head,
 	body,
-	#arms,
-	#legs,
 	eyes,
+	#ears,
+	#arms,
+	legs,
 	#nose,
 	#mouth
 }
 
 @export var texture: Texture2D
-@export var partType: PartsType
+@export var part_type: PartType
 @export var id: int
