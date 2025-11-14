@@ -3,12 +3,12 @@ extends Resource
 class_name BodyParts
 
 enum PartsType {
-	#ears,
 	head,
 	body,
+	eyes,
+	#ears,
 	#arms,
 	#legs,
-	eyes,
 	#nose,
 	#mouth
 }

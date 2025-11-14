@@ -9,25 +9,26 @@ extends Node3D
 var characterScene: PackedScene = preload("res://scenes/Character.tscn")
 
 @export var hail_point: int 
+@export var max_body_parts_to_guess : int
+@export var max_body_parts_to_avoid : int
+
+const MAX_PART_ID: int = 2
 
 var target_config: Dictionary = {}
 var anti_target_config: Dictionary = {}
+var config_complete: Array
 var characters: Character
-const MAX_PART_ID: int = 2
 var is_gameover: bool = false
 
 func _ready() -> void:
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	spawn_timer.start()
-
+	
 	target_config = generate_new_config()
 	debug_target_text.text = "Target:\n" + str(target_config)
 
 	anti_target_config = generate_anticonfig(target_config)
 	debug_antitarget_text.text = "Anti Target:\n" + str(anti_target_config)
-
-	print("Target Config: ", target_config)
-	print("Anti Target Config: ", anti_target_config)
 
 func _process(_delta: float) -> void:
 	handle_gameover()
@@ -45,16 +46,13 @@ func handle_gameover() -> void:
 		gameover_text.text = "Happiness is 100\nYou Win!"
 		is_gameover = true
 
-
 func generate_new_config() -> Dictionary:
 	var config: Dictionary = {}
-
 	for part_type: int in BodyParts.PartsType.values():
 		var part_name: String = BodyParts.PartsType.keys()[part_type]
 		config[part_name] = randi_range(1, MAX_PART_ID)
 
 	return config
-
 
 func generate_anticonfig(_target_config: Dictionary) -> Dictionary:
 	var config: Dictionary = {}
@@ -103,7 +101,6 @@ func _on_character_clicked(_character: Character) -> void:
 
 	hail_character(_character)
 
-
 func hail_character(_character: Character) -> void:
 	_character.is_hailed = true
 
@@ -113,7 +110,6 @@ func hail_character(_character: Character) -> void:
 	else:
 		print("Sconosciuto salutato")
 		happiness_bar.value -= hail_point
-
 
 func is_valid_character(_character_config: Dictionary, _target_config: Dictionary, _anti_target_config: Dictionary) -> bool:
 	var has_target_match: bool = false
