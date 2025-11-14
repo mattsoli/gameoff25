@@ -12,6 +12,7 @@ extends Node3D
 @onready var valid3: Sprite3D  = %Valid3
 
 @onready var invalid1: Sprite3D  = %Invalid1
+@onready var invalid2: Sprite3D  = %Invalid2
 
 var characterScene: PackedScene = preload("res://scenes/Character.tscn")
 
@@ -19,7 +20,7 @@ var characterScene: PackedScene = preload("res://scenes/Character.tscn")
 @export var max_body_parts_to_guess : int
 @export var max_body_parts_to_avoid : int
 
-const MAX_PART_ID: int = 2
+const MAX_PART_ID: int = 3
 
 var is_gameover: bool = false
 
@@ -32,6 +33,7 @@ func _ready() -> void:
 	valid3.texture = target_config.valid_config[2].texture
 	
 	invalid1.texture = target_config.invalid_config[0].texture
+	#invalid2.texture = target_config.invalid_config[1].texture
 
 func _process(_delta: float) -> void:
 	handle_gameover()

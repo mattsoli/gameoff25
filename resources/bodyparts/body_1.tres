@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_rpsni")
 texture = ExtResource("2_cu7m1")
-partType = 1
+part_type = 1
 id = 1
 metadata/_custom_type_script = "uid://cs5i51dwnlfjd"

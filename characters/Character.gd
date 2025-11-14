@@ -10,6 +10,7 @@ enum ClickType {
 @onready var eyesSlot: Sprite3D = $Eyes/Sprite3D
 @onready var headSlot: Sprite3D = $Head/Sprite3D
 @onready var bodySlot: Sprite3D = $Body/Sprite3D
+@onready var legsSlot: Sprite3D = $Legs/Sprite3D
 
 @onready var comicsSprite: Sprite3D = $ComicsSprite
 
@@ -17,7 +18,7 @@ enum ClickType {
 @export var comicsError: Texture2D
 @export var comicsChecking: Texture2D
 
-const MAX_PART_ID: int = 2
+const MAX_PART_ID: int = 3
 
 @export var speed: float = 2.0
 @export var max_speed: float = 6.0
@@ -121,8 +122,8 @@ func set_is_target(valid_parts: Array, invalid_parts: Array) -> bool:
 func generate_random_body_config() -> void:
 	var body_config: Dictionary = {}
 	
-	for part_type: int in BodyParts.PartsType.values():
-		var part_name: String = BodyParts.PartsType.keys()[part_type]
+	for part_type: int in BodyParts.PartType.values():
+		var part_name: String = BodyParts.PartType.keys()[part_type]
 		body_config[part_name] = randi_range(1, MAX_PART_ID)
 		
 		var body_part: BodyParts = load("res://resources/bodyparts/%s_%d.tres" % [part_name, body_config[part_name]])
