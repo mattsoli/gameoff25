@@ -7,18 +7,19 @@ enum ClickType {
 	HOLD
 }
 
+@onready var character_config: CharacterConfig = %CharacterConfig
+
 @onready var eyesSlot: Sprite3D = $Eyes/Sprite3D
 @onready var headSlot: Sprite3D = $Head/Sprite3D
 @onready var bodySlot: Sprite3D = $Body/Sprite3D
+
+@onready var comicsSprite: Sprite3D = $ComicsSprite
 
 @export var comicsOk: Texture2D
 @export var comicsError: Texture2D
 @export var comicsChecking: Texture2D
 
-@onready var comicsSprite: Sprite3D = $ComicsSprite
-
 const MAX_PART_ID: int = 2
-var config: Dictionary = {}
 
 @export var speed: float = 50.0
 @export var max_speed: float = 100.0
@@ -41,7 +42,7 @@ signal character_clicked(character: Character)
 signal character_hold_clicked(character: Character)
 
 func _ready() -> void:
-	config = generate_random_body_config()
+	generate_random_body_config()
 	comicsSprite.visible = false
 
 	var clickArea: Area3D = %ClickCollider
@@ -51,13 +52,11 @@ func _process(delta: float) -> void:
 	if is_hailed or click_processed:
 		return
 		
-	# Gestione SINGLE click - attiva subito al primo click
 	if is_clicked:
 		print("Click singolo")
 		emit_signal("character_clicked", self)
 		check_is_target()
 
-	# Gestione HOLD CLICK
 	if click_type == ClickType.HOLD and holding:
 		handle_hold_click(delta)
 		return
@@ -86,36 +85,58 @@ func handle_hold_click(delta: float) -> void:
 		hold_timer = 0.0
 		check_is_target()
 
-func set_character(_is_direction_left: bool, _target_config: Dictionary) -> void:
-	is_target = _target_config == config
+func set_character(_is_direction_left: bool, valid_parts: Array, invalid_parts: Array) -> void:
+	is_target = set_is_target(valid_parts, invalid_parts)
+	
 	click_type = ClickType.values().pick_random() 
 	move_direction = Vector3.LEFT if _is_direction_left else Vector3.RIGHT
 	
 	var click_type_name: String = ClickType.keys()[click_type]
 	
 	print("─────────────────────────")
-	print("Character config: ", config)
+	print("Character config: ", character_config.body_parts)
 	print("Character click type: ", click_type_name)
 	print("Character is target: ", is_target)
 	print("─────────────────────────")
 	
-func generate_random_body_config() -> Dictionary:
+func set_is_target(valid_parts: Array, invalid_parts: Array) -> bool:
+	#Se esiste una parte invalida 
+	for part: BodyParts in character_config.body_parts:
+		if part in invalid_parts:
+			return false
+	# Se non esiste nessuna parte valida
+	var has_valid: bool = false
+	for part: BodyParts in character_config.body_parts:
+		if part in valid_parts:
+			has_valid = true
+			break
+
+	if not has_valid:
+		return false
+
+	return true
+
+	
+func generate_random_body_config() -> void:
 	var body_config: Dictionary = {}
 	
 	for part_type: int in BodyParts.PartsType.values():
 		var part_name: String = BodyParts.PartsType.keys()[part_type]
-		
 		body_config[part_name] = randi_range(1, MAX_PART_ID)
+		
+		var body_part: BodyParts = load("res://resources/%s_%d.tres" % [part_name, body_config[part_name]])
+		character_config.body_parts.append(body_part)
 		
 		match part_name:
 			"head":
-				headSlot.texture = load("res://resources/%s_%d.tres" % [part_name, body_config[part_name]]).texture
+				headSlot.texture = body_part.texture
 			"body":
-				bodySlot.texture = load("res://resources/%s_%d.tres" % [part_name, body_config[part_name]]).texture
+				bodySlot.texture = body_part.texture
 			"eyes":
-				eyesSlot.texture = load("res://resources/%s_%d.tres" % [part_name, body_config[part_name]]).texture
-		
-	return body_config
+				eyesSlot.texture = body_part.texture
+				
+	print(character_config.body_parts)
+	
 
 func _physics_process(_delta: float) -> void:
 	velocity = move_direction * speed
@@ -127,7 +148,6 @@ func _on_input_event(_camera: Camera3D, event: InputEvent, _position: Vector3, _
 			return
 			
 		if event.pressed:
-			# Mouse premuto
 			if click_type == ClickType.HOLD:
 				holding = true
 				hold_timer = 0.0
