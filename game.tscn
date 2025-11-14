@@ -115,24 +115,26 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="SpawnPathLeft" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.75438, 1.1076546, 2.1535358)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.75438, -1.1074624, -1.1747856)
 curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionLeft" type="PathFollow3D" parent="SpawnPathLeft"]
 unique_name_in_owner = true
-transform = Transform3D(-0.9992569, -0.015442366, 0.034642775, 0, 0.9133469, 0.40713006, -0.037928756, 0.40683883, -0.9126857, 0.25714874, 1.1310184, -5.277566)
+transform = Transform3D(-0.99925655, -0.015442366, 0.03464277, 0, 0.9133469, 0.40713003, -0.03792874, 0.40683883, -0.91268563, 0.25714874, 1.1310184, -5.277566)
 
 [node name="SpawnPathRight" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.102182, 0.9383073, 1.2553856)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.102182, -0.30201697, -1.2931955)
 curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionRight" type="PathFollow3D" parent="SpawnPathRight"]
 unique_name_in_owner = true
-transform = Transform3D(-0.9992569, -0.015442352, 0.034642775, 0, 0.91334605, 0.40713006, -0.037928756, 0.40683848, -0.9126857, 0.25714874, 1.1310184, -5.277566)
+transform = Transform3D(-0.99925655, -0.015442352, 0.03464277, 0, 0.91334605, 0.40713003, -0.03792874, 0.40683848, -0.91268563, 0.25714874, 1.1310184, -5.277566)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24675632, 3.9321048, 12.114763)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24675632, 3.9321048, 10.712235)
+projection = 1
+size = 23.581795
 
 [node name="Background" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3323565, -5.0624075)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9146137, -6.724675)
 texture = ExtResource("2_feb5d")

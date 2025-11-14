@@ -62,9 +62,6 @@ func _process(delta: float) -> void:
 		handle_hold_click(delta)
 		return
 
-	
-
-
 func check_is_target() -> void:
 	click_processed = true
 	comicsSprite.visible = true
