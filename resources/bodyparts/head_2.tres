@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BodyParts" load_steps=3 format=3 uid="uid://vuylfjwq0ngk"]
 
-[ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyParts.gd" id="1_qsupa"]
+[ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="1_qsupa"]
 [ext_resource type="Texture2D" uid="uid://cedt7xyfp0r67" path="res://icon.svg" id="2_73vjb"]
 
 [resource]

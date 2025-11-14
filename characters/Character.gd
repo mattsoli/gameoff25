@@ -7,8 +7,6 @@ enum ClickType {
 	HOLD
 }
 
-@onready var character_config: CharacterConfig = %CharacterConfig
-
 @onready var eyesSlot: Sprite3D = $Eyes/Sprite3D
 @onready var headSlot: Sprite3D = $Head/Sprite3D
 @onready var bodySlot: Sprite3D = $Body/Sprite3D
@@ -21,8 +19,9 @@ enum ClickType {
 
 const MAX_PART_ID: int = 2
 
-@export var speed: float = 50.0
-@export var max_speed: float = 100.0
+@export var speed: float = 2.0
+@export var max_speed: float = 6.0
+
 var move_direction: Vector3
 var is_direction_left: bool
 
@@ -30,13 +29,15 @@ var is_hailed: bool = false
 var is_target: bool = false
 
 # Click variables
-@export var hold_time: float = 1.5  # Tempo per considerare un hold (secondi)
+@export var hold_time: float = 1.5 
 var click_type: ClickType
 var is_clicked: bool
 var hold_timer: float = 0.0
 var holding: bool = false
 var mouse_down_time: float = 0.0
 var click_processed: bool = false  
+
+var body_parts: Array[BodyParts]
 
 signal character_clicked(character: Character)
 signal character_hold_clicked(character: Character)
@@ -94,19 +95,20 @@ func set_character(_is_direction_left: bool, valid_parts: Array, invalid_parts: 
 	var click_type_name: String = ClickType.keys()[click_type]
 	
 	print("─────────────────────────")
-	print("Character config: ", character_config.body_parts)
+	print("Character config: ", body_parts)
 	print("Character click type: ", click_type_name)
 	print("Character is target: ", is_target)
 	print("─────────────────────────")
 	
 func set_is_target(valid_parts: Array, invalid_parts: Array) -> bool:
 	#Se esiste una parte invalida 
-	for part: BodyParts in character_config.body_parts:
+	for part: BodyParts in body_parts:
 		if part in invalid_parts:
 			return false
+			
 	# Se non esiste nessuna parte valida
 	var has_valid: bool = false
-	for part: BodyParts in character_config.body_parts:
+	for part: BodyParts in body_parts:
 		if part in valid_parts:
 			has_valid = true
 			break
@@ -116,7 +118,6 @@ func set_is_target(valid_parts: Array, invalid_parts: Array) -> bool:
 
 	return true
 
-	
 func generate_random_body_config() -> void:
 	var body_config: Dictionary = {}
 	
@@ -124,8 +125,8 @@ func generate_random_body_config() -> void:
 		var part_name: String = BodyParts.PartsType.keys()[part_type]
 		body_config[part_name] = randi_range(1, MAX_PART_ID)
 		
-		var body_part: BodyParts = load("res://resources/%s_%d.tres" % [part_name, body_config[part_name]])
-		character_config.body_parts.append(body_part)
+		var body_part: BodyParts = load("res://resources/bodyparts/%s_%d.tres" % [part_name, body_config[part_name]])
+		body_parts.append(body_part)
 		
 		match part_name:
 			"head":
@@ -134,9 +135,6 @@ func generate_random_body_config() -> void:
 				bodySlot.texture = body_part.texture
 			"eyes":
 				eyesSlot.texture = body_part.texture
-				
-	print(character_config.body_parts)
-	
 
 func _physics_process(_delta: float) -> void:
 	velocity = move_direction * speed

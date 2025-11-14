@@ -13,9 +13,6 @@ func _ready() -> void:
 	valid_config = create_config(max_valid_parts)
 	invalid_config = create_anticonfig(valid_config, max_invalid_parts)
 	
-	print("Target Valid: ", valid_config)
-	print("Anti Target: ", invalid_config)
-	
 func create_config(max_parts: int) -> Array:
 	var config: Array 
 	if all_body_parts.size() < max_parts:
@@ -44,4 +41,3 @@ func create_anticonfig(_target_config: Array, max_parts: int) -> Array:
 	config = available.slice(0, max_parts)
 
 	return config
-	
