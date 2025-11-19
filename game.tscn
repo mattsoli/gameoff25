@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ccc4ybk76fv5p"]
+[gd_scene load_steps=25 format=3 uid="uid://ccc4ybk76fv5p"]
 
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://ccrx2y0rvfg56" path="res://background/background.jpg" id="2_feb5d"]
@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://b4rbaxufedg7b" path="res://resources/bodyparts/legs_1.tres" id="14_e8heu"]
 [ext_resource type="Resource" uid="uid://dvs5wsfi22cpa" path="res://resources/bodyparts/legs_2.tres" id="15_rvswv"]
 [ext_resource type="Resource" uid="uid://dd04ixjvt62um" path="res://resources/bodyparts/legs_3.tres" id="16_boyg6"]
+[ext_resource type="PackedScene" uid="uid://3siw543tqn3p" path="res://env/pova area di lavoro v02.blend" id="18_rvswv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wiwsh"]
 bg_color = Color(0.14503565, 0.28519025, 0.17762923, 1)
@@ -45,10 +46,21 @@ corner_radius_bottom_left = 5
 [sub_resource type="Curve3D" id="Curve3D_wiwsh"]
 closed = true
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.25714874, 1.1310184, -5.277566, 0, 0, 0, 0, 0, 0, 0.095048904, -0.7740221, -1.0069311),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.2318611, -0.3062744, -0.878891, 0, 0, 0, 0, 0, 0, 1.8553505, 0.42142868, -3.1198845),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rvswv"]
+
+[sub_resource type="Sky" id="Sky_boyg6"]
+sky_material = SubResource("ProceduralSkyMaterial_rvswv")
+
+[sub_resource type="Environment" id="Environment_e36ub"]
+background_mode = 2
+sky = SubResource("Sky_boyg6")
+tonemap_mode = 2
+glow_enabled = true
 
 [node name="game" type="Node3D"]
 script = ExtResource("1_e2o6t")
@@ -132,39 +144,42 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="SpawnPathLeft" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.75438, -1.1074624, -1.1747856)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.38544, 41.95878, 51.974)
 curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionLeft" type="PathFollow3D" parent="SpawnPathLeft"]
 unique_name_in_owner = true
-transform = Transform3D(-0.9992544, -0.015442366, 0.03464277, 0, 0.9133469, 0.40713003, -0.03792866, 0.40683883, -0.91268563, 0.25714874, 1.1310184, -5.277566)
+transform = Transform3D(0.96337384, -0.08002699, -0.25580624, 0, 0.9543637, -0.29856318, 0.26803, 0.28763914, 0.9194383, 1.2318611, -0.3062744, -0.878891)
 
 [node name="SpawnPathRight" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.102182, -0.30201697, -1.2931955)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.851616, 42.460957, 51.223686)
 curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionRight" type="PathFollow3D" parent="SpawnPathRight"]
 unique_name_in_owner = true
-transform = Transform3D(-0.9992544, -0.015442352, 0.03464277, 0, 0.91334605, 0.40713003, -0.03792866, 0.40683848, -0.91268563, 0.25714874, 1.1310184, -5.277566)
+transform = Transform3D(0.96337384, -0.08002699, -0.25580624, 0, 0.9543637, -0.29856318, 0.26803, 0.28763914, 0.9194383, 1.2318611, -0.3062744, -0.878891)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24675632, 3.9321048, 10.712235)
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 60, 52.65686, 56.412292)
 projection = 1
-size = 23.581795
+size = 28.0
+near = 0.001
 
 [node name="Background" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9146137, -6.724675)
+visible = false
 texture = ExtResource("2_feb5d")
 
 [node name="TargetConfig" type="Node3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 59.2517, 48.759876, 86.16533)
 script = ExtResource("3_feb5d")
 all_body_parts = Array[ExtResource("4_mfdv2")]([ExtResource("8_lc2xo"), ExtResource("9_215e1"), ExtResource("7_215e1"), ExtResource("4_vef74"), ExtResource("5_hve3p"), ExtResource("10_7sc4i"), ExtResource("6_mfdv2"), ExtResource("7_iotsf"), ExtResource("13_80cx4"), ExtResource("14_e8heu"), ExtResource("15_rvswv"), ExtResource("16_boyg6")])
 max_valid_parts = 3
 max_invalid_parts = 1
 
 [node name="ValidParts" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0357485, -4.690839, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 45.665905, 47.320957, 87.790794)
 
 [node name="Valid1" type="Sprite3D" parent="ValidParts"]
 unique_name_in_owner = true
@@ -182,7 +197,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.216322, 0, 0)
 texture = ExtResource("10_hve3p")
 
 [node name="InvalidParts" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.643172, -4.690839, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 70.5855, 50.55662, 88.59183)
 
 [node name="Invalid1" type="Sprite3D" parent="InvalidParts"]
 unique_name_in_owner = true
@@ -193,3 +208,14 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6700134, 0, 0)
 visible = false
 texture = ExtResource("10_hve3p")
+
+[node name="pova area di lavoro v02" parent="." instance=ExtResource("18_rvswv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 40, 65)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.99999845, -0.0015114987, 0.0008726641, 0, 0.49999997, 0.86602545, -0.0017453283, -0.8660241, 0.4999992, 25, 43, 46)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_e36ub")
