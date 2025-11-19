@@ -160,7 +160,7 @@ unique_name_in_owner = true
 transform = Transform3D(0.96337384, -0.08002699, -0.25580624, 0, 0.9543637, -0.29856318, 0.26803, 0.28763914, 0.9194383, 1.2318611, -0.3062744, -0.878891)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 60, 52.65686, 56.412292)
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 60, 52.65686, 56.412292)
 projection = 1
 size = 28.0
 near = 0.001
@@ -184,16 +184,19 @@ transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.965
 [node name="Valid1" type="Sprite3D" parent="ValidParts"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37111664, 0, 0)
+render_priority = 100
 texture = ExtResource("10_hve3p")
 
 [node name="Valid2" type="Sprite3D" parent="ValidParts"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8246441, 0, 0)
+render_priority = 100
 texture = ExtResource("10_hve3p")
 
 [node name="Valid3" type="Sprite3D" parent="ValidParts"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.216322, 0, 0)
+render_priority = 100
 texture = ExtResource("10_hve3p")
 
 [node name="InvalidParts" type="Node3D" parent="."]
@@ -201,16 +204,17 @@ transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.965
 
 [node name="Invalid1" type="Sprite3D" parent="InvalidParts"]
 unique_name_in_owner = true
+render_priority = 100
 texture = ExtResource("10_hve3p")
 
 [node name="Invalid2" type="Sprite3D" parent="InvalidParts"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6700134, 0, 0)
-visible = false
+render_priority = 100
 texture = ExtResource("10_hve3p")
 
 [node name="pova area di lavoro v02" parent="." instance=ExtResource("18_rvswv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 40, 65)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 39.38962, 65)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.99999845, -0.0015114987, 0.0008726641, 0, 0.49999997, 0.86602545, -0.0017453283, -0.8660241, 0.4999992, 25, 43, 46)

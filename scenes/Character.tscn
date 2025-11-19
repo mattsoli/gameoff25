@@ -15,7 +15,7 @@
 size = Vector3(1.7558594, 2.3149414, 1)
 
 [node name="Character" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 script = ExtResource("1_25pii")
 comicsOk = ExtResource("2_fwsyb")
 comicsError = ExtResource("3_25pii")
@@ -24,18 +24,22 @@ comicsChecking = ExtResource("4_exdhi")
 [node name="Head" type="Node3D" parent="."]
 
 [node name="Sprite3D" type="Sprite3D" parent="Head"]
+ignore_occlusion_culling = true
+render_priority = 90
 texture = ExtResource("5_exdhi")
 
 [node name="Body" type="Node3D" parent="."]
 
 [node name="Sprite3D" type="Sprite3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9333848, 0)
+render_priority = 90
 texture = ExtResource("3_apuoc")
 
 [node name="Eyes" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
 
 [node name="Sprite3D" type="Sprite3D" parent="Eyes"]
+render_priority = 90
 texture = ExtResource("7_r87yu")
 
 [node name="Legs" type="Node3D" parent="."]
@@ -43,10 +47,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6511719, 0.01)
 
 [node name="Sprite3D" type="Sprite3D" parent="Legs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10327196, -0.23735929, 0)
+render_priority = 90
 texture = ExtResource("8_exdhi")
 
 [node name="ComicsSprite" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9682094, 0.7904177, 0.045987666)
+render_priority = 90
 texture = ExtResource("2_fwsyb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
