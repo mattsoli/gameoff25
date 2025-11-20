@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="BodyParts" load_steps=3 format=3 uid="uid://cbgayag6qnrri"]
 
 [ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="1_rpsni"]
-[ext_resource type="Texture2D" uid="uid://b5t40yhhqcnbx" path="res://characters/parts/bodies/body_1.png" id="2_cu7m1"]
+[ext_resource type="Texture2D" uid="uid://b1ro8id7d7uyy" path="res://characters/parts/bodies/busto_1.png" id="2_qayml"]
 
 [resource]
 script = ExtResource("1_rpsni")
-texture = ExtResource("2_cu7m1")
+texture = ExtResource("2_qayml")
 part_type = 1
 id = 1
 metadata/_custom_type_script = "uid://cs5i51dwnlfjd"

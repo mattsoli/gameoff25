@@ -6,11 +6,8 @@ enum PartType {
 	head,
 	body,
 	eyes,
-	#ears,
-	#arms,
-	legs,
-	#nose,
-	#mouth
+	mouth,
+	extra
 }
 
 @export var texture: Texture2D

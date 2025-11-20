@@ -7,12 +7,13 @@ enum ClickType {
 	HOLD
 }
 
-@onready var eyesSlot: Sprite3D = $Eyes/Sprite3D
-@onready var headSlot: Sprite3D = $Head/Sprite3D
-@onready var bodySlot: Sprite3D = $Body/Sprite3D
-@onready var legsSlot: Sprite3D = $Legs/Sprite3D
+@onready var headSlot: Sprite3D = %HeadSprite
+@onready var bodySlot: Sprite3D = %BodySprite
+@onready var eyesSlot: Sprite3D = %EyesSprite
+@onready var mouthSlot: Sprite3D = %MouthSprite
+@onready var extraSlot: Sprite3D = %ExtraSprite
 
-@onready var comicsSprite: Sprite3D = $ComicsSprite
+@onready var comicsSprite: Sprite3D = %ComicsSprite
 
 @export var comicsOk: Texture2D
 @export var comicsError: Texture2D
@@ -129,13 +130,19 @@ func generate_random_body_config() -> void:
 		var body_part: BodyParts = load("res://resources/bodyparts/%s_%d.tres" % [part_name, body_config[part_name]])
 		body_parts.append(body_part)
 		
+		var part_texture: Texture2D = body_part.texture
+		
 		match part_name:
 			"head":
-				headSlot.texture = body_part.texture
+				headSlot.texture = part_texture
 			"body":
-				bodySlot.texture = body_part.texture
+				bodySlot.texture = part_texture
 			"eyes":
-				eyesSlot.texture = body_part.texture
+				eyesSlot.texture = part_texture
+			"mouth":
+				mouthSlot.texture = part_texture
+			"extra":
+				extraSlot.texture = part_texture
 
 func _physics_process(_delta: float) -> void:
 	velocity = move_direction * speed
