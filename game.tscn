@@ -1,9 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://ccc4ybk76fv5p"]
+[gd_scene load_steps=26 format=3 uid="uid://ccc4ybk76fv5p"]
 
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
-[ext_resource type="Texture2D" uid="uid://ccrx2y0rvfg56" path="res://background/background.jpg" id="2_feb5d"]
+[ext_resource type="Texture2D" uid="uid://b6pu5fjqljdpb" path="res://characters/parts/legs/legs_3.png" id="2_hb5m1"]
 [ext_resource type="Script" uid="uid://brqpqdij0ah7e" path="res://target_config.gd" id="3_feb5d"]
+[ext_resource type="Texture2D" uid="uid://dpa2awy8r5ooj" path="res://characters/parts/legs/legs_2.png" id="3_x5p1p"]
 [ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="4_mfdv2"]
+[ext_resource type="Texture2D" uid="uid://da6dbkrqhrc0r" path="res://characters/parts/eyes/eyes_3.png" id="4_qhcbd"]
 [ext_resource type="Resource" uid="uid://cbgayag6qnrri" path="res://resources/bodyparts/body_1.tres" id="4_vef74"]
 [ext_resource type="Resource" uid="uid://cf57en3y25pd" path="res://resources/bodyparts/body_2.tres" id="5_hve3p"]
 [ext_resource type="Resource" uid="uid://bdpt0dix14kj7" path="res://resources/bodyparts/eyes_1.tres" id="6_mfdv2"]
@@ -12,7 +14,6 @@
 [ext_resource type="Resource" uid="uid://0e28heygj815" path="res://resources/bodyparts/head_1.tres" id="8_lc2xo"]
 [ext_resource type="Resource" uid="uid://vuylfjwq0ngk" path="res://resources/bodyparts/head_2.tres" id="9_215e1"]
 [ext_resource type="Resource" uid="uid://dflmktejv5jd3" path="res://resources/bodyparts/body_3.tres" id="10_7sc4i"]
-[ext_resource type="Texture2D" uid="uid://cedt7xyfp0r67" path="res://icon.svg" id="10_hve3p"]
 [ext_resource type="Resource" uid="uid://bn12tty072tta" path="res://resources/bodyparts/eyes_3.tres" id="13_80cx4"]
 [ext_resource type="Resource" uid="uid://b4rbaxufedg7b" path="res://resources/bodyparts/legs_1.tres" id="14_e8heu"]
 [ext_resource type="Resource" uid="uid://dvs5wsfi22cpa" path="res://resources/bodyparts/legs_2.tres" id="15_rvswv"]
@@ -46,7 +47,7 @@ corner_radius_bottom_left = 5
 [sub_resource type="Curve3D" id="Curve3D_wiwsh"]
 closed = true
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.2318611, -0.3062744, -0.878891, 0, 0, 0, 0, 0, 0, 1.8553505, 0.42142868, -3.1198845),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.2113342, -0.4173584, -4.5890884, 0, 0, 0, 0, 0, 0, 1.8553505, 0.42142868, -3.1198845),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -71,41 +72,6 @@ max_body_parts_to_avoid = 2
 [node name="CharacterSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 4.0
-
-[node name="TargetConfigText" type="Label" parent="."]
-unique_name_in_owner = true
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 184.0
-offset_top = -104.0
-offset_right = 384.0
-offset_bottom = -4.0
-grow_vertical = 0
-size_flags_horizontal = 4
-text = "TARGET"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="AntiTargetConfigText" type="Label" parent="."]
-unique_name_in_owner = true
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -384.0
-offset_top = -104.0
-offset_right = -184.0
-offset_bottom = -4.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_horizontal = 8
-text = "anti target"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
 
 [node name="HappinessBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
@@ -143,32 +109,98 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="SpawnPathLeft" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.38544, 41.95878, 51.974)
-curve = SubResource("Curve3D_wiwsh")
+[node name="AntiTargetConfigContainer" type="VBoxContainer" parent="."]
+offset_left = 1378.0
+offset_top = 70.0
+offset_right = 1778.0
+offset_bottom = 225.0
 
-[node name="SpawnPositionLeft" type="PathFollow3D" parent="SpawnPathLeft"]
+[node name="AntiTargetConfigText" type="Label" parent="AntiTargetConfigContainer"]
 unique_name_in_owner = true
-transform = Transform3D(0.96337384, -0.08002699, -0.25580624, 0, 0.9543637, -0.29856318, 0.26803, 0.28763914, 0.9194383, 1.2318611, -0.3062744, -0.878891)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "anti target"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="InvalidParts2" type="HBoxContainer" parent="AntiTargetConfigContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Invalid1" type="TextureRect" parent="AntiTargetConfigContainer/InvalidParts2"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_hb5m1")
+
+[node name="Invalid2" type="TextureRect" parent="AntiTargetConfigContainer/InvalidParts2"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_x5p1p")
+
+[node name="TargetConfigContainer" type="VBoxContainer" parent="."]
+offset_left = 130.0
+offset_top = 70.0
+offset_right = 530.0
+offset_bottom = 225.0
+
+[node name="TargetConfigText" type="Label" parent="TargetConfigContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "TARGET"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ValidParts2" type="HBoxContainer" parent="TargetConfigContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Valid1" type="TextureRect" parent="TargetConfigContainer/ValidParts2"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_hb5m1")
+
+[node name="Valid2" type="TextureRect" parent="TargetConfigContainer/ValidParts2"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_x5p1p")
+
+[node name="Valid3" type="TextureRect" parent="TargetConfigContainer/ValidParts2"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_qhcbd")
 
 [node name="SpawnPathRight" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.851616, 42.460957, 51.223686)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.38544, 41.95878, 51.974)
 curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionRight" type="PathFollow3D" parent="SpawnPathRight"]
 unique_name_in_owner = true
-transform = Transform3D(0.96337384, -0.08002699, -0.25580624, 0, 0.9543637, -0.29856318, 0.26803, 0.28763914, 0.9194383, 1.2318611, -0.3062744, -0.878891)
+transform = Transform3D(-0.9158395, -0.18602017, -0.35575724, 1.490061e-08, 0.8861451, -0.46334952, 0.40145236, -0.42437068, -0.8115944, 1.2113342, -0.4173584, -4.5890884)
+
+[node name="SpawnPathLeft" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.851616, 42.460957, 51.223686)
+curve = SubResource("Curve3D_wiwsh")
+
+[node name="SpawnPositionLeft" type="PathFollow3D" parent="SpawnPathLeft"]
+unique_name_in_owner = true
+transform = Transform3D(-0.9158395, -0.18602017, -0.35575724, 1.490061e-08, 0.8861451, -0.46334952, 0.40145236, -0.42437068, -0.8115944, 1.2113342, -0.4173584, -4.5890884)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 60, 52.65686, 56.412292)
 projection = 1
 size = 28.0
 near = 0.001
-
-[node name="Background" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9146137, -6.724675)
-visible = false
-texture = ExtResource("2_feb5d")
 
 [node name="TargetConfig" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -178,42 +210,7 @@ all_body_parts = Array[ExtResource("4_mfdv2")]([ExtResource("8_lc2xo"), ExtResou
 max_valid_parts = 3
 max_invalid_parts = 1
 
-[node name="ValidParts" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 45.665905, 47.320957, 87.790794)
-
-[node name="Valid1" type="Sprite3D" parent="ValidParts"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37111664, 0, 0)
-render_priority = 100
-texture = ExtResource("10_hve3p")
-
-[node name="Valid2" type="Sprite3D" parent="ValidParts"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8246441, 0, 0)
-render_priority = 100
-texture = ExtResource("10_hve3p")
-
-[node name="Valid3" type="Sprite3D" parent="ValidParts"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.216322, 0, 0)
-render_priority = 100
-texture = ExtResource("10_hve3p")
-
-[node name="InvalidParts" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 70.5855, 50.55662, 88.59183)
-
-[node name="Invalid1" type="Sprite3D" parent="InvalidParts"]
-unique_name_in_owner = true
-render_priority = 100
-texture = ExtResource("10_hve3p")
-
-[node name="Invalid2" type="Sprite3D" parent="InvalidParts"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6700134, 0, 0)
-render_priority = 100
-texture = ExtResource("10_hve3p")
-
-[node name="pova area di lavoro v02" parent="." instance=ExtResource("18_rvswv")]
+[node name="Environment" parent="." instance=ExtResource("18_rvswv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 39.38962, 65)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

@@ -7,12 +7,12 @@ extends Node3D
 @onready var debug_antitarget_text: Label = %AntiTargetConfigText
 @onready var target_config: TargetConfig = %TargetConfig
 
-@onready var valid1: Sprite3D = %Valid1
-@onready var valid2: Sprite3D  = %Valid2
-@onready var valid3: Sprite3D  = %Valid3
+@onready var valid1: TextureRect = %Valid1
+@onready var valid2: TextureRect  = %Valid2
+@onready var valid3: TextureRect  = %Valid3
 
-@onready var invalid1: Sprite3D  = %Invalid1
-@onready var invalid2: Sprite3D  = %Invalid2
+@onready var invalid1: TextureRect  = %Invalid1
+@onready var invalid2: TextureRect  = %Invalid2
 
 var characterScene: PackedScene = preload("res://scenes/Character.tscn")
 
@@ -65,7 +65,7 @@ func spawn_person() -> void:
 
 	characterInstance.set_character(spawnSide == 0, target_config.valid_config, target_config.invalid_config)
 
-	spawnPosition = %SpawnPositionLeft if spawnSide == 0 else %SpawnPositionRight
+	spawnPosition = %SpawnPositionRight if spawnSide == 0 else %SpawnPositionLeft
 	spawnPosition.progress_ratio = randf()
 
 	characterInstance.global_position = spawnPosition.global_position
