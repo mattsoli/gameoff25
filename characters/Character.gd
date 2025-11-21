@@ -52,12 +52,6 @@ func _ready() -> void:
 	var clickArea: Area3D = %ClickCollider
 	clickArea.input_event.connect(_on_input_event)
 	
-	var category_names: Array[String] = []
-	for cat: Category.CategoryType in categories:
-		category_names.append(Category.CategoryType.keys()[cat])
-	
-	print("Character categories: ", category_names)
-	
 func _process(delta: float) -> void:
 	if is_hailed or click_processed:
 		return
@@ -133,8 +127,13 @@ func set_character(_is_direction_left: bool, valid_categories: Array[Category.Ca
 	
 	var click_type_name: String = ClickType.keys()[click_type]
 	
+	var valid_names: Array[String] = []
+	for cat: Category.CategoryType in categories:
+		var type_name: String = Category.CategoryType.keys()[cat]
+		valid_names.append(type_name)
+
 	print("─────────────────────────")
-	print("Character config: ", body_parts)
+	print("Character categories: ", valid_names)
 	print("Character click type: ", click_type_name)
 	print("Character is target: ", is_target)
 	print("─────────────────────────")

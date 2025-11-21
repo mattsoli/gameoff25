@@ -61,7 +61,7 @@ func spawn_person() -> void:
 	var spawnSide: int = randi_range(0, 1)
 	var spawnPosition: PathFollow3D
 
-	characterInstance.set_character(spawnSide == 0, target_config.valid_category, target_config.invalid_category)
+	characterInstance.set_character(spawnSide == 0, target_config.valid_category_types, target_config.invalid_category_types)
 
 	spawnPosition = %SpawnPositionRight if spawnSide == 0 else %SpawnPositionLeft
 	spawnPosition.progress_ratio = randf()

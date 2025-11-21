@@ -9,8 +9,9 @@ class_name TargetConfig
 @export var max_invalid_parts: int
 
 var valid_categories: Array[Category]
-var valid_category_types: Array[int]
+var valid_category_types: Array[Category.CategoryType]
 var invalid_categories: Array[Category]
+var invalid_category_types: Array[Category.CategoryType]
 
 var valid_config: Array[BodyParts]
 var valid_body_types: Array[int]
@@ -28,7 +29,7 @@ func _ready() -> void:
 		valid_names.append(Category.CategoryType.keys()[cat.category_type])
 	
 	var invalid_names: Array[String] = []
-	for cat: Category in invalid_categories:
+	for cat: Category  in invalid_categories:
 		invalid_names.append(Category.CategoryType.keys()[cat.category_type])
 		
 	print("Valid categories: ", valid_names)
@@ -47,6 +48,7 @@ func create_category_config(max_parts: int) -> Array:
 	
 	for category: Category in result:
 		valid_categories.append(category)
+		valid_category_types.append(category.category_type)
 	
 	return result
 
@@ -57,6 +59,8 @@ func create_category_anticonfig(target_config: Array, max_parts: int) -> Array:
 	for category: Category in category_db:
 		if category not in target_config and category.category_type not in valid_category_types:
 			category_available.append(category)
+			invalid_category_types.append(category.category_type)
+			
 	
 	if category_available.size() < max_parts:
 		push_error("Non ci sono abbastanza Category per creare l'anticonfig!")
