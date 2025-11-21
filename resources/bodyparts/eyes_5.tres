@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="BodyParts" load_steps=3 format=3 uid="uid://cuvc4pxxu8iaj"]
+[gd_resource type="Resource" script_class="BodyParts" load_steps=4 format=3 uid="uid://cuvc4pxxu8iaj"]
 
 [ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="1_8vjam"]
+[ext_resource type="Resource" uid="uid://db3fm50i4wqch" path="res://resources/categories/cyborg.tres" id="1_da221"]
 [ext_resource type="Texture2D" uid="uid://d0e6us3m1locw" path="res://characters/parts/eyes/occhi_4.png" id="2_8vjam"]
 
 [resource]
 script = ExtResource("1_8vjam")
 texture = ExtResource("2_8vjam")
 part_type = 2
+category = ExtResource("1_da221")
 id = 5
 metadata/_custom_type_script = "uid://cs5i51dwnlfjd"

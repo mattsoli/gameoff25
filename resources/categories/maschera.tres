@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Category" load_steps=3 format=3 uid="uid://bapjg8i868m46"]
+
+[ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="1_47ti6"]
+[ext_resource type="Texture2D" uid="uid://b1bmx2mlxkvyu" path="res://icons/theater.png" id="1_iw60o"]
+
+[resource]
+script = ExtResource("1_47ti6")
+icon = ExtResource("1_iw60o")
+category_type = 9

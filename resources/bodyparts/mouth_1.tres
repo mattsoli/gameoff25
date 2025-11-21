@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="BodyParts" load_steps=3 format=3 uid="uid://b4rbaxufedg7b"]
+[gd_resource type="Resource" script_class="BodyParts" load_steps=4 format=3 uid="uid://b4rbaxufedg7b"]
 
+[ext_resource type="Resource" uid="uid://di44yvh522t47" path="res://resources/categories/vampiro.tres" id="1_rabli"]
 [ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="1_rpnl0"]
 [ext_resource type="Texture2D" uid="uid://d05fvv5a5yiwy" path="res://characters/parts/mouths/bocca_1.png" id="2_58k3y"]
 
@@ -7,5 +8,6 @@
 script = ExtResource("1_rpnl0")
 texture = ExtResource("2_58k3y")
 part_type = 3
+category = ExtResource("1_rabli")
 id = 1
 metadata/_custom_type_script = "uid://cs5i51dwnlfjd"

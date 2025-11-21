@@ -28,11 +28,11 @@ func _ready() -> void:
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	spawn_timer.start()
 
-	valid1.texture = target_config.valid_config[0].texture
-	valid2.texture = target_config.valid_config[1].texture
-	valid3.texture = target_config.valid_config[2].texture
+	valid1.texture = target_config.valid_categories[0].icon
+	valid2.texture = target_config.valid_categories[1].icon
+	valid3.texture = target_config.valid_categories[2].icon
 	
-	invalid1.texture = target_config.invalid_config[0].texture
+	invalid1.texture = target_config.invalid_categories[0].icon
 	#invalid2.texture = target_config.invalid_config[1].texture
 
 func _process(_delta: float) -> void:
@@ -61,7 +61,7 @@ func spawn_person() -> void:
 	var spawnSide: int = randi_range(0, 1)
 	var spawnPosition: PathFollow3D
 
-	characterInstance.set_character(spawnSide == 0, target_config.valid_config, target_config.invalid_config)
+	characterInstance.set_character(spawnSide == 0, target_config.valid_category, target_config.invalid_category)
 
 	spawnPosition = %SpawnPositionRight if spawnSide == 0 else %SpawnPositionLeft
 	spawnPosition.progress_ratio = randf()

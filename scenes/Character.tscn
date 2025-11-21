@@ -21,6 +21,9 @@ script = ExtResource("1_25pii")
 comicsOk = ExtResource("2_fwsyb")
 comicsError = ExtResource("3_25pii")
 comicsChecking = ExtResource("4_exdhi")
+speed = null
+max_speed = null
+hold_time = null
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 5.483351, 0)
