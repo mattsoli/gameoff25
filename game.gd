@@ -5,7 +5,7 @@ extends Node3D
 @onready var gameover_text: Label = %GameOverText
 @onready var debug_target_text: Label = %TargetConfigText
 @onready var debug_antitarget_text: Label = %AntiTargetConfigText
-@onready var target_config: TargetConfig = %TargetConfig
+@onready var target_config: TargetConfig = %CharacterConfig
 
 @onready var valid1: TextureRect = %Valid1
 @onready var valid2: TextureRect  = %Valid2
@@ -51,10 +51,8 @@ func handle_gameover() -> void:
 		gameover_text.text = "Happiness is 100\nYou Win!"
 		is_gameover = true
 
-
 func _on_spawn_timer_timeout() -> void:
 	spawn_person()
-
 
 func spawn_person() -> void:
 	var characterInstance: Character = characterScene.instantiate() as Character
@@ -75,7 +73,6 @@ func spawn_person() -> void:
 			characterInstance.character_clicked.connect(_on_character_clicked)
 		Character.ClickType.HOLD:
 			characterInstance.character_hold_clicked.connect(_on_character_clicked)
-
 
 func _on_character_clicked(_character: Character) -> void:
 	if _character.is_hailed:

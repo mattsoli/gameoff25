@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://86lge7qikjsx" path="res://comics/comicOk.png" id="2_fwsyb"]
 [ext_resource type="Texture2D" uid="uid://3skpvapbr436" path="res://comics/comicError.png" id="3_25pii"]
 [ext_resource type="Texture2D" uid="uid://cshn075eewv4c" path="res://comics/comicThinking.png" id="4_exdhi"]
-[ext_resource type="Texture2D" uid="uid://87wwi6d6n3qg" path="res://characters/parts/heads/testa_3.png" id="5_r87yu"]
+[ext_resource type="Texture2D" uid="uid://ch00ivd6f0ira" path="res://characters/parts/heads/testa_2.png" id="5_r87yu"]
 [ext_resource type="Texture2D" uid="uid://dvr2vajr3w3bw" path="res://characters/parts/bodies/busto_3.png" id="6_dfeyu"]
 [ext_resource type="Texture2D" uid="uid://diuhofbnmw2t5" path="res://characters/parts/eyes/occhi_3_1.png" id="7_r87yu"]
 [ext_resource type="Texture2D" uid="uid://bsc2qors4v3hl" path="res://characters/parts/mouths/bocca_3.png" id="8_lkiy7"]
@@ -69,7 +69,7 @@ texture = ExtResource("9_q6urs")
 
 [node name="ComicsSprite" type="Sprite3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9682094, 0.7904177, 0.045987666)
+transform = Transform3D(5.8756614, 0, 0, 0, 4.0420365, 0, 0, 0, 0.9999995, 7.344107, 12.256889, 0.6724186)
 render_priority = 90
 texture = ExtResource("2_fwsyb")
 

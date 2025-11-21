@@ -127,6 +127,8 @@ func generate_random_body_config() -> void:
 		var part_name: String = BodyParts.PartType.keys()[part_type]
 		body_config[part_name] = randi_range(1, MAX_PART_ID)
 		
+		# check with break if MAX PART ID not exists
+		
 		var body_part: BodyParts = load("res://resources/bodyparts/%s_%d.tres" % [part_name, body_config[part_name]])
 		body_parts.append(body_part)
 		

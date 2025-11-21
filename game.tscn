@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ccc4ybk76fv5p"]
+[gd_scene load_steps=26 format=3 uid="uid://ccc4ybk76fv5p"]
 
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://diuhofbnmw2t5" path="res://characters/parts/eyes/occhi_3_1.png" id="2_36jdj"]
@@ -7,23 +7,16 @@
 [ext_resource type="Resource" uid="uid://cbgayag6qnrri" path="res://resources/bodyparts/body_1.tres" id="4_vef74"]
 [ext_resource type="Resource" uid="uid://bdpt0dix14kj7" path="res://resources/bodyparts/eyes_1.tres" id="6_mfdv2"]
 [ext_resource type="Resource" uid="uid://hcbkrtlkiof1" path="res://resources/bodyparts/head_3.tres" id="7_215e1"]
-[ext_resource type="Resource" uid="uid://bo4q57gfpgge4" path="res://resources/bodyparts/body_4.tres" id="7_bnpwn"]
-[ext_resource type="Resource" uid="uid://bdd71m6wqpld7" path="res://resources/bodyparts/body_5.tres" id="8_36jdj"]
+[ext_resource type="Resource" uid="uid://bo4q57gfpgge4" path="res://resources/bodyparts/body_3.tres" id="7_bnpwn"]
 [ext_resource type="Resource" uid="uid://0e28heygj815" path="res://resources/bodyparts/head_1.tres" id="8_lc2xo"]
 [ext_resource type="Resource" uid="uid://vuylfjwq0ngk" path="res://resources/bodyparts/head_2.tres" id="9_215e1"]
+[ext_resource type="Resource" uid="uid://bn12tty072tta" path="res://resources/bodyparts/eyes_2.tres" id="9_e8heu"]
 [ext_resource type="Resource" uid="uid://dflmktejv5jd3" path="res://resources/bodyparts/body_2.tres" id="10_7sc4i"]
-[ext_resource type="Resource" uid="uid://btklkv34m7dwh" path="res://resources/bodyparts/extra_3.tres" id="11_7knny"]
-[ext_resource type="Resource" uid="uid://vo1jhyvrf84" path="res://resources/bodyparts/extra_4.tres" id="12_082n1"]
-[ext_resource type="Resource" uid="uid://bn12tty072tta" path="res://resources/bodyparts/eyes_3.tres" id="13_80cx4"]
+[ext_resource type="Resource" uid="uid://bqjym02iwfmda" path="res://resources/bodyparts/eyes_3.tres" id="13_80cx4"]
 [ext_resource type="Resource" uid="uid://b4rbaxufedg7b" path="res://resources/bodyparts/mouth_1.tres" id="14_e8heu"]
-[ext_resource type="Resource" uid="uid://dd04ixjvt62um" path="res://resources/bodyparts/mouth_3.tres" id="16_boyg6"]
-[ext_resource type="Resource" uid="uid://bqjym02iwfmda" path="res://resources/bodyparts/eyes_4.tres" id="16_xex6t"]
-[ext_resource type="Resource" uid="uid://cuvc4pxxu8iaj" path="res://resources/bodyparts/eyes_5.tres" id="17_aa0lp"]
-[ext_resource type="Resource" uid="uid://hgf1r1l4phgc" path="res://resources/bodyparts/eyes_6.tres" id="18_iu0sx"]
+[ext_resource type="Resource" uid="uid://dd04ixjvt62um" path="res://resources/bodyparts/mouth_2.tres" id="15_rvswv"]
+[ext_resource type="Resource" uid="uid://c3ijsynd3414g" path="res://resources/bodyparts/mouth_3.tres" id="16_boyg6"]
 [ext_resource type="PackedScene" uid="uid://3siw543tqn3p" path="res://env/pova area di lavoro v02.blend" id="18_rvswv"]
-[ext_resource type="Resource" uid="uid://cm8em8v13j24r" path="res://resources/bodyparts/head_4.tres" id="22_4v2jo"]
-[ext_resource type="Resource" uid="uid://c3p1kxs21vtfj" path="res://resources/bodyparts/head_5.tres" id="23_l1i01"]
-[ext_resource type="Resource" uid="uid://c3ijsynd3414g" path="res://resources/bodyparts/mouth_4.tres" id="27_r62pu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wiwsh"]
 bg_color = Color(0.14503565, 0.28519025, 0.17762923, 1)
@@ -219,11 +212,11 @@ projection = 1
 size = 28.0
 near = 0.001
 
-[node name="TargetConfig" type="Node3D" parent="."]
+[node name="CharacterConfig" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 59.2517, 48.759876, 86.16533)
 script = ExtResource("3_feb5d")
-all_body_parts = Array[ExtResource("4_mfdv2")]([ExtResource("4_vef74"), ExtResource("10_7sc4i"), ExtResource("7_bnpwn"), ExtResource("8_36jdj"), ExtResource("11_7knny"), ExtResource("12_082n1"), ExtResource("6_mfdv2"), ExtResource("13_80cx4"), ExtResource("16_xex6t"), ExtResource("17_aa0lp"), ExtResource("18_iu0sx"), ExtResource("8_lc2xo"), ExtResource("9_215e1"), ExtResource("7_215e1"), ExtResource("22_4v2jo"), ExtResource("23_l1i01"), ExtResource("14_e8heu"), ExtResource("16_boyg6"), ExtResource("27_r62pu")])
+all_body_parts = Array[ExtResource("4_mfdv2")]([ExtResource("4_vef74"), ExtResource("10_7sc4i"), ExtResource("7_bnpwn"), ExtResource("6_mfdv2"), ExtResource("9_e8heu"), ExtResource("13_80cx4"), ExtResource("8_lc2xo"), ExtResource("9_215e1"), ExtResource("7_215e1"), ExtResource("14_e8heu"), ExtResource("15_rvswv"), ExtResource("16_boyg6")])
 max_valid_parts = 3
 max_invalid_parts = 1
 
