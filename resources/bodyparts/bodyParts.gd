@@ -5,14 +5,9 @@ class_name BodyParts
 enum PartType {
 	head,
 	body,
-	eyes,
-	#ears,
-	#arms,
-	legs,
-	#nose,
-	#mouth
+	extra
 }
 
 @export var texture: Texture2D
 @export var part_type: PartType
-@export var id: int
+@export var category: Category

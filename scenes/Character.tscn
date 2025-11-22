@@ -1,18 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://chs1pka73kqy5"]
+[gd_scene load_steps=9 format=3 uid="uid://chs1pka73kqy5"]
 
-[ext_resource type="Script" uid="uid://ct0nfspcam1p0" path="res://characters/character.gd" id="1_25pii"]
+[ext_resource type="Script" uid="uid://ct0nfspcam1p0" path="res://characters/Character.gd" id="1_25pii"]
 [ext_resource type="Texture2D" uid="uid://86lge7qikjsx" path="res://comics/comicOk.png" id="2_fwsyb"]
 [ext_resource type="Texture2D" uid="uid://3skpvapbr436" path="res://comics/comicError.png" id="3_25pii"]
-[ext_resource type="Texture2D" uid="uid://b5t40yhhqcnbx" path="res://characters/parts/bodies/body_1.png" id="3_apuoc"]
 [ext_resource type="Texture2D" uid="uid://cshn075eewv4c" path="res://comics/comicThinking.png" id="4_exdhi"]
-[ext_resource type="Texture2D" uid="uid://cedt7xyfp0r67" path="res://icon.svg" id="5_exdhi"]
-[ext_resource type="Texture2D" uid="uid://hulre416iost" path="res://characters/parts/eyes/eyes_1.png" id="7_r87yu"]
-[ext_resource type="Texture2D" uid="uid://pp84gdech0oh" path="res://characters/parts/legs/legs_1.png" id="8_exdhi"]
+[ext_resource type="Texture2D" uid="uid://goy28npdcv0a" path="res://characters/parts/heads/testa_alieno.png" id="5_fwsyb"]
+[ext_resource type="Texture2D" uid="uid://cw4xmdiabh6n3" path="res://characters/parts/bodies/busto_gatto.png" id="6_25pii"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jjdr7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dwpd4"]
-size = Vector3(1.7558594, 2.3149414, 1)
+size = Vector3(7.890686, 7.366333, 1)
 
 [node name="Character" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -22,36 +20,34 @@ comicsError = ExtResource("3_25pii")
 comicsChecking = ExtResource("4_exdhi")
 
 [node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 5.483351, 0)
 
-[node name="Sprite3D" type="Sprite3D" parent="Head"]
+[node name="HeadSprite" type="Sprite3D" parent="Head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
 ignore_occlusion_culling = true
-render_priority = 90
-texture = ExtResource("5_exdhi")
+render_priority = 91
+texture = ExtResource("5_fwsyb")
 
 [node name="Body" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.9322486, 0)
 
-[node name="Sprite3D" type="Sprite3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9333848, 0)
+[node name="BodySprite" type="Sprite3D" parent="Body"]
+unique_name_in_owner = true
 render_priority = 90
-texture = ExtResource("3_apuoc")
+texture = ExtResource("6_25pii")
 
-[node name="Eyes" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
+[node name="Extra" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 1.9194448, -0.38101906, 0.36227)
 
-[node name="Sprite3D" type="Sprite3D" parent="Eyes"]
-render_priority = 90
-texture = ExtResource("7_r87yu")
-
-[node name="Legs" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6511719, 0.01)
-
-[node name="Sprite3D" type="Sprite3D" parent="Legs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10327196, -0.23735929, 0)
-render_priority = 90
-texture = ExtResource("8_exdhi")
+[node name="ExtraSprite" type="Sprite3D" parent="Extra"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
+render_priority = 92
 
 [node name="ComicsSprite" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9682094, 0.7904177, 0.045987666)
+unique_name_in_owner = true
+transform = Transform3D(5.8756614, 0, 0, 0, 4.0420365, 0, 0, 0, 0.9999995, 7.344107, 12.256889, 0.6724186)
 render_priority = 90
 texture = ExtResource("2_fwsyb")
 
@@ -63,5 +59,5 @@ disabled = true
 unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ClickCollider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020507813, -0.21020508, 0)
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("BoxShape3D_dwpd4")

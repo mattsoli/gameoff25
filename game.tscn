@@ -1,23 +1,13 @@
-[gd_scene load_steps=26 format=3 uid="uid://ccc4ybk76fv5p"]
+[gd_scene load_steps=18 format=3 uid="uid://ccc4ybk76fv5p"]
 
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
-[ext_resource type="Texture2D" uid="uid://b6pu5fjqljdpb" path="res://characters/parts/legs/legs_3.png" id="2_hb5m1"]
 [ext_resource type="Script" uid="uid://brqpqdij0ah7e" path="res://target_config.gd" id="3_feb5d"]
-[ext_resource type="Texture2D" uid="uid://dpa2awy8r5ooj" path="res://characters/parts/legs/legs_2.png" id="3_x5p1p"]
-[ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="4_mfdv2"]
-[ext_resource type="Texture2D" uid="uid://da6dbkrqhrc0r" path="res://characters/parts/eyes/eyes_3.png" id="4_qhcbd"]
-[ext_resource type="Resource" uid="uid://cbgayag6qnrri" path="res://resources/bodyparts/body_1.tres" id="4_vef74"]
-[ext_resource type="Resource" uid="uid://cf57en3y25pd" path="res://resources/bodyparts/body_2.tres" id="5_hve3p"]
-[ext_resource type="Resource" uid="uid://bdpt0dix14kj7" path="res://resources/bodyparts/eyes_1.tres" id="6_mfdv2"]
-[ext_resource type="Resource" uid="uid://hcbkrtlkiof1" path="res://resources/bodyparts/head_3.tres" id="7_215e1"]
-[ext_resource type="Resource" uid="uid://c2ee35ttyx7aw" path="res://resources/bodyparts/eyes_2.tres" id="7_iotsf"]
-[ext_resource type="Resource" uid="uid://0e28heygj815" path="res://resources/bodyparts/head_1.tres" id="8_lc2xo"]
-[ext_resource type="Resource" uid="uid://vuylfjwq0ngk" path="res://resources/bodyparts/head_2.tres" id="9_215e1"]
-[ext_resource type="Resource" uid="uid://dflmktejv5jd3" path="res://resources/bodyparts/body_3.tres" id="10_7sc4i"]
-[ext_resource type="Resource" uid="uid://bn12tty072tta" path="res://resources/bodyparts/eyes_3.tres" id="13_80cx4"]
-[ext_resource type="Resource" uid="uid://b4rbaxufedg7b" path="res://resources/bodyparts/legs_1.tres" id="14_e8heu"]
-[ext_resource type="Resource" uid="uid://dvs5wsfi22cpa" path="res://resources/bodyparts/legs_2.tres" id="15_rvswv"]
-[ext_resource type="Resource" uid="uid://dd04ixjvt62um" path="res://resources/bodyparts/legs_3.tres" id="16_boyg6"]
+[ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="4_f1jbl"]
+[ext_resource type="Resource" uid="uid://dg4o2eqgs8pd2" path="res://resources/categories/alieno.tres" id="5_vaj68"]
+[ext_resource type="Resource" uid="uid://b5ah3qsxvds08" path="res://resources/categories/animale.tres" id="6_i2p71"]
+[ext_resource type="Resource" uid="uid://di44yvh522t47" path="res://resources/categories/gentleman.tres" id="8_vef74"]
+[ext_resource type="Resource" uid="uid://bqjc8vpay8w4v" path="res://resources/categories/scienziato.tres" id="9_hve3p"]
+[ext_resource type="Resource" uid="uid://db3fm50i4wqch" path="res://resources/categories/cyborg.tres" id="12_dhpj7"]
 [ext_resource type="PackedScene" uid="uid://3siw543tqn3p" path="res://env/pova area di lavoro v02.blend" id="18_rvswv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wiwsh"]
@@ -43,6 +33,10 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_80cx4"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_e8heu"]
 
 [sub_resource type="Curve3D" id="Curve3D_wiwsh"]
 closed = true
@@ -109,6 +103,47 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+[node name="TargetConfigContainer" type="VBoxContainer" parent="."]
+offset_left = 130.0
+offset_top = 70.0
+offset_right = 530.0
+offset_bottom = 225.0
+
+[node name="TargetConfigText" type="Label" parent="TargetConfigContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "TARGET"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ValidParts2" type="HBoxContainer" parent="TargetConfigContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Valid1" type="TextureRect" parent="TargetConfigContainer/ValidParts2"]
+unique_name_in_owner = true
+layout_mode = 2
+expand_mode = 2
+
+[node name="Valid2" type="TextureRect" parent="TargetConfigContainer/ValidParts2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+expand_mode = 2
+
+[node name="Valid3" type="TextureRect" parent="TargetConfigContainer/ValidParts2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+expand_mode = 2
+
 [node name="AntiTargetConfigContainer" type="VBoxContainer" parent="."]
 offset_left = 1378.0
 offset_top = 70.0
@@ -134,51 +169,17 @@ size_flags_vertical = 4
 
 [node name="Invalid1" type="TextureRect" parent="AntiTargetConfigContainer/InvalidParts2"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture = ExtResource("2_hb5m1")
+texture = SubResource("CompressedTexture2D_80cx4")
+expand_mode = 2
 
 [node name="Invalid2" type="TextureRect" parent="AntiTargetConfigContainer/InvalidParts2"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture = ExtResource("3_x5p1p")
-
-[node name="TargetConfigContainer" type="VBoxContainer" parent="."]
-offset_left = 130.0
-offset_top = 70.0
-offset_right = 530.0
-offset_bottom = 225.0
-
-[node name="TargetConfigText" type="Label" parent="TargetConfigContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-text = "TARGET"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="ValidParts2" type="HBoxContainer" parent="TargetConfigContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Valid1" type="TextureRect" parent="TargetConfigContainer/ValidParts2"]
-unique_name_in_owner = true
-layout_mode = 2
-texture = ExtResource("2_hb5m1")
-
-[node name="Valid2" type="TextureRect" parent="TargetConfigContainer/ValidParts2"]
-unique_name_in_owner = true
-layout_mode = 2
-texture = ExtResource("3_x5p1p")
-
-[node name="Valid3" type="TextureRect" parent="TargetConfigContainer/ValidParts2"]
-unique_name_in_owner = true
-layout_mode = 2
-texture = ExtResource("4_qhcbd")
+texture = SubResource("CompressedTexture2D_e8heu")
+expand_mode = 2
 
 [node name="SpawnPathRight" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.38544, 41.95878, 51.974)
@@ -202,14 +203,6 @@ projection = 1
 size = 28.0
 near = 0.001
 
-[node name="TargetConfig" type="Node3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 59.2517, 48.759876, 86.16533)
-script = ExtResource("3_feb5d")
-all_body_parts = Array[ExtResource("4_mfdv2")]([ExtResource("8_lc2xo"), ExtResource("9_215e1"), ExtResource("7_215e1"), ExtResource("4_vef74"), ExtResource("5_hve3p"), ExtResource("10_7sc4i"), ExtResource("6_mfdv2"), ExtResource("7_iotsf"), ExtResource("13_80cx4"), ExtResource("14_e8heu"), ExtResource("15_rvswv"), ExtResource("16_boyg6")])
-max_valid_parts = 3
-max_invalid_parts = 1
-
 [node name="Environment" parent="." instance=ExtResource("18_rvswv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 39.38962, 65)
 
@@ -220,3 +213,10 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_e36ub")
+
+[node name="CharacterConfig" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_feb5d")
+category_db = Array[ExtResource("4_f1jbl")]([ExtResource("5_vaj68"), ExtResource("6_i2p71"), ExtResource("12_dhpj7"), ExtResource("8_vef74"), ExtResource("9_hve3p")])
+max_valid_category = 2
+max_invalid_category = 1

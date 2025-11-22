@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Category" load_steps=3 format=3 uid="uid://c15qgxhu5eibs"]
+
+[ext_resource type="Texture2D" uid="uid://dc0mo2kum30b6" path="res://icons/warrior.png" id="1_nouxh"]
+[ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="2_htheh"]
+
+[resource]
+script = ExtResource("2_htheh")
+icon = ExtResource("1_nouxh")
+category_type = 5

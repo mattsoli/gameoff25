@@ -1,0 +1,232 @@
+[gd_scene load_steps=26 format=3 uid="uid://ccc4ybk76fv5p"]
+
+[ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://diuhofbnmw2t5" path="res://characters/parts/eyes/occhi_3_1.png" id="2_36jdj"]
+[ext_resource type="Script" uid="uid://brqpqdij0ah7e" path="res://target_config.gd" id="3_feb5d"]
+[ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="4_mfdv2"]
+[ext_resource type="Resource" uid="uid://cbgayag6qnrri" path="res://resources/bodyparts/body_1.tres" id="4_vef74"]
+[ext_resource type="Resource" uid="uid://bdpt0dix14kj7" path="res://resources/bodyparts/eyes_1.tres" id="6_mfdv2"]
+[ext_resource type="Resource" uid="uid://hcbkrtlkiof1" path="res://resources/bodyparts/head_3.tres" id="7_215e1"]
+[ext_resource type="Resource" uid="uid://bo4q57gfpgge4" path="res://resources/bodyparts/body_3.tres" id="7_bnpwn"]
+[ext_resource type="Resource" uid="uid://0e28heygj815" path="res://resources/bodyparts/head_1.tres" id="8_lc2xo"]
+[ext_resource type="Resource" uid="uid://vuylfjwq0ngk" path="res://resources/bodyparts/head_2.tres" id="9_215e1"]
+[ext_resource type="Resource" uid="uid://bn12tty072tta" path="res://resources/bodyparts/eyes_2.tres" id="9_e8heu"]
+[ext_resource type="Resource" uid="uid://dflmktejv5jd3" path="res://resources/bodyparts/body_2.tres" id="10_7sc4i"]
+[ext_resource type="Resource" uid="uid://bqjym02iwfmda" path="res://resources/bodyparts/eyes_3.tres" id="13_80cx4"]
+[ext_resource type="Resource" uid="uid://b4rbaxufedg7b" path="res://resources/bodyparts/mouth_1.tres" id="14_e8heu"]
+[ext_resource type="Resource" uid="uid://dd04ixjvt62um" path="res://resources/bodyparts/mouth_2.tres" id="15_rvswv"]
+[ext_resource type="Resource" uid="uid://c3ijsynd3414g" path="res://resources/bodyparts/mouth_3.tres" id="16_boyg6"]
+[ext_resource type="PackedScene" uid="uid://3siw543tqn3p" path="res://env/pova area di lavoro v02.blend" id="18_rvswv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wiwsh"]
+bg_color = Color(0.14503565, 0.28519025, 0.17762923, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pt58c"]
+bg_color = Color(0.3028484, 0.7013479, 0.2957257, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_80cx4"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_e8heu"]
+
+[sub_resource type="Curve3D" id="Curve3D_wiwsh"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.2113342, -0.4173584, -4.5890884, 0, 0, 0, 0, 0, 0, 1.8553505, 0.42142868, -3.1198845),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rvswv"]
+
+[sub_resource type="Sky" id="Sky_boyg6"]
+sky_material = SubResource("ProceduralSkyMaterial_rvswv")
+
+[sub_resource type="Environment" id="Environment_e36ub"]
+background_mode = 2
+sky = SubResource("Sky_boyg6")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="game" type="Node3D"]
+script = ExtResource("1_e2o6t")
+hail_point = 10
+max_body_parts_to_guess = 3
+max_body_parts_to_avoid = 2
+
+[node name="CharacterSpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 4.0
+
+[node name="HappinessBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 25.0
+offset_right = 125.0
+offset_bottom = 55.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_wiwsh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pt58c")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="GameOverText" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="TargetConfigContainer" type="VBoxContainer" parent="."]
+offset_left = 130.0
+offset_top = 70.0
+offset_right = 530.0
+offset_bottom = 225.0
+
+[node name="TargetConfigText" type="Label" parent="TargetConfigContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "TARGET"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ValidParts2" type="HBoxContainer" parent="TargetConfigContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Valid1" type="TextureRect" parent="TargetConfigContainer/ValidParts2"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_36jdj")
+expand_mode = 2
+
+[node name="Valid2" type="TextureRect" parent="TargetConfigContainer/ValidParts2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+expand_mode = 2
+
+[node name="Valid3" type="TextureRect" parent="TargetConfigContainer/ValidParts2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+expand_mode = 2
+
+[node name="AntiTargetConfigContainer" type="VBoxContainer" parent="."]
+offset_left = 1378.0
+offset_top = 70.0
+offset_right = 1778.0
+offset_bottom = 225.0
+
+[node name="AntiTargetConfigText" type="Label" parent="AntiTargetConfigContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "anti target"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="InvalidParts2" type="HBoxContainer" parent="AntiTargetConfigContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Invalid1" type="TextureRect" parent="AntiTargetConfigContainer/InvalidParts2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_80cx4")
+expand_mode = 2
+
+[node name="Invalid2" type="TextureRect" parent="AntiTargetConfigContainer/InvalidParts2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_e8heu")
+expand_mode = 2
+
+[node name="SpawnPathRight" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.38544, 41.95878, 51.974)
+curve = SubResource("Curve3D_wiwsh")
+
+[node name="SpawnPositionRight" type="PathFollow3D" parent="SpawnPathRight"]
+unique_name_in_owner = true
+transform = Transform3D(-0.9158395, -0.18602017, -0.35575724, 1.490061e-08, 0.8861451, -0.46334952, 0.40145236, -0.42437068, -0.8115944, 1.2113342, -0.4173584, -4.5890884)
+
+[node name="SpawnPathLeft" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.851616, 42.460957, 51.223686)
+curve = SubResource("Curve3D_wiwsh")
+
+[node name="SpawnPositionLeft" type="PathFollow3D" parent="SpawnPathLeft"]
+unique_name_in_owner = true
+transform = Transform3D(-0.9158395, -0.18602017, -0.35575724, 1.490061e-08, 0.8861451, -0.46334952, 0.40145236, -0.42437068, -0.8115944, 1.2113342, -0.4173584, -4.5890884)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 60, 52.65686, 56.412292)
+projection = 1
+size = 28.0
+near = 0.001
+
+[node name="CharacterConfig" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 59.2517, 48.759876, 86.16533)
+script = ExtResource("3_feb5d")
+all_body_parts = Array[ExtResource("4_mfdv2")]([ExtResource("4_vef74"), ExtResource("10_7sc4i"), ExtResource("7_bnpwn"), ExtResource("6_mfdv2"), ExtResource("9_e8heu"), ExtResource("13_80cx4"), ExtResource("8_lc2xo"), ExtResource("9_215e1"), ExtResource("7_215e1"), ExtResource("14_e8heu"), ExtResource("15_rvswv"), ExtResource("16_boyg6")])
+max_valid_parts = 3
+max_invalid_parts = 1
+
+[node name="Environment" parent="." instance=ExtResource("18_rvswv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 39.38962, 65)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.99999845, -0.0015114987, 0.0008726641, 0, 0.49999997, 0.86602545, -0.0017453283, -0.8660241, 0.4999992, 25, 43, 46)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_e36ub")

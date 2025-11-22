@@ -7,18 +7,17 @@ enum ClickType {
 	HOLD
 }
 
-@onready var eyesSlot: Sprite3D = $Eyes/Sprite3D
-@onready var headSlot: Sprite3D = $Head/Sprite3D
-@onready var bodySlot: Sprite3D = $Body/Sprite3D
-@onready var legsSlot: Sprite3D = $Legs/Sprite3D
+@onready var headSlot: Sprite3D = %HeadSprite
+@onready var bodySlot: Sprite3D = %BodySprite
+@onready var extraSlot: Sprite3D = %ExtraSprite
 
-@onready var comicsSprite: Sprite3D = $ComicsSprite
+@onready var comicsSprite: Sprite3D = %ComicsSprite
 
 @export var comicsOk: Texture2D
 @export var comicsError: Texture2D
 @export var comicsChecking: Texture2D
 
-const MAX_PART_ID: int = 3
+const MAX_PART_ID: int = 9
 
 @export var speed: float = 2.0
 @export var max_speed: float = 6.0
@@ -39,6 +38,7 @@ var mouse_down_time: float = 0.0
 var click_processed: bool = false  
 
 var body_parts: Array[BodyParts]
+var categories: Array[Category.CategoryType]
 
 signal character_clicked(character: Character)
 signal character_hold_clicked(character: Character)
@@ -62,6 +62,34 @@ func _process(delta: float) -> void:
 	if click_type == ClickType.HOLD and holding:
 		handle_hold_click(delta)
 		return
+
+func generate_random_body_config() -> void:
+	var body_config: Dictionary = {}
+	
+	for part_type: int in BodyParts.PartType.values():
+		if part_type == BodyParts.PartType.extra: continue
+		
+		var part_name: String = BodyParts.PartType.keys()[part_type]
+		body_config[part_name] = randi_range(1, MAX_PART_ID)
+		
+		# check with break if MAX PART ID not exists
+		
+		var body_part: BodyParts = load("res://resources/bodyparts/%s_%d.tres" % [part_name, body_config[part_name]])
+		body_parts.append(body_part)
+		
+		var part_category: Category.CategoryType = body_part.category.category_type
+		if part_category not in categories:
+			categories.append(part_category)
+		
+		var part_texture: Texture2D = body_part.texture
+		
+		match part_name:
+			"head":
+				headSlot.texture = part_texture
+			"body":
+				bodySlot.texture = part_texture
+			"extra":
+				extraSlot.texture = part_texture
 
 func check_is_target() -> void:
 	click_processed = true
@@ -87,30 +115,35 @@ func handle_hold_click(delta: float) -> void:
 		hold_timer = 0.0
 		check_is_target()
 
-func set_character(_is_direction_left: bool, valid_parts: Array, invalid_parts: Array) -> void:
-	is_target = set_is_target(valid_parts, invalid_parts)
+func set_character(_is_direction_left: bool, valid_category_types: Array[Category.CategoryType], invalid_category_types: Array[Category.CategoryType]) -> void:
+	is_target = set_is_target(valid_category_types, invalid_category_types)
 	
 	click_type = ClickType.values().pick_random() 
 	move_direction = Vector3.LEFT if _is_direction_left else Vector3.RIGHT
 	
 	var click_type_name: String = ClickType.keys()[click_type]
 	
+	var categories_valid_names: Array[String] = []
+	for cat: Category.CategoryType in categories:
+		var type_name: String = Category.CategoryType.keys()[cat]
+		categories_valid_names.append(type_name)
+
 	print("─────────────────────────")
-	print("Character config: ", body_parts)
+	print("Character categories: ", categories_valid_names)
 	print("Character click type: ", click_type_name)
 	print("Character is target: ", is_target)
 	print("─────────────────────────")
 	
-func set_is_target(valid_parts: Array, invalid_parts: Array) -> bool:
-	#Se esiste una parte invalida 
-	for part: BodyParts in body_parts:
-		if part in invalid_parts:
+func set_is_target(valid_category_types: Array[Category.CategoryType], invalid_category_types: Array[Category.CategoryType]) -> bool:
+	for category: Category.CategoryType in categories:
+		if category in invalid_category_types:
 			return false
 			
 	# Se non esiste nessuna parte valida
 	var has_valid: bool = false
-	for part: BodyParts in body_parts:
-		if part in valid_parts:
+
+	for category: Category.CategoryType in categories:
+		if category in valid_category_types:
 			has_valid = true
 			break
 
@@ -118,25 +151,7 @@ func set_is_target(valid_parts: Array, invalid_parts: Array) -> bool:
 		return false
 
 	return true
-
-func generate_random_body_config() -> void:
-	var body_config: Dictionary = {}
 	
-	for part_type: int in BodyParts.PartType.values():
-		var part_name: String = BodyParts.PartType.keys()[part_type]
-		body_config[part_name] = randi_range(1, MAX_PART_ID)
-		
-		var body_part: BodyParts = load("res://resources/bodyparts/%s_%d.tres" % [part_name, body_config[part_name]])
-		body_parts.append(body_part)
-		
-		match part_name:
-			"head":
-				headSlot.texture = body_part.texture
-			"body":
-				bodySlot.texture = body_part.texture
-			"eyes":
-				eyesSlot.texture = body_part.texture
-
 func _physics_process(_delta: float) -> void:
 	velocity = move_direction * speed
 	move_and_slide()

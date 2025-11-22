@@ -5,7 +5,7 @@ extends Node3D
 @onready var gameover_text: Label = %GameOverText
 @onready var debug_target_text: Label = %TargetConfigText
 @onready var debug_antitarget_text: Label = %AntiTargetConfigText
-@onready var target_config: TargetConfig = %TargetConfig
+@onready var target_config: TargetConfig = %CharacterConfig
 
 @onready var valid1: TextureRect = %Valid1
 @onready var valid2: TextureRect  = %Valid2
@@ -20,7 +20,7 @@ var characterScene: PackedScene = preload("res://scenes/Character.tscn")
 @export var max_body_parts_to_guess : int
 @export var max_body_parts_to_avoid : int
 
-const MAX_PART_ID: int = 3
+const MAX_PART_ID: int = 6
 
 var is_gameover: bool = false
 
@@ -28,11 +28,11 @@ func _ready() -> void:
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	spawn_timer.start()
 
-	valid1.texture = target_config.valid_config[0].texture
-	valid2.texture = target_config.valid_config[1].texture
-	valid3.texture = target_config.valid_config[2].texture
+	valid1.texture = target_config.valid_categories[0].icon
+	valid2.texture = target_config.valid_categories[1].icon
+	#valid3.texture = target_config.valid_categories[2].icon
 	
-	invalid1.texture = target_config.invalid_config[0].texture
+	invalid1.texture = target_config.invalid_categories[0].icon
 	#invalid2.texture = target_config.invalid_config[1].texture
 
 func _process(_delta: float) -> void:
@@ -51,10 +51,8 @@ func handle_gameover() -> void:
 		gameover_text.text = "Happiness is 100\nYou Win!"
 		is_gameover = true
 
-
 func _on_spawn_timer_timeout() -> void:
 	spawn_person()
-
 
 func spawn_person() -> void:
 	var characterInstance: Character = characterScene.instantiate() as Character
@@ -63,7 +61,7 @@ func spawn_person() -> void:
 	var spawnSide: int = randi_range(0, 1)
 	var spawnPosition: PathFollow3D
 
-	characterInstance.set_character(spawnSide == 0, target_config.valid_config, target_config.invalid_config)
+	characterInstance.set_character(spawnSide == 0, target_config.valid_category_types, target_config.invalid_category_types)
 
 	spawnPosition = %SpawnPositionRight if spawnSide == 0 else %SpawnPositionLeft
 	spawnPosition.progress_ratio = randf()
@@ -75,7 +73,6 @@ func spawn_person() -> void:
 			characterInstance.character_clicked.connect(_on_character_clicked)
 		Character.ClickType.HOLD:
 			characterInstance.character_hold_clicked.connect(_on_character_clicked)
-
 
 func _on_character_clicked(_character: Character) -> void:
 	if _character.is_hailed:

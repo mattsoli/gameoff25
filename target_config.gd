@@ -2,46 +2,40 @@ extends Node3D
 
 class_name TargetConfig
 
-@export var all_body_parts: Array[BodyParts]
-@export var max_valid_parts: int
-@export var max_invalid_parts: int
+@export var category_db: Array[Category]
 
-var valid_config: Array[BodyParts]
-var valid_body_types: Array[int]
-var invalid_config: Array[BodyParts]
+var valid_categories: Array[Category]
+var valid_category_types: Array[Category.CategoryType]
+@export var max_valid_category: int
+
+var invalid_categories: Array[Category]
+var invalid_category_types: Array[Category.CategoryType]
+@export var max_invalid_category: int
 
 func _ready() -> void:
-	valid_config = create_config(max_valid_parts)
-	invalid_config = create_anticonfig(valid_config, max_invalid_parts)
+	# Crea una copia dell'array originale
+	var available_categories: Array[Category] = category_db.duplicate()
+	available_categories.shuffle()
 	
-func create_config(max_parts: int) -> Array:
-	var config: Array 
-	if all_body_parts.size() < max_parts:
-		push_error("Non ci sono abbastanza BodyParts per creare un config!")
-		return []
-
-	var parts_copy: Array[BodyParts] = all_body_parts.duplicate()
-	parts_copy.shuffle()
-	config = parts_copy.slice(0, max_parts)
+	# Seleziona le categorie valide
+	for i: int in range(min(max_valid_category, available_categories.size())):
+		valid_categories.append(available_categories[i])
 	
-	for conf: BodyParts in config:
-		valid_body_types.append(conf.part_type)
+	# Rimuovi le categorie valide da quelle disponibili
+	for cat: Category in valid_categories:
+		available_categories.erase(cat)
+	
+	# Seleziona le categorie invalide dalle rimanenti
+	for i: int in range(min(max_invalid_category, available_categories.size())):
+		invalid_categories.append(available_categories[i])
 		
-	return config
-
-func create_anticonfig(_target_config: Array, max_parts: int) -> Array:
-	var available: Array[BodyParts] = []
-	var config: Array
-	
-	for body_part: BodyParts in all_body_parts:
-		if body_part not in _target_config and body_part.part_type not in valid_body_types:
-			available.append(body_part)
-
-	if available.size() < max_parts:
-		push_error("Non ci sono abbastanza BodyParts per creare l'anticonfig!")
-		return []
-
-	available.shuffle()
-	config = available.slice(0, max_parts)
-
-	return config
+	for category: Category in valid_categories:
+		valid_category_types.append(category.category_type)
+		
+	for category: Category in invalid_categories:
+		invalid_category_types.append(category.category_type)
+		
+func get_random_category(category_array: Array[Category]) -> Category:
+	var categories_copy: Array[Category] = category_array.duplicate()
+	categories_copy.shuffle()
+	return categories_copy.pick_random()

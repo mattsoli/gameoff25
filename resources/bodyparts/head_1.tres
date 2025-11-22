@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="BodyParts" load_steps=3 format=3 uid="uid://0e28heygj815"]
+[gd_resource type="Resource" script_class="BodyParts" load_steps=4 format=3 uid="uid://bpftx562ec0k6"]
 
-[ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="1_ji1gi"]
-[ext_resource type="Texture2D" uid="uid://bgcfq0ju4m7m8" path="res://characters/parts/heads/head_1.png" id="2_uochc"]
+[ext_resource type="Resource" uid="uid://dg4o2eqgs8pd2" path="res://resources/categories/alieno.tres" id="1_7u5rh"]
+[ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="2_sx8ul"]
+[ext_resource type="Texture2D" uid="uid://goy28npdcv0a" path="res://characters/parts/heads/testa_alieno.png" id="3_7u5rh"]
 
 [resource]
-script = ExtResource("1_ji1gi")
-texture = ExtResource("2_uochc")
-id = 1
-metadata/_custom_type_script = "uid://cs5i51dwnlfjd"
+script = ExtResource("2_sx8ul")
+texture = ExtResource("3_7u5rh")
+category = ExtResource("1_7u5rh")
