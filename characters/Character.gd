@@ -17,7 +17,7 @@ enum ClickType {
 @export var comicsError: Texture2D
 @export var comicsChecking: Texture2D
 
-const MAX_PART_ID: int = 6
+const MAX_PART_ID: int = 9
 
 @export var speed: float = 2.0
 @export var max_speed: float = 6.0
