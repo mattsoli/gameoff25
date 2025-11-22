@@ -1,13 +1,11 @@
-[gd_resource type="Resource" script_class="BodyParts" load_steps=4 format=3 uid="uid://bo4q57gfpgge4"]
+[gd_resource type="Resource" script_class="BodyParts" load_steps=4 format=3 uid="uid://dflmktejv5jd3"]
 
-[ext_resource type="Resource" uid="uid://db3fm50i4wqch" path="res://resources/categories/cyborg.tres" id="1_4dnua"]
+[ext_resource type="Resource" uid="uid://b5ah3qsxvds08" path="res://resources/categories/animale.tres" id="1_4dnua"]
 [ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="2_ppqa0"]
-[ext_resource type="Texture2D" uid="uid://c146a1gogb655" path="res://characters/parts/bodies/busto_4.png" id="3_6v0ak"]
+[ext_resource type="Texture2D" uid="uid://cw4xmdiabh6n3" path="res://characters/parts/bodies/busto_gatto.png" id="3_ppqa0"]
 
 [resource]
 script = ExtResource("2_ppqa0")
-texture = ExtResource("3_6v0ak")
+texture = ExtResource("3_ppqa0")
 part_type = 1
 category = ExtResource("1_4dnua")
-id = 4
-metadata/_custom_type_script = "uid://cs5i51dwnlfjd"

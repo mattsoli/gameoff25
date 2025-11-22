@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Category" load_steps=3 format=3 uid="uid://bqno2jmk4ktrg"]
-
-[ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="1_7wuxm"]
-[ext_resource type="Texture2D" uid="uid://6os7shokoyy4" path="res://icons/devil-horns.png" id="1_i6o3y"]
-
-[resource]
-script = ExtResource("1_7wuxm")
-icon = ExtResource("1_i6o3y")
-category_type = 6

@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Category" load_steps=3 format=3 uid="uid://ulq4yqqb3e0j"]
-
-[ext_resource type="Texture2D" uid="uid://bxm78qu6siu8p" path="res://icons/moustache.png" id="1_ib0vm"]
-[ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="1_rono3"]
-
-[resource]
-script = ExtResource("1_rono3")
-icon = ExtResource("1_ib0vm")
-category_type = 2

@@ -1,12 +1,10 @@
 [gd_resource type="Resource" script_class="BodyParts" load_steps=4 format=3 uid="uid://hcbkrtlkiof1"]
 
-[ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="1_j0h35"]
-[ext_resource type="Resource" uid="uid://dht5qlh6kd8wj" path="res://resources/categories/neutro.tres" id="1_vfkmb"]
-[ext_resource type="Texture2D" uid="uid://87wwi6d6n3qg" path="res://characters/parts/heads/testa_3.png" id="2_j0h35"]
+[ext_resource type="Resource" uid="uid://b5ah3qsxvds08" path="res://resources/categories/animale.tres" id="1_vfkmb"]
+[ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="2_dl4o7"]
+[ext_resource type="Texture2D" uid="uid://db44brymx31l8" path="res://characters/parts/heads/testa_gatto.png" id="3_vfkmb"]
 
 [resource]
-script = ExtResource("1_j0h35")
-texture = ExtResource("2_j0h35")
+script = ExtResource("2_dl4o7")
+texture = ExtResource("3_vfkmb")
 category = ExtResource("1_vfkmb")
-id = 3
-metadata/_custom_type_script = "uid://cs5i51dwnlfjd"

@@ -9,8 +9,6 @@ enum ClickType {
 
 @onready var headSlot: Sprite3D = %HeadSprite
 @onready var bodySlot: Sprite3D = %BodySprite
-@onready var eyesSlot: Sprite3D = %EyesSprite
-@onready var mouthSlot: Sprite3D = %MouthSprite
 @onready var extraSlot: Sprite3D = %ExtraSprite
 
 @onready var comicsSprite: Sprite3D = %ComicsSprite
@@ -19,7 +17,7 @@ enum ClickType {
 @export var comicsError: Texture2D
 @export var comicsChecking: Texture2D
 
-const MAX_PART_ID: int = 3
+const MAX_PART_ID: int = 6
 
 @export var speed: float = 2.0
 @export var max_speed: float = 6.0
@@ -69,6 +67,8 @@ func generate_random_body_config() -> void:
 	var body_config: Dictionary = {}
 	
 	for part_type: int in BodyParts.PartType.values():
+		if part_type == BodyParts.PartType.extra: continue
+		
 		var part_name: String = BodyParts.PartType.keys()[part_type]
 		body_config[part_name] = randi_range(1, MAX_PART_ID)
 		
@@ -78,7 +78,7 @@ func generate_random_body_config() -> void:
 		body_parts.append(body_part)
 		
 		var part_category: Category.CategoryType = body_part.category.category_type
-		if part_category not in categories and part_category != Category.CategoryType.Neutro:
+		if part_category not in categories:
 			categories.append(part_category)
 		
 		var part_texture: Texture2D = body_part.texture
@@ -88,10 +88,6 @@ func generate_random_body_config() -> void:
 				headSlot.texture = part_texture
 			"body":
 				bodySlot.texture = part_texture
-			"eyes":
-				eyesSlot.texture = part_texture
-			"mouth":
-				mouthSlot.texture = part_texture
 			"extra":
 				extraSlot.texture = part_texture
 
@@ -119,36 +115,35 @@ func handle_hold_click(delta: float) -> void:
 		hold_timer = 0.0
 		check_is_target()
 
-func set_character(_is_direction_left: bool, valid_categories: Array[Category.CategoryType], invalid_categories: Array[Category.CategoryType]) -> void:
-	is_target = set_is_target(valid_categories, invalid_categories)
+func set_character(_is_direction_left: bool, valid_category_types: Array[Category.CategoryType], invalid_category_types: Array[Category.CategoryType]) -> void:
+	is_target = set_is_target(valid_category_types, invalid_category_types)
 	
 	click_type = ClickType.values().pick_random() 
 	move_direction = Vector3.LEFT if _is_direction_left else Vector3.RIGHT
 	
 	var click_type_name: String = ClickType.keys()[click_type]
 	
-	var valid_names: Array[String] = []
+	var categories_valid_names: Array[String] = []
 	for cat: Category.CategoryType in categories:
 		var type_name: String = Category.CategoryType.keys()[cat]
-		valid_names.append(type_name)
+		categories_valid_names.append(type_name)
 
 	print("─────────────────────────")
-	print("Character categories: ", valid_names)
+	print("Character categories: ", categories_valid_names)
 	print("Character click type: ", click_type_name)
 	print("Character is target: ", is_target)
 	print("─────────────────────────")
 	
-func set_is_target(valid_categories: Array[Category.CategoryType], invalid_categories: Array[Category.CategoryType]) -> bool:
-	#Se esiste una parte invalida 
+func set_is_target(valid_category_types: Array[Category.CategoryType], invalid_category_types: Array[Category.CategoryType]) -> bool:
 	for category: Category.CategoryType in categories:
-		if category in invalid_categories:
+		if category in invalid_category_types:
 			return false
 			
 	# Se non esiste nessuna parte valida
 	var has_valid: bool = false
 
 	for category: Category.CategoryType in categories:
-		if category in valid_categories:
+		if category in valid_category_types:
 			has_valid = true
 			break
 

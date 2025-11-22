@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Category" load_steps=3 format=3 uid="uid://dfmc0nhqyxpdu"]
-
-[ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="1_jmuu0"]
-[ext_resource type="Texture2D" uid="uid://cnh0r0r6k748g" path="res://icons/pirate-hat.png" id="1_wiy1n"]
-
-[resource]
-script = ExtResource("1_jmuu0")
-icon = ExtResource("1_wiy1n")
-category_type = 3

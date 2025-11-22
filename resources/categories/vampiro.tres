@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Category" load_steps=3 format=3 uid="uid://di44yvh522t47"]
-
-[ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="1_cc1wk"]
-[ext_resource type="Texture2D" uid="uid://dx8am5cw5tgf7" path="res://icons/vampire.png" id="1_p27iv"]
-
-[resource]
-script = ExtResource("1_cc1wk")
-icon = ExtResource("1_p27iv")
-category_type = 18

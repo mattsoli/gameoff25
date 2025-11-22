@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_xucou")
 icon = ExtResource("1_ewtjg")
-category_type = 10
+category_type = 6

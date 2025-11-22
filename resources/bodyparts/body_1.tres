@@ -1,13 +1,12 @@
-[gd_resource type="Resource" script_class="BodyParts" load_steps=4 format=3 uid="uid://cbgayag6qnrri"]
+[gd_resource type="Resource" script_class="BodyParts" load_steps=4 format=3 uid="uid://dnrxi8dcmmnml"]
 
-[ext_resource type="Resource" uid="uid://di44yvh522t47" path="res://resources/categories/vampiro.tres" id="1_eehmc"]
-[ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="1_rpsni"]
-[ext_resource type="Texture2D" uid="uid://b1ro8id7d7uyy" path="res://characters/parts/bodies/busto_1.png" id="2_qayml"]
+[ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="1_cemjs"]
+[ext_resource type="Resource" uid="uid://dg4o2eqgs8pd2" path="res://resources/categories/alieno.tres" id="1_eehmc"]
+[ext_resource type="Texture2D" uid="uid://ck8uxvtk7sicy" path="res://characters/parts/bodies/busto_alieno.png" id="3_eehmc"]
 
 [resource]
-script = ExtResource("1_rpsni")
-texture = ExtResource("2_qayml")
+script = ExtResource("1_cemjs")
+texture = ExtResource("3_eehmc")
 part_type = 1
 category = ExtResource("1_eehmc")
 id = 1
-metadata/_custom_type_script = "uid://cs5i51dwnlfjd"

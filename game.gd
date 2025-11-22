@@ -20,7 +20,7 @@ var characterScene: PackedScene = preload("res://scenes/Character.tscn")
 @export var max_body_parts_to_guess : int
 @export var max_body_parts_to_avoid : int
 
-const MAX_PART_ID: int = 3
+const MAX_PART_ID: int = 6
 
 var is_gameover: bool = false
 
@@ -30,7 +30,7 @@ func _ready() -> void:
 
 	valid1.texture = target_config.valid_categories[0].icon
 	valid2.texture = target_config.valid_categories[1].icon
-	valid3.texture = target_config.valid_categories[2].icon
+	#valid3.texture = target_config.valid_categories[2].icon
 	
 	invalid1.texture = target_config.invalid_categories[0].icon
 	#invalid2.texture = target_config.invalid_config[1].texture

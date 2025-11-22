@@ -1,28 +1,12 @@
-[gd_scene load_steps=32 format=3 uid="uid://ccc4ybk76fv5p"]
+[gd_scene load_steps=16 format=3 uid="uid://ccc4ybk76fv5p"]
 
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
-[ext_resource type="Texture2D" uid="uid://diuhofbnmw2t5" path="res://characters/parts/eyes/occhi_3_1.png" id="2_36jdj"]
 [ext_resource type="Script" uid="uid://brqpqdij0ah7e" path="res://target_config.gd" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="4_f1jbl"]
 [ext_resource type="Resource" uid="uid://dg4o2eqgs8pd2" path="res://resources/categories/alieno.tres" id="5_vaj68"]
 [ext_resource type="Resource" uid="uid://b5ah3qsxvds08" path="res://resources/categories/animale.tres" id="6_i2p71"]
-[ext_resource type="Resource" uid="uid://ulq4yqqb3e0j" path="res://resources/categories/baffi.tres" id="7_xa8c5"]
-[ext_resource type="Resource" uid="uid://dfmc0nhqyxpdu" path="res://resources/categories/bendaDaPirata.tres" id="8_5b14r"]
-[ext_resource type="Resource" uid="uid://ca2bg8uvglr0c" path="res://resources/categories/capelli.tres" id="9_bnpwn"]
-[ext_resource type="Resource" uid="uid://d1hmtk70dw82h" path="res://resources/categories/cappello.tres" id="10_36jdj"]
-[ext_resource type="Resource" uid="uid://bqno2jmk4ktrg" path="res://resources/categories/corna.tres" id="11_xfvwf"]
 [ext_resource type="Resource" uid="uid://db3fm50i4wqch" path="res://resources/categories/cyborg.tres" id="12_dhpj7"]
-[ext_resource type="Resource" uid="uid://hc7glgocexbp" path="res://resources/categories/labbraGrosse.tres" id="13_7knny"]
-[ext_resource type="Resource" uid="uid://bapjg8i868m46" path="res://resources/categories/maschera.tres" id="14_082n1"]
-[ext_resource type="Resource" uid="uid://b60km4tstlt1r" path="res://resources/categories/morto.tres" id="15_xex6t"]
-[ext_resource type="Resource" uid="uid://cn35kagl2ycwj" path="res://resources/categories/mostro.tres" id="16_aa0lp"]
-[ext_resource type="Resource" uid="uid://cj71r8ewcvt1m" path="res://resources/categories/occhiali.tres" id="18_4v2jo"]
 [ext_resource type="PackedScene" uid="uid://3siw543tqn3p" path="res://env/pova area di lavoro v02.blend" id="18_rvswv"]
-[ext_resource type="Resource" uid="uid://b5kdc4aan53d" path="res://resources/categories/occhiDiGatto.tres" id="19_l1i01"]
-[ext_resource type="Resource" uid="uid://c15qgxhu5eibs" path="res://resources/categories/oggetto.tres" id="20_r62pu"]
-[ext_resource type="Resource" uid="uid://b42xctlp2vwjq" path="res://resources/categories/sorridente.tres" id="21_klri6"]
-[ext_resource type="Resource" uid="uid://gvca37hv77bp" path="res://resources/categories/supereroe.tres" id="22_eu6ph"]
-[ext_resource type="Resource" uid="uid://di44yvh522t47" path="res://resources/categories/vampiro.tres" id="23_edr7y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wiwsh"]
 bg_color = Color(0.14503565, 0.28519025, 0.17762923, 1)
@@ -144,7 +128,6 @@ size_flags_vertical = 4
 [node name="Valid1" type="TextureRect" parent="TargetConfigContainer/ValidParts2"]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("2_36jdj")
 expand_mode = 2
 
 [node name="Valid2" type="TextureRect" parent="TargetConfigContainer/ValidParts2"]
@@ -218,14 +201,6 @@ projection = 1
 size = 28.0
 near = 0.001
 
-[node name="CharacterConfig" type="Node3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 59.2517, 48.759876, 86.16533)
-script = ExtResource("3_feb5d")
-category_db = Array[ExtResource("4_f1jbl")]([ExtResource("5_vaj68"), ExtResource("6_i2p71"), ExtResource("7_xa8c5"), ExtResource("8_5b14r"), ExtResource("9_bnpwn"), ExtResource("10_36jdj"), ExtResource("11_xfvwf"), ExtResource("12_dhpj7"), ExtResource("13_7knny"), ExtResource("14_082n1"), ExtResource("15_xex6t"), ExtResource("16_aa0lp"), ExtResource("18_4v2jo"), ExtResource("19_l1i01"), ExtResource("20_r62pu"), ExtResource("21_klri6"), ExtResource("22_eu6ph"), ExtResource("23_edr7y")])
-max_valid_parts = 3
-max_invalid_parts = 1
-
 [node name="Environment" parent="." instance=ExtResource("18_rvswv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 39.38962, 65)
 
@@ -236,3 +211,10 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_e36ub")
+
+[node name="CharacterConfig" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_feb5d")
+category_db = Array[ExtResource("4_f1jbl")]([ExtResource("5_vaj68"), ExtResource("6_i2p71"), ExtResource("12_dhpj7")])
+max_valid_category = 2
+max_invalid_category = 1
