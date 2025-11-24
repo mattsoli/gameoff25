@@ -204,6 +204,16 @@ offset_bottom = 421.0
 theme_override_font_sizes/font_size = 64
 text = "3X"
 
+[node name="ComboCounterText" type="Label" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 37.0
+offset_top = 247.0
+offset_right = 113.0
+offset_bottom = 335.0
+theme_override_font_sizes/font_size = 64
+text = "3X"
+
 [node name="SpawnPathRight" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.38544, 41.95878, 51.974)
 curve = SubResource("Curve3D_wiwsh")

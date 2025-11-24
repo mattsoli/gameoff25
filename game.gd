@@ -7,6 +7,7 @@ extends Node3D
 @onready var debug_antitarget_text: Label = %AntiTargetConfigText
 @onready var target_config: TargetConfig = %CharacterConfig
 @onready var combo_meter_text: Label = %ComboMeterText
+@onready var combo_counter_text: Label = %ComboCounterText
 
 @onready var valid1: TextureRect = %Valid1
 @onready var valid2: TextureRect  = %Valid2
@@ -76,7 +77,8 @@ func handle_combo_meter() -> void:
 	else:
 		combo_mul = 1
 	
-	combo_meter_text.text = str(combo_mul)+"X"
+	combo_counter_text.text = "Combo : " + str(combo_counter)
+	combo_meter_text.text = "Mul: " + str(combo_mul) + "X"
 	
 func _on_spawn_timer_timeout() -> void:
 	spawn_person()
