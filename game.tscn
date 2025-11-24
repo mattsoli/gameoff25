@@ -59,7 +59,7 @@ glow_enabled = true
 
 [node name="game" type="Node3D"]
 script = ExtResource("1_e2o6t")
-hail_point = 10
+hail_point = 2
 max_body_parts_to_guess = 3
 max_body_parts_to_avoid = 2
 
@@ -67,15 +67,25 @@ max_body_parts_to_avoid = 2
 unique_name_in_owner = true
 wait_time = 4.0
 
-[node name="HappinessBar" type="ProgressBar" parent="."]
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HappinessBar" type="ProgressBar" parent="UI"]
 unique_name_in_owner = true
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -125.0
-offset_top = 25.0
-offset_right = 125.0
-offset_bottom = 55.0
+offset_left = -20.0
+offset_top = 49.0
+offset_right = 230.0
+offset_bottom = 79.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_wiwsh")
@@ -84,17 +94,18 @@ step = 1.0
 value = 50.0
 show_percentage = false
 
-[node name="GameOverText" type="Label" parent="."]
+[node name="GameOverText" type="Label" parent="UI"]
 unique_name_in_owner = true
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = 19.0
+offset_top = -40.0
+offset_right = 59.0
+offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -103,13 +114,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="TargetConfigContainer" type="VBoxContainer" parent="."]
-offset_left = 130.0
-offset_top = 70.0
-offset_right = 530.0
-offset_bottom = 225.0
+[node name="TargetConfigContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 45.0
+offset_right = 430.0
+offset_bottom = 222.0
 
-[node name="TargetConfigText" type="Label" parent="TargetConfigContainer"]
+[node name="TargetConfigText" type="Label" parent="UI/TargetConfigContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -121,36 +133,37 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="ValidParts2" type="HBoxContainer" parent="TargetConfigContainer"]
+[node name="ValidParts2" type="HBoxContainer" parent="UI/TargetConfigContainer"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Valid1" type="TextureRect" parent="TargetConfigContainer/ValidParts2"]
+[node name="Valid1" type="TextureRect" parent="UI/TargetConfigContainer/ValidParts2"]
 unique_name_in_owner = true
 layout_mode = 2
 expand_mode = 2
 
-[node name="Valid2" type="TextureRect" parent="TargetConfigContainer/ValidParts2"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-expand_mode = 2
-
-[node name="Valid3" type="TextureRect" parent="TargetConfigContainer/ValidParts2"]
+[node name="Valid2" type="TextureRect" parent="UI/TargetConfigContainer/ValidParts2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 expand_mode = 2
 
-[node name="AntiTargetConfigContainer" type="VBoxContainer" parent="."]
-offset_left = 1378.0
-offset_top = 70.0
-offset_right = 1778.0
-offset_bottom = 225.0
+[node name="Valid3" type="TextureRect" parent="UI/TargetConfigContainer/ValidParts2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+expand_mode = 2
 
-[node name="AntiTargetConfigText" type="Label" parent="AntiTargetConfigContainer"]
+[node name="AntiTargetConfigContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_left = 1428.0
+offset_top = 45.0
+offset_right = 1828.0
+offset_bottom = 219.0
+
+[node name="AntiTargetConfigText" type="Label" parent="UI/AntiTargetConfigContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
@@ -162,24 +175,34 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="InvalidParts2" type="HBoxContainer" parent="AntiTargetConfigContainer"]
+[node name="InvalidParts2" type="HBoxContainer" parent="UI/AntiTargetConfigContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Invalid1" type="TextureRect" parent="AntiTargetConfigContainer/InvalidParts2"]
+[node name="Invalid1" type="TextureRect" parent="UI/AntiTargetConfigContainer/InvalidParts2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 texture = SubResource("CompressedTexture2D_80cx4")
 expand_mode = 2
 
-[node name="Invalid2" type="TextureRect" parent="AntiTargetConfigContainer/InvalidParts2"]
+[node name="Invalid2" type="TextureRect" parent="UI/AntiTargetConfigContainer/InvalidParts2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 texture = SubResource("CompressedTexture2D_e8heu")
 expand_mode = 2
+
+[node name="ComboMeterText" type="Label" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 37.0
+offset_top = 333.0
+offset_right = 113.0
+offset_bottom = 421.0
+theme_override_font_sizes/font_size = 64
+text = "3X"
 
 [node name="SpawnPathRight" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.38544, 41.95878, 51.974)
