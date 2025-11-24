@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ccc4ybk76fv5p"]
+[gd_scene load_steps=19 format=3 uid="uid://ccc4ybk76fv5p"]
 
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://brqpqdij0ah7e" path="res://target_config.gd" id="3_feb5d"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://b5ah3qsxvds08" path="res://resources/categories/animale.tres" id="6_i2p71"]
 [ext_resource type="Resource" uid="uid://di44yvh522t47" path="res://resources/categories/gentleman.tres" id="8_vef74"]
 [ext_resource type="Resource" uid="uid://bqjc8vpay8w4v" path="res://resources/categories/scienziato.tres" id="9_hve3p"]
+[ext_resource type="AudioStream" uid="uid://byihetp7k7053" path="res://audio/music/mx_ingame.mp3" id="10_hve3p"]
 [ext_resource type="Resource" uid="uid://db3fm50i4wqch" path="res://resources/categories/cyborg.tres" id="12_dhpj7"]
 [ext_resource type="PackedScene" uid="uid://3siw543tqn3p" path="res://env/pova area di lavoro v02.blend" id="18_rvswv"]
 
@@ -65,7 +66,7 @@ max_body_parts_to_avoid = 2
 
 [node name="CharacterSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 4.0
+wait_time = 3.67
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -253,3 +254,8 @@ script = ExtResource("3_feb5d")
 category_db = Array[ExtResource("4_f1jbl")]([ExtResource("5_vaj68"), ExtResource("6_i2p71"), ExtResource("12_dhpj7"), ExtResource("8_vef74"), ExtResource("9_hve3p")])
 max_valid_category = 2
 max_invalid_category = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_hve3p")
+autoplay = true
+bus = &"Music"

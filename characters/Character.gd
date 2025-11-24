@@ -14,6 +14,8 @@ enum ClickType {
 @onready var extraSlot: Sprite3D = %ExtraSprite
 
 @onready var comicsSprite: Sprite3D = %ComicsSprite
+@onready var correct_audio_player: AudioStreamPlayer = $CorrectAudioPlayer
+@onready var incorrect_audio_player: AudioStreamPlayer = $IncorrectAudioPlayer
 
 @export var comicsOk: Texture2D
 @export var comicsError: Texture2D
@@ -99,11 +101,13 @@ func check_is_target() -> void:
 	
 	if is_target:
 		comicsSprite.texture = comicsOk
+		correct_audio_player.play()
 		print("✓ Target corretto!")
 		print("++++++++++++++++++++++")
 
 	else:
 		comicsSprite.texture = comicsError
+		incorrect_audio_player.play()
 		speed = max_speed
 		print("✗ Target sbagliato!")
 		print("-------------------------")
