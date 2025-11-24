@@ -6,6 +6,7 @@ extends Node3D
 @onready var debug_target_text: Label = %TargetConfigText
 @onready var debug_antitarget_text: Label = %AntiTargetConfigText
 @onready var target_config: TargetConfig = %CharacterConfig
+@onready var combo_meter_text: Label = %ComboMeterText
 
 @onready var valid1: TextureRect = %Valid1
 @onready var valid2: TextureRect  = %Valid2
@@ -20,9 +21,20 @@ var characterScene: PackedScene = preload("res://scenes/Character.tscn")
 @export var max_body_parts_to_guess : int
 @export var max_body_parts_to_avoid : int
 
+@export var min_combo_counter: int = 5
+@export var medium_combo_counter: int = 10
+@export var max_combo_counter: int = 20
+
+@export var combo_mul_1: float = 1.5
+@export var combo_mul_2: float = 2
+@export var combo_mul_3: float = 3
+
 const MAX_PART_ID: int = 6
 
 var is_gameover: bool = false
+
+var combo_counter: int = 0
+var combo_mul: float = 1
 
 func _ready() -> void:
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
@@ -37,7 +49,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	handle_gameover()
-
+	handle_combo_meter()
+	
 func handle_gameover() -> void:
 	if is_gameover:
 		spawn_timer.stop()
@@ -51,6 +64,20 @@ func handle_gameover() -> void:
 		gameover_text.text = "Happiness is 100\nYou Win!"
 		is_gameover = true
 
+func handle_combo_meter() -> void:
+	pass
+	
+	if combo_counter == min_combo_counter and combo_counter < medium_combo_counter:
+		combo_mul = combo_mul_1
+	elif combo_counter == medium_combo_counter and combo_counter < max_combo_counter:
+		combo_mul = combo_mul_2
+	elif combo_counter >= max_combo_counter:
+		combo_mul = combo_mul_3
+	else:
+		combo_mul = 1
+	
+	combo_meter_text.text = str(combo_mul)+"X"
+	
 func _on_spawn_timer_timeout() -> void:
 	spawn_person()
 
@@ -84,8 +111,18 @@ func hail_character(_character: Character) -> void:
 	_character.is_hailed = true
 
 	if _character.is_target:
+		print("++++++++++++++++++++++")
 		print("Character riconosciuto")
-		happiness_bar.value += hail_point
+		combo_counter += 1
+		happiness_bar.value += hail_point * combo_mul
+		print("Current combo counter: ", combo_counter)
+		print("Current combo mul: ", combo_mul)
+		print("Happiness ottenuta: ",  hail_point * combo_mul)
+		
 	else:
+		print("-------------------------")
 		print("Sconosciuto salutato")
+		combo_counter = 0
 		happiness_bar.value -= hail_point
+		print("Happiness rimossa: ", hail_point)
+		

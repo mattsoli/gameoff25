@@ -7,6 +7,8 @@ enum ClickType {
 	HOLD
 }
 
+
+
 @onready var headSlot: Sprite3D = %HeadSprite
 @onready var bodySlot: Sprite3D = %BodySprite
 @onready var extraSlot: Sprite3D = %ExtraSprite
@@ -98,10 +100,13 @@ func check_is_target() -> void:
 	if is_target:
 		comicsSprite.texture = comicsOk
 		print("✓ Target corretto!")
+		print("++++++++++++++++++++++")
+
 	else:
 		comicsSprite.texture = comicsError
 		speed = max_speed
 		print("✗ Target sbagliato!")
+		print("-------------------------")
 
 func handle_hold_click(delta: float) -> void:
 	hold_timer += delta
