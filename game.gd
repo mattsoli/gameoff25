@@ -68,9 +68,9 @@ func handle_gameover() -> void:
 func handle_combo_meter() -> void:
 	pass
 	
-	if combo_counter == min_combo_counter and combo_counter < medium_combo_counter:
+	if combo_counter >= min_combo_counter and combo_counter < medium_combo_counter:
 		combo_mul = combo_mul_1
-	elif combo_counter == medium_combo_counter and combo_counter < max_combo_counter:
+	elif combo_counter >= medium_combo_counter and combo_counter < max_combo_counter:
 		combo_mul = combo_mul_2
 	elif combo_counter >= max_combo_counter:
 		combo_mul = combo_mul_3
