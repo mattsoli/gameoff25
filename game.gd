@@ -1,7 +1,5 @@
 extends Node3D
 
-@onready var day_timer: Timer = %DayTimer
-@onready var spawn_timer: Timer = %CharacterSpawnTimer
 @onready var happiness_bar: ProgressBar = %HappinessBar
 @onready var gameover_text: Label = %GameOverText
 @onready var debug_target_text: Label = %TargetConfigText
@@ -13,6 +11,14 @@ extends Node3D
 @export_group("Target Icons")
 @export var valid_icons: Array[TextureRect]
 @export var invalid_icons: Array[TextureRect]
+
+@export_group("Day Timer")
+@onready var day_timer: Timer = %DayTimer
+@export var max_day_time: float
+
+@export_group("Character Spawn")
+@onready var spawn_timer: Timer = %CharacterSpawnTimer
+@export var character_spawn_time: float = 5.0
 
 @onready var valid1: TextureRect = %Valid1
 @onready var valid2: TextureRect  = %Valid2
@@ -42,14 +48,22 @@ var combo_counter: int = 0
 var combo_mul: float = 1
 
 func _ready() -> void:
-	start_character_spawn_timer()
 	set_target_icons()
+	start_day_timer()
+	start_character_spawn_timer()
 
 func _process(_delta: float) -> void:
 	handle_gameover()
 	handle_combo_meter()
 
+func start_day_timer() -> void:
+	day_timer.wait_time = max_day_time
+	day_timer.timeout.connect(_on_day_timer_timeout)
+	day_timer.start()
+	pass
+
 func start_character_spawn_timer() -> void:
+	spawn_timer.wait_time = character_spawn_time
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	spawn_timer.start()
 
@@ -65,29 +79,29 @@ func set_target_icons() -> void:
 func handle_gameover() -> void:
 	if is_gameover:
 		spawn_timer.stop()
+		
+		if happiness_bar.value < 50.0:
+			# vecchietto triste
+			pass
+		elif happiness_bar.value >= 50.0:
+			# vecchietto felice
+			pass
+		
 		return
 
 	if happiness_bar.value == 0:
+		# vecchietto triste
 		gameover_text.text = "Happiness is 0\nYou Lose!"
 		is_gameover = true
-
 	elif happiness_bar.value == 100:
+		# vecchietto felice
 		gameover_text.text = "Happiness is 100\nYou Win!"
 		is_gameover = true
 
-func handle_combo_meter() -> void:
-	if combo_counter >= min_combo_counter and combo_counter < medium_combo_counter:
-		combo_mul = combo_mul_1
-	elif combo_counter >= medium_combo_counter and combo_counter < max_combo_counter:
-		combo_mul = combo_mul_2
-	elif combo_counter >= max_combo_counter:
-		combo_mul = combo_mul_3
-	else:
-		combo_mul = 1
-	
-	combo_counter_text.text = "Combo : " + str(combo_counter)
-	combo_meter_text.text = "Mul: " + str(combo_mul) + "X"
-	
+func _on_day_timer_timeout() -> void:
+	is_gameover = true
+	gameover_text.text = "Day is over!"
+
 func _on_spawn_timer_timeout() -> void:
 	spawn_person()
 
@@ -111,10 +125,22 @@ func spawn_person() -> void:
 		Character.ClickType.HOLD:
 			characterInstance.character_hold_clicked.connect(_on_character_clicked)
 
+func handle_combo_meter() -> void:
+	if combo_counter >= min_combo_counter and combo_counter < medium_combo_counter:
+		combo_mul = combo_mul_1
+	elif combo_counter >= medium_combo_counter and combo_counter < max_combo_counter:
+		combo_mul = combo_mul_2
+	elif combo_counter >= max_combo_counter:
+		combo_mul = combo_mul_3
+	else:
+		combo_mul = 1
+	
+	combo_counter_text.text = "Combo : " + str(combo_counter)
+	combo_meter_text.text = "Mul: " + str(combo_mul) + "X"
+
 func _on_character_clicked(_character: Character) -> void:
 	if _character.is_hailed:
 		return
-
 	hail_character(_character)
 
 func hail_character(_character: Character) -> void:
@@ -128,11 +154,9 @@ func hail_character(_character: Character) -> void:
 		print("Current combo counter: ", combo_counter)
 		print("Current combo mul: ", combo_mul)
 		print("Happiness ottenuta: ",  hail_point * combo_mul)
-		
 	else:
 		print("-------------------------")
 		print("Sconosciuto salutato")
 		combo_counter = 0
 		happiness_bar.value -= hail_point
 		print("Happiness rimossa: ", hail_point)
-		

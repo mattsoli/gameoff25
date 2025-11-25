@@ -59,8 +59,9 @@ glow_enabled = true
 
 [node name="game" type="Node3D" node_paths=PackedStringArray("valid_icons", "invalid_icons")]
 script = ExtResource("1_e2o6t")
-valid_icons = [NodePath("UI/TargetConfigContainer/ValidParts2/Valid1"), NodePath("UI/TargetConfigContainer/ValidParts2/Valid2"), NodePath("UI/TargetConfigContainer/ValidParts2/Valid3")]
+valid_icons = [NodePath("UI/TargetConfigContainer/ValidParts2/Valid1"), NodePath("UI/TargetConfigContainer/ValidParts2/Valid2"), NodePath("UI/TargetConfigContainer/ValidParts2/Valid3"), NodePath("UI/TargetConfigContainer/ValidParts2/Valid4")]
 invalid_icons = [NodePath("UI/AntiTargetConfigContainer/InvalidParts2/Invalid1"), NodePath("UI/AntiTargetConfigContainer/InvalidParts2/Invalid2")]
+max_day_time = 60.0
 hail_point = 2
 
 [node name="DayTimer" type="Timer" parent="."]
@@ -68,7 +69,6 @@ unique_name_in_owner = true
 
 [node name="CharacterSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 4.0
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -154,6 +154,12 @@ layout_mode = 2
 expand_mode = 2
 
 [node name="Valid3" type="TextureRect" parent="UI/TargetConfigContainer/ValidParts2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+expand_mode = 2
+
+[node name="Valid4" type="TextureRect" parent="UI/TargetConfigContainer/ValidParts2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
