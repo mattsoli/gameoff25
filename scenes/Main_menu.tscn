@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnkp5cnerc3kf"]
+
+[ext_resource type="Script" uid="uid://b4t3xr7tf0oho" path="res://main_menu/main_menu.gd" id="1_u5440"]
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_u5440")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 759.0
+offset_top = 415.0
+offset_right = 959.0
+offset_bottom = 495.0
+
+[node name="PlayBtn" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "PLAY"
