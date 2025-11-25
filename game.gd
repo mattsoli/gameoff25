@@ -1,5 +1,6 @@
 extends Node3D
 
+@onready var day_timer: Timer = %DayTimer
 @onready var spawn_timer: Timer = %CharacterSpawnTimer
 @onready var happiness_bar: ProgressBar = %HappinessBar
 @onready var gameover_text: Label = %GameOverText
@@ -9,6 +10,10 @@ extends Node3D
 @onready var combo_meter_text: Label = %ComboMeterText
 @onready var combo_counter_text: Label = %ComboCounterText
 
+@export_group("Target Icons")
+@export var valid_icons: Array[TextureRect]
+@export var invalid_icons: Array[TextureRect]
+
 @onready var valid1: TextureRect = %Valid1
 @onready var valid2: TextureRect  = %Valid2
 @onready var valid3: TextureRect  = %Valid3
@@ -16,19 +21,18 @@ extends Node3D
 @onready var invalid1: TextureRect  = %Invalid1
 @onready var invalid2: TextureRect  = %Invalid2
 
-var characterScene: PackedScene = preload("res://scenes/Character.tscn")
-
+@export_group("Hail points")
 @export var hail_point: int 
-@export var max_body_parts_to_guess : int
-@export var max_body_parts_to_avoid : int
 
+@export_group("Combo Meter")
 @export var min_combo_counter: int = 5
 @export var medium_combo_counter: int = 10
 @export var max_combo_counter: int = 20
-
 @export var combo_mul_1: float = 1.5
 @export var combo_mul_2: float = 2
 @export var combo_mul_3: float = 3
+
+var characterScene: PackedScene = preload("res://scenes/Character.tscn")
 
 const MAX_PART_ID: int = 6
 
@@ -38,20 +42,26 @@ var combo_counter: int = 0
 var combo_mul: float = 1
 
 func _ready() -> void:
-	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
-	spawn_timer.start()
-
-	valid1.texture = target_config.valid_categories[0].icon
-	valid2.texture = target_config.valid_categories[1].icon
-	#valid3.texture = target_config.valid_categories[2].icon
-	
-	invalid1.texture = target_config.invalid_categories[0].icon
-	#invalid2.texture = target_config.invalid_config[1].texture
+	start_character_spawn_timer()
+	set_target_icons()
 
 func _process(_delta: float) -> void:
 	handle_gameover()
 	handle_combo_meter()
+
+func start_character_spawn_timer() -> void:
+	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
+	spawn_timer.start()
+
+func set_target_icons() -> void:
+	# Valid categories icons
+	for index: int in range(0, target_config.valid_categories.size()):
+		valid_icons[index].texture = target_config.valid_categories[index].icon
 	
+	# Invalid categories icons
+	for index: int in range(0, target_config.invalid_categories.size()):
+		invalid_icons[index].texture = target_config.invalid_categories[index].icon
+
 func handle_gameover() -> void:
 	if is_gameover:
 		spawn_timer.stop()
@@ -66,8 +76,6 @@ func handle_gameover() -> void:
 		is_gameover = true
 
 func handle_combo_meter() -> void:
-	pass
-	
 	if combo_counter >= min_combo_counter and combo_counter < medium_combo_counter:
 		combo_mul = combo_mul_1
 	elif combo_counter >= medium_combo_counter and combo_counter < max_combo_counter:

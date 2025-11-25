@@ -57,11 +57,14 @@ sky = SubResource("Sky_boyg6")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="game" type="Node3D"]
+[node name="game" type="Node3D" node_paths=PackedStringArray("valid_icons", "invalid_icons")]
 script = ExtResource("1_e2o6t")
+valid_icons = [NodePath("UI/TargetConfigContainer/ValidParts2/Valid1"), NodePath("UI/TargetConfigContainer/ValidParts2/Valid2"), NodePath("UI/TargetConfigContainer/ValidParts2/Valid3")]
+invalid_icons = [NodePath("UI/AntiTargetConfigContainer/InvalidParts2/Invalid1"), NodePath("UI/AntiTargetConfigContainer/InvalidParts2/Invalid2")]
 hail_point = 2
-max_body_parts_to_guess = 3
-max_body_parts_to_avoid = 2
+
+[node name="DayTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 
 [node name="CharacterSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
