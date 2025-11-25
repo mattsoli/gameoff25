@@ -1,5 +1,8 @@
 extends Node3D
 
+@export var days: Array[GameDay]
+@export var current_day: GameDay
+
 @onready var happiness_bar: ProgressBar = %HappinessBar
 @onready var gameover_text: Label = %GameOverText
 @onready var debug_target_text: Label = %TargetConfigText
@@ -14,7 +17,6 @@ extends Node3D
 
 @export_group("Day Timer")
 @onready var day_timer: Timer = %DayTimer
-@export var max_day_time: float
 
 @export_group("Character Spawn")
 @onready var spawn_timer: Timer = %CharacterSpawnTimer
@@ -38,6 +40,8 @@ extends Node3D
 @export var combo_mul_2: float = 2
 @export var combo_mul_3: float = 3
 
+var current_day_index: int = 0
+
 var characterScene: PackedScene = preload("res://scenes/Character.tscn")
 
 const MAX_PART_ID: int = 6
@@ -48,6 +52,9 @@ var combo_counter: int = 0
 var combo_mul: float = 1
 
 func _ready() -> void:
+	current_day = days[current_day_index]
+	target_config.set_target_config(current_day.max_valid_categories, current_day.max_invalid_categories)
+	
 	set_target_icons()
 	start_day_timer()
 	start_character_spawn_timer()
@@ -57,7 +64,7 @@ func _process(_delta: float) -> void:
 	handle_combo_meter()
 
 func start_day_timer() -> void:
-	day_timer.wait_time = max_day_time
+	day_timer.wait_time = current_day.max_day_duration
 	day_timer.timeout.connect(_on_day_timer_timeout)
 	day_timer.start()
 	pass
@@ -98,6 +105,11 @@ func handle_gameover() -> void:
 		gameover_text.text = "Happiness is 100\nYou Win!"
 		is_gameover = true
 
+func handle_end_day() -> void:
+	current_day_index += 1
+	current_day = days[current_day_index]
+	pass
+
 func _on_day_timer_timeout() -> void:
 	is_gameover = true
 	gameover_text.text = "Day is over!"
@@ -112,7 +124,7 @@ func spawn_person() -> void:
 	var spawnSide: int = randi_range(0, 1)
 	var spawnPosition: PathFollow3D
 
-	characterInstance.set_character(spawnSide == 0, target_config.valid_category_types, target_config.invalid_category_types)
+	characterInstance.set_character(spawnSide == 0, target_config.valid_category_types, target_config.invalid_category_types, current_day.additional_character_speed)
 
 	spawnPosition = %SpawnPositionRight if spawnSide == 0 else %SpawnPositionLeft
 	spawnPosition.progress_ratio = randf()
