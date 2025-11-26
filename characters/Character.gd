@@ -7,8 +7,6 @@ enum ClickType {
 	HOLD
 }
 
-
-
 @onready var headSlot: Sprite3D = %HeadSprite
 @onready var bodySlot: Sprite3D = %BodySprite
 @onready var extraSlot: Sprite3D = %ExtraSprite
@@ -25,6 +23,7 @@ const MAX_PART_ID: int = 9
 
 @export var speed: float = 2.0
 @export var max_speed: float = 6.0
+var additional_speed: float
 
 var move_direction: Vector3
 var is_direction_left: bool
@@ -124,9 +123,10 @@ func handle_hold_click(delta: float) -> void:
 		hold_timer = 0.0
 		check_is_target()
 
-func set_character(_is_direction_left: bool, valid_category_types: Array[Category.CategoryType], invalid_category_types: Array[Category.CategoryType]) -> void:
+func set_character(_is_direction_left: bool, valid_category_types: Array[Category.CategoryType], invalid_category_types: Array[Category.CategoryType], _additional_speed: float) -> void:
 	is_target = set_is_target(valid_category_types, invalid_category_types)
 	
+	additional_speed = _additional_speed
 	click_type = ClickType.values().pick_random() 
 	move_direction = Vector3.LEFT if _is_direction_left else Vector3.RIGHT
 	
@@ -162,7 +162,7 @@ func set_is_target(valid_category_types: Array[Category.CategoryType], invalid_c
 	return true
 	
 func _physics_process(_delta: float) -> void:
-	velocity = move_direction * speed
+	velocity = move_direction * (speed + additional_speed)
 	move_and_slide()
 
 func _on_input_event(_camera: Camera3D, event: InputEvent, _position: Vector3, _normal: Vector3, _shape_idx: int) -> void:

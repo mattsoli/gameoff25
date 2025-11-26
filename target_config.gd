@@ -6,13 +6,16 @@ class_name TargetConfig
 
 var valid_categories: Array[Category]
 var valid_category_types: Array[Category.CategoryType]
-@export var max_valid_category: int
+var max_valid_category: int
 
 var invalid_categories: Array[Category]
 var invalid_category_types: Array[Category.CategoryType]
-@export var max_invalid_category: int
+var max_invalid_category: int
 
-func _ready() -> void:
+func set_target_config(max_valid_category_count: int, max_invalid_category_count: int) -> void:
+	max_valid_category = max_valid_category_count
+	max_invalid_category = max_invalid_category_count
+	
 	# Crea una copia dell'array originale
 	var available_categories: Array[Category] = category_db.duplicate()
 	available_categories.shuffle()

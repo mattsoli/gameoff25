@@ -1,6 +1,8 @@
 extends Node3D
 
-@onready var spawn_timer: Timer = %CharacterSpawnTimer
+@export var days: Array[GameDay]
+@export var current_day: GameDay
+
 @onready var happiness_bar: ProgressBar = %HappinessBar
 @onready var gameover_text: Label = %GameOverText
 @onready var debug_target_text: Label = %TargetConfigText
@@ -9,6 +11,17 @@ extends Node3D
 @onready var combo_meter_text: Label = %ComboMeterText
 @onready var combo_counter_text: Label = %ComboCounterText
 
+@export_group("Target Icons")
+@export var valid_icons: Array[TextureRect]
+@export var invalid_icons: Array[TextureRect]
+
+@export_group("Day Timer")
+@onready var day_timer: Timer = %DayTimer
+
+@export_group("Character Spawn")
+@onready var spawn_timer: Timer = %CharacterSpawnTimer
+@export var character_spawn_time: float = 5.0
+
 @onready var valid1: TextureRect = %Valid1
 @onready var valid2: TextureRect  = %Valid2
 @onready var valid3: TextureRect  = %Valid3
@@ -16,19 +29,20 @@ extends Node3D
 @onready var invalid1: TextureRect  = %Invalid1
 @onready var invalid2: TextureRect  = %Invalid2
 
-var characterScene: PackedScene = preload("res://scenes/Character.tscn")
-
+@export_group("Hail points")
 @export var hail_point: int 
-@export var max_body_parts_to_guess : int
-@export var max_body_parts_to_avoid : int
 
+@export_group("Combo Meter")
 @export var min_combo_counter: int = 5
 @export var medium_combo_counter: int = 10
 @export var max_combo_counter: int = 20
-
 @export var combo_mul_1: float = 1.5
 @export var combo_mul_2: float = 2
 @export var combo_mul_3: float = 3
+
+var current_day_index: int = 0
+
+var characterScene: PackedScene = preload("res://scenes/Character.tscn")
 
 const MAX_PART_ID: int = 6
 
@@ -38,48 +52,68 @@ var combo_counter: int = 0
 var combo_mul: float = 1
 
 func _ready() -> void:
-	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
-	spawn_timer.start()
-
-	valid1.texture = target_config.valid_categories[0].icon
-	valid2.texture = target_config.valid_categories[1].icon
-	#valid3.texture = target_config.valid_categories[2].icon
+	current_day = days[current_day_index]
+	target_config.set_target_config(current_day.max_valid_categories, current_day.max_invalid_categories)
 	
-	invalid1.texture = target_config.invalid_categories[0].icon
-	#invalid2.texture = target_config.invalid_config[1].texture
+	set_target_icons()
+	start_day_timer()
+	start_character_spawn_timer()
 
 func _process(_delta: float) -> void:
 	handle_gameover()
 	handle_combo_meter()
+
+func start_day_timer() -> void:
+	day_timer.wait_time = current_day.max_day_duration
+	day_timer.timeout.connect(_on_day_timer_timeout)
+	day_timer.start()
+	pass
+
+func start_character_spawn_timer() -> void:
+	spawn_timer.wait_time = character_spawn_time
+	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
+	spawn_timer.start()
+
+func set_target_icons() -> void:
+	# Valid categories icons
+	for index: int in range(0, target_config.valid_categories.size()):
+		valid_icons[index].texture = target_config.valid_categories[index].icon
 	
+	# Invalid categories icons
+	for index: int in range(0, target_config.invalid_categories.size()):
+		invalid_icons[index].texture = target_config.invalid_categories[index].icon
+
 func handle_gameover() -> void:
 	if is_gameover:
 		spawn_timer.stop()
+		
+		if happiness_bar.value < 50.0:
+			# vecchietto triste
+			pass
+		elif happiness_bar.value >= 50.0:
+			# vecchietto felice
+			pass
+		
 		return
 
 	if happiness_bar.value == 0:
+		# vecchietto triste
 		gameover_text.text = "Happiness is 0\nYou Lose!"
 		is_gameover = true
-
 	elif happiness_bar.value == 100:
+		# vecchietto felice
 		gameover_text.text = "Happiness is 100\nYou Win!"
 		is_gameover = true
 
-func handle_combo_meter() -> void:
+func handle_end_day() -> void:
+	current_day_index += 1
+	current_day = days[current_day_index]
 	pass
-	
-	if combo_counter == min_combo_counter and combo_counter < medium_combo_counter:
-		combo_mul = combo_mul_1
-	elif combo_counter == medium_combo_counter and combo_counter < max_combo_counter:
-		combo_mul = combo_mul_2
-	elif combo_counter >= max_combo_counter:
-		combo_mul = combo_mul_3
-	else:
-		combo_mul = 1
-	
-	combo_counter_text.text = "Combo : " + str(combo_counter)
-	combo_meter_text.text = "Mul: " + str(combo_mul) + "X"
-	
+
+func _on_day_timer_timeout() -> void:
+	is_gameover = true
+	gameover_text.text = "Day is over!"
+
 func _on_spawn_timer_timeout() -> void:
 	spawn_person()
 
@@ -90,7 +124,7 @@ func spawn_person() -> void:
 	var spawnSide: int = randi_range(0, 1)
 	var spawnPosition: PathFollow3D
 
-	characterInstance.set_character(spawnSide == 0, target_config.valid_category_types, target_config.invalid_category_types)
+	characterInstance.set_character(spawnSide == 0, target_config.valid_category_types, target_config.invalid_category_types, current_day.additional_character_speed)
 
 	spawnPosition = %SpawnPositionRight if spawnSide == 0 else %SpawnPositionLeft
 	spawnPosition.progress_ratio = randf()
@@ -103,10 +137,22 @@ func spawn_person() -> void:
 		Character.ClickType.HOLD:
 			characterInstance.character_hold_clicked.connect(_on_character_clicked)
 
+func handle_combo_meter() -> void:
+	if combo_counter >= min_combo_counter and combo_counter < medium_combo_counter:
+		combo_mul = combo_mul_1
+	elif combo_counter >= medium_combo_counter and combo_counter < max_combo_counter:
+		combo_mul = combo_mul_2
+	elif combo_counter >= max_combo_counter:
+		combo_mul = combo_mul_3
+	else:
+		combo_mul = 1
+	
+	combo_counter_text.text = "Combo : " + str(combo_counter)
+	combo_meter_text.text = "Mul: " + str(combo_mul) + "X"
+
 func _on_character_clicked(_character: Character) -> void:
 	if _character.is_hailed:
 		return
-
 	hail_character(_character)
 
 func hail_character(_character: Character) -> void:
@@ -120,11 +166,9 @@ func hail_character(_character: Character) -> void:
 		print("Current combo counter: ", combo_counter)
 		print("Current combo mul: ", combo_mul)
 		print("Happiness ottenuta: ",  hail_point * combo_mul)
-		
 	else:
 		print("-------------------------")
 		print("Sconosciuto salutato")
 		combo_counter = 0
 		happiness_bar.value -= hail_point
 		print("Happiness rimossa: ", hail_point)
-		

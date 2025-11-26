@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GameDay" load_steps=2 format=3 uid="uid://s7cejg8xsgcc"]
+
+[ext_resource type="Script" uid="uid://bc6jtpkfuaugi" path="res://resources/gamedays/gameDay.gd" id="1_ymorg"]
+
+[resource]
+script = ExtResource("1_ymorg")
+max_valid_categories = 3
+max_invalid_categories = 1
+max_day_duration = 60.0
+additional_character_speed = 10.0

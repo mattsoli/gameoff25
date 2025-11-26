@@ -1,9 +1,14 @@
 [gd_scene load_steps=19 format=3 uid="uid://ccc4ybk76fv5p"]
 
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
+[ext_resource type="Resource" uid="uid://cn36tvjb87ktu" path="res://resources/gamedays/day_1.tres" id="2_mfdv2"]
 [ext_resource type="Script" uid="uid://brqpqdij0ah7e" path="res://target_config.gd" id="3_feb5d"]
+[ext_resource type="Resource" uid="uid://s7cejg8xsgcc" path="res://resources/gamedays/day_2.tres" id="3_iotsf"]
+[ext_resource type="Resource" uid="uid://cve6y0i4r4rr" path="res://resources/gamedays/day_3.tres" id="4_215e1"]
 [ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="4_f1jbl"]
+[ext_resource type="Resource" uid="uid://wni0feprh452" path="res://resources/gamedays/day_4.tres" id="5_7sc4i"]
 [ext_resource type="Resource" uid="uid://dg4o2eqgs8pd2" path="res://resources/categories/alieno.tres" id="5_vaj68"]
+[ext_resource type="Resource" uid="uid://cbbp4lgm67o3w" path="res://resources/gamedays/day_5.tres" id="6_80cx4"]
 [ext_resource type="Resource" uid="uid://b5ah3qsxvds08" path="res://resources/categories/animale.tres" id="6_i2p71"]
 [ext_resource type="Resource" uid="uid://di44yvh522t47" path="res://resources/categories/gentleman.tres" id="8_vef74"]
 [ext_resource type="Resource" uid="uid://bqjc8vpay8w4v" path="res://resources/categories/scienziato.tres" id="9_hve3p"]
@@ -58,11 +63,15 @@ sky = SubResource("Sky_boyg6")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="game" type="Node3D"]
+[node name="game" type="Node3D" node_paths=PackedStringArray("valid_icons", "invalid_icons")]
 script = ExtResource("1_e2o6t")
+days = Array[Resource]([ExtResource("2_mfdv2"), ExtResource("3_iotsf"), ExtResource("4_215e1"), ExtResource("5_7sc4i"), ExtResource("6_80cx4")])
+valid_icons = [NodePath("UI/TargetConfigContainer/ValidParts2/Valid1"), NodePath("UI/TargetConfigContainer/ValidParts2/Valid2"), NodePath("UI/TargetConfigContainer/ValidParts2/Valid3"), NodePath("UI/TargetConfigContainer/ValidParts2/Valid4")]
+invalid_icons = [NodePath("UI/AntiTargetConfigContainer/InvalidParts2/Invalid1"), NodePath("UI/AntiTargetConfigContainer/InvalidParts2/Invalid2")]
 hail_point = 2
-max_body_parts_to_guess = 3
-max_body_parts_to_avoid = 2
+
+[node name="DayTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 
 [node name="CharacterSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -152,6 +161,12 @@ layout_mode = 2
 expand_mode = 2
 
 [node name="Valid3" type="TextureRect" parent="UI/TargetConfigContainer/ValidParts2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+expand_mode = 2
+
+[node name="Valid4" type="TextureRect" parent="UI/TargetConfigContainer/ValidParts2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
