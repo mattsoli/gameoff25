@@ -16,6 +16,11 @@ func set_target_config(max_valid_category_count: int, max_invalid_category_count
 	max_valid_category = max_valid_category_count
 	max_invalid_category = max_invalid_category_count
 	
+	valid_categories.clear()
+	valid_category_types.clear()
+	invalid_categories.clear()
+	invalid_category_types.clear()
+	
 	# Crea una copia dell'array originale
 	var available_categories: Array[Category] = category_db.duplicate()
 	available_categories.shuffle()
@@ -38,7 +43,3 @@ func set_target_config(max_valid_category_count: int, max_invalid_category_count
 	for category: Category in invalid_categories:
 		invalid_category_types.append(category.category_type)
 		
-func get_random_category(category_array: Array[Category]) -> Category:
-	var categories_copy: Array[Category] = category_array.duplicate()
-	categories_copy.shuffle()
-	return categories_copy.pick_random()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ccc4ybk76fv5p"]
+[gd_scene load_steps=26 format=3 uid="uid://ccc4ybk76fv5p"]
 
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://bc6jtpkfuaugi" path="res://resources/gamedays/gameDay.gd" id="2_80cx4"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://dg4o2eqgs8pd2" path="res://resources/categories/alieno.tres" id="5_vaj68"]
 [ext_resource type="Resource" uid="uid://cbbp4lgm67o3w" path="res://resources/gamedays/day_5.tres" id="6_80cx4"]
 [ext_resource type="Resource" uid="uid://b5ah3qsxvds08" path="res://resources/categories/animale.tres" id="6_i2p71"]
+[ext_resource type="Texture2D" uid="uid://bgo7ynlpg6ml2" path="res://env/textures/Cielo_background.PNG" id="8_e8heu"]
 [ext_resource type="Resource" uid="uid://di44yvh522t47" path="res://resources/categories/gentleman.tres" id="8_vef74"]
 [ext_resource type="Resource" uid="uid://bqjc8vpay8w4v" path="res://resources/categories/scienziato.tres" id="9_hve3p"]
 [ext_resource type="AudioStream" uid="uid://byihetp7k7053" path="res://audio/music/mx_ingame.mp3" id="10_hve3p"]
@@ -258,6 +259,38 @@ offset_bottom = 202.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
 text = "DAY: 1"
+
+[node name="EndDayPanel" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="TextureRect" parent="EndDayPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(47.915924, 26.986698)
+texture = ExtResource("8_e8heu")
+expand_mode = 2
+
+[node name="NextDayButton" type="Button" parent="EndDayPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 896.0
+offset_top = 485.0
+offset_right = 1106.0
+offset_bottom = 505.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GO NEXT DAY"
 
 [node name="SpawnPathRight" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.38544, 41.95878, 51.974)
