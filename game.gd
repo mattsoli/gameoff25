@@ -10,7 +10,6 @@ extends Node3D
 @onready var target_config: TargetConfig = %CharacterConfig
 @onready var combo_meter_text: Label = %ComboMeterText
 @onready var combo_counter_text: Label = %ComboCounterText
-
 @onready var day_timer_text: Label = %DayTimerText
 @onready var day_counter_text: Label = %DayCounterText
 
@@ -24,13 +23,6 @@ extends Node3D
 @export_group("Character Spawn")
 @onready var spawn_timer: Timer = %CharacterSpawnTimer
 @export var character_spawn_time: float = 5.0
-
-@onready var valid1: TextureRect = %Valid1
-@onready var valid2: TextureRect  = %Valid2
-@onready var valid3: TextureRect  = %Valid3
-
-@onready var invalid1: TextureRect  = %Invalid1
-@onready var invalid2: TextureRect  = %Invalid2
 
 @export_group("Hail points")
 @export var hail_point: int 
@@ -46,8 +38,6 @@ extends Node3D
 var current_day_index: int = 0
 
 var characterScene: PackedScene = preload("res://scenes/Character.tscn")
-
-const MAX_PART_ID: int = 6
 
 var is_gameover: bool = false
 
@@ -68,8 +58,6 @@ func _process(_delta: float) -> void:
 	update_day_ui()
 
 func update_day_ui() -> void:
-	pass
-	
 	day_timer_text.text = str(floor(day_timer.time_left))
 	day_counter_text.text = "Day: " + str(current_day_index + 1)
 
@@ -77,7 +65,6 @@ func start_day_timer() -> void:
 	day_timer.wait_time = current_day.max_day_duration
 	day_timer.timeout.connect(_on_day_timer_timeout)
 	day_timer.start()
-	pass
 
 func start_character_spawn_timer() -> void:
 	spawn_timer.wait_time = character_spawn_time
@@ -103,7 +90,6 @@ func handle_gameover() -> void:
 		elif happiness_bar.value >= 50.0:
 			# vecchietto felice
 			pass
-		
 		return
 
 	if happiness_bar.value == 0:
