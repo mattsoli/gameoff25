@@ -292,6 +292,38 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "GO NEXT DAY"
 
+[node name="EndGamePanel" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="TextureRect" parent="EndGamePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(47.915924, 26.986698)
+texture = ExtResource("8_e8heu")
+expand_mode = 2
+
+[node name="RestartGameButton" type="Button" parent="EndGamePanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 896.0
+offset_top = 485.0
+offset_right = 1106.0
+offset_bottom = 505.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESTART"
+
 [node name="SpawnPathRight" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.38544, 41.95878, 51.974)
 curve = SubResource("Curve3D_wiwsh")

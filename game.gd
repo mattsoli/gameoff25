@@ -14,8 +14,13 @@ var current_day: GameDay
 @onready var day_timer_text: Label = %DayTimerText
 @onready var day_counter_text: Label = %DayCounterText
 
+# END DAY PANEL
 @onready var end_day_panel: Control = %EndDayPanel
 @onready var next_day_btn: Button = %NextDayButton
+
+# END GAME PANEL
+@onready var end_game_panel: Control = %EndGamePanel
+@onready var restart_game_btn: Button = %RestartGameButton
 
 @export_group("Target Icons")
 @export var valid_icons: Array[TextureRect]
@@ -43,7 +48,8 @@ var current_day_index: int = 0
 
 var characterScene: PackedScene = preload("res://scenes/Character.tscn")
 
-var is_gameover: bool = false
+var is_game_over: bool = false
+var is_day_over: bool = false
 
 var combo_counter: int = 0
 var combo_mul: float = 1
@@ -54,20 +60,23 @@ func _ready() -> void:
 	day_timer.timeout.connect(_on_day_timer_timeout)
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	next_day_btn.pressed.connect(_on_next_day)
+	restart_game_btn.pressed.connect(_on_restart_game)
 
 func _process(_delta: float) -> void:
-	handle_gameover()
+	handle_game_over()
 	handle_combo_meter()
 	update_day_ui()
 
 func start_day() -> void:
 	current_day = days[current_day_index]
 	
-	is_gameover = false
+	is_game_over = false
+	is_day_over = false
+	
 	end_day_panel.hide()
+	end_game_panel.hide()
 	
 	target_config.set_target_config(current_day.max_valid_categories, current_day.max_invalid_categories)
-	
 	set_target_icons()
 	start_day_timer()
 	start_character_spawn_timer()
@@ -77,7 +86,7 @@ func update_day_ui() -> void:
 	day_counter_text.text = "Day: " + str(current_day_index + 1)
 
 func start_day_timer() -> void:
-	day_timer.wait_time = current_day.max_day_duration
+	day_timer.wait_time = current_day.max_day_duration + 1
 	day_timer.start()
 
 func start_character_spawn_timer() -> void:
@@ -93,8 +102,8 @@ func set_target_icons() -> void:
 	for index: int in range(0, target_config.invalid_categories.size()):
 		invalid_icons[index].texture = target_config.invalid_categories[index].icon
 
-func handle_gameover() -> void:
-	if is_gameover:
+func handle_game_over() -> void:
+	if is_day_over:
 		end_day_panel.show()
 		spawn_timer.stop()
 		
@@ -107,24 +116,25 @@ func handle_gameover() -> void:
 		return
 
 	if happiness_bar.value == 0:
-		# vecchietto triste
+		# vecchietto finisce triste
 		gameover_text.text = "Happiness is 0\nYou Lose!"
-		is_gameover = true
+		is_game_over = true
 	elif happiness_bar.value == 100:
-		# vecchietto felice
+		# vecchietto finisce felice
 		gameover_text.text = "Happiness is 100\nYou Win!"
-		is_gameover = true
+		is_game_over = true
 
 func go_next_day() -> void:
 	current_day_index += 1
-	current_day = days[current_day_index]
-	
 	start_day()
 	pass
 
 func _on_day_timer_timeout() -> void:
-	is_gameover = true
+	is_day_over = true
 	gameover_text.text = "Day is over!"
+	
+	if current_day_index == 4:
+		end_game() 
 
 func _on_spawn_timer_timeout() -> void:
 	spawn_person()
@@ -175,8 +185,6 @@ func hail_character(_character: Character) -> void:
 		print("Character riconosciuto")
 		combo_counter += 1
 		happiness_bar.value += hail_point * combo_mul
-		print("Current combo counter: ", combo_counter)
-		print("Current combo mul: ", combo_mul)
 		print("Happiness ottenuta: ",  hail_point * combo_mul)
 	else:
 		print("-------------------------")
@@ -184,7 +192,16 @@ func hail_character(_character: Character) -> void:
 		combo_counter = 0
 		happiness_bar.value -= hail_point
 		print("Happiness rimossa: ", hail_point)	
+
+func end_game() -> void:
+	end_day_panel.hide()
+	end_game_panel.show()
 	
 func _on_next_day() -> void:
-	
 	go_next_day()
+
+func _on_restart_game() -> void:
+	current_day_index = 0
+	current_day = days[current_day_index]
+	
+	start_day()
