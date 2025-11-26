@@ -11,6 +11,9 @@ extends Node3D
 @onready var combo_meter_text: Label = %ComboMeterText
 @onready var combo_counter_text: Label = %ComboCounterText
 
+@onready var day_timer_text: Label = %DayTimerText
+@onready var day_counter_text: Label = %DayCounterText
+
 @export_group("Target Icons")
 @export var valid_icons: Array[TextureRect]
 @export var invalid_icons: Array[TextureRect]
@@ -62,6 +65,13 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	handle_gameover()
 	handle_combo_meter()
+	update_day_ui()
+
+func update_day_ui() -> void:
+	pass
+	
+	day_timer_text.text = str(floor(day_timer.time_left))
+	day_counter_text.text = "Day: " + str(current_day_index + 1)
 
 func start_day_timer() -> void:
 	day_timer.wait_time = current_day.max_day_duration

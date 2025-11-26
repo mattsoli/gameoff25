@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://ccc4ybk76fv5p"]
+[gd_scene load_steps=25 format=3 uid="uid://ccc4ybk76fv5p"]
 
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://bc6jtpkfuaugi" path="res://resources/gamedays/gameDay.gd" id="2_80cx4"]
 [ext_resource type="Resource" uid="uid://cn36tvjb87ktu" path="res://resources/gamedays/day_1.tres" id="2_mfdv2"]
 [ext_resource type="Script" uid="uid://brqpqdij0ah7e" path="res://target_config.gd" id="3_feb5d"]
 [ext_resource type="Resource" uid="uid://s7cejg8xsgcc" path="res://resources/gamedays/day_2.tres" id="3_iotsf"]
@@ -65,7 +66,7 @@ glow_enabled = true
 
 [node name="game" type="Node3D" node_paths=PackedStringArray("valid_icons", "invalid_icons")]
 script = ExtResource("1_e2o6t")
-days = Array[Resource]([ExtResource("2_mfdv2"), ExtResource("3_iotsf"), ExtResource("4_215e1"), ExtResource("5_7sc4i"), ExtResource("6_80cx4")])
+days = Array[ExtResource("2_80cx4")]([ExtResource("2_mfdv2"), ExtResource("3_iotsf"), ExtResource("4_215e1"), ExtResource("5_7sc4i"), ExtResource("6_80cx4")])
 valid_icons = [NodePath("UI/TargetConfigContainer/ValidParts2/Valid1"), NodePath("UI/TargetConfigContainer/ValidParts2/Valid2"), NodePath("UI/TargetConfigContainer/ValidParts2/Valid3"), NodePath("UI/TargetConfigContainer/ValidParts2/Valid4")]
 invalid_icons = [NodePath("UI/AntiTargetConfigContainer/InvalidParts2/Invalid1"), NodePath("UI/AntiTargetConfigContainer/InvalidParts2/Invalid2")]
 hail_point = 2
@@ -92,10 +93,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_top = 49.0
-offset_right = 230.0
-offset_bottom = 79.0
+offset_left = -125.0
+offset_top = 45.0
+offset_right = 125.0
+offset_bottom = 75.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_wiwsh")
@@ -230,6 +231,34 @@ offset_bottom = 335.0
 theme_override_font_sizes/font_size = 64
 text = "3X"
 
+[node name="DayTimerText" type="Label" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -38.0
+offset_top = 202.0
+offset_right = 38.0
+offset_bottom = 290.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "60"
+
+[node name="DayCounterText" type="Label" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -99.0
+offset_top = 114.0
+offset_right = 99.0
+offset_bottom = 202.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "DAY: 1"
+
 [node name="SpawnPathRight" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.38544, 41.95878, 51.974)
 curve = SubResource("Curve3D_wiwsh")
@@ -267,8 +296,6 @@ environment = SubResource("Environment_e36ub")
 unique_name_in_owner = true
 script = ExtResource("3_feb5d")
 category_db = Array[ExtResource("4_f1jbl")]([ExtResource("5_vaj68"), ExtResource("6_i2p71"), ExtResource("12_dhpj7"), ExtResource("8_vef74"), ExtResource("9_hve3p")])
-max_valid_category = 2
-max_invalid_category = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_hve3p")
