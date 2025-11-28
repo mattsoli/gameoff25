@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BodyParts" load_steps=4 format=3 uid="uid://c1gqgtclr5dos"]
+
+[ext_resource type="Resource" uid="uid://bqjc8vpay8w4v" path="res://resources/categories/scienziato.tres" id="1_r4spu"]
+[ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="2_a72sn"]
+[ext_resource type="Texture2D" uid="uid://b3wfbk21qb66g" path="res://characters/parts/bodies/busto_scienziato_2.png" id="3_a72sn"]
+
+[resource]
+script = ExtResource("2_a72sn")
+texture = ExtResource("3_a72sn")
+part_type = 1
+category = ExtResource("1_r4spu")

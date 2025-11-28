@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BodyParts" load_steps=4 format=3 uid="uid://caw6fkvfydewa"]
+
+[ext_resource type="Resource" uid="uid://bqjc8vpay8w4v" path="res://resources/categories/scienziato.tres" id="1_0eaon"]
+[ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="2_dj8df"]
+[ext_resource type="Texture2D" uid="uid://cul5e2y6vi4ll" path="res://characters/parts/heads/testa_scienziato_2.png" id="3_0eaon"]
+
+[resource]
+script = ExtResource("2_dj8df")
+texture = ExtResource("3_0eaon")
+category = ExtResource("1_0eaon")

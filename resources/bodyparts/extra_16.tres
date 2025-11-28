@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BodyParts" load_steps=4 format=3 uid="uid://1e4ao368ygex"]
+
+[ext_resource type="Resource" uid="uid://cq62bx5iw4ft1" path="res://resources/categories/pirata.tres" id="1_ffeok"]
+[ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="2_sugkk"]
+[ext_resource type="Texture2D" uid="uid://cnn20tu5rv5cv" path="res://characters/parts/extras/extra_pirata_2.png" id="3_sugkk"]
+
+[resource]
+script = ExtResource("2_sugkk")
+texture = ExtResource("3_sugkk")
+part_type = 2
+category = ExtResource("1_ffeok")
+metadata/_custom_type_script = "uid://cs5i51dwnlfjd"
