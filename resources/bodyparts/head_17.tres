@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BodyParts" load_steps=4 format=3 uid="uid://b23v55uwpqmgj"]
+
+[ext_resource type="Resource" uid="uid://b42xctlp2vwjq" path="res://resources/categories/mago.tres" id="1_fpnua"]
+[ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="2_q5mmw"]
+[ext_resource type="Texture2D" uid="uid://bowephfmynjp6" path="res://characters/parts/heads/testa_mago_1.png" id="3_fpnua"]
+
+[resource]
+script = ExtResource("2_q5mmw")
+texture = ExtResource("3_fpnua")
+category = ExtResource("1_fpnua")

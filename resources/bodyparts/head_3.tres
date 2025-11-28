@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://b5ah3qsxvds08" path="res://resources/categories/animale.tres" id="1_vfkmb"]
 [ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="2_dl4o7"]
-[ext_resource type="Texture2D" uid="uid://db44brymx31l8" path="res://characters/parts/heads/testa_gatto.png" id="3_vfkmb"]
+[ext_resource type="Texture2D" uid="uid://db44brymx31l8" path="res://characters/parts/heads/testa_animale_2.png" id="3_vfkmb"]
 
 [resource]
 script = ExtResource("2_dl4o7")
