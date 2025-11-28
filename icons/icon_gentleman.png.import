@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bygf41xiwkrvc"
-path="res://.godot/imported/cowboy.png-c1c4ea89021354819f87cbd2d3c2dc44.ctex"
+uid="uid://dx6dj1tqkk8v2"
+path="res://.godot/imported/icon_gentleman.png-c598f3477ea8b81e1efd592708423847.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icons/cowboy.png"
-dest_files=["res://.godot/imported/cowboy.png-c1c4ea89021354819f87cbd2d3c2dc44.ctex"]
+source_file="res://icons/icon_gentleman.png"
+dest_files=["res://.godot/imported/icon_gentleman.png-c598f3477ea8b81e1efd592708423847.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Category" load_steps=3 format=3 uid="uid://bqjc8vpay8w4v"]
 
-[ext_resource type="Texture2D" uid="uid://dmvg24586xylu" path="res://icons/scientist.png" id="1_v3x0a"]
+[ext_resource type="Texture2D" uid="uid://cdq8unokwbid1" path="res://icons/icon_scienziato.png" id="1_v3x0a"]
 [ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="2_gvqul"]
 
 [resource]

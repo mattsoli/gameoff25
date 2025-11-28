@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl6855tqlv87m"
-path="res://.godot/imported/alien.png-3b100f2d322c02ee3b3838a82d560eeb.ctex"
+uid="uid://ts4xfcxi5ufb"
+path="res://.godot/imported/icon_mago.png-56515bbab6cc04b804e3131014879d1a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icons/alien.png"
-dest_files=["res://.godot/imported/alien.png-3b100f2d322c02ee3b3838a82d560eeb.ctex"]
+source_file="res://icons/icon_mago.png"
+dest_files=["res://.godot/imported/icon_mago.png-56515bbab6cc04b804e3131014879d1a.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgbq8waedsgdd"
-path="res://.godot/imported/monster.png-7858fd16ddfeeba00423efed2f4c4a89.ctex"
+uid="uid://bsf8fjd423qfy"
+path="res://.godot/imported/icon_zombie.png-88a4f32773f08f85183f49c61f714040.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icons/monster.png"
-dest_files=["res://.godot/imported/monster.png-7858fd16ddfeeba00423efed2f4c4a89.ctex"]
+source_file="res://icons/icon_zombie.png"
+dest_files=["res://.godot/imported/icon_zombie.png-88a4f32773f08f85183f49c61f714040.ctex"]
 
 [params]
 

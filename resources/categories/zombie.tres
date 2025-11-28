@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Category" load_steps=3 format=3 uid="uid://cn35kagl2ycwj"]
 
-[ext_resource type="Texture2D" uid="uid://c6lnjuyu4q30q" path="res://icons/skull.png" id="1_74nth"]
+[ext_resource type="Texture2D" uid="uid://bsf8fjd423qfy" path="res://icons/icon_zombie.png" id="1_74nth"]
 [ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="2_xotum"]
 
 [resource]
