@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ccc4ybk76fv5p"]
+[gd_scene load_steps=30 format=3 uid="uid://ccc4ybk76fv5p"]
 
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://bc6jtpkfuaugi" path="res://resources/gamedays/gameDay.gd" id="2_80cx4"]
@@ -21,7 +21,6 @@
 [ext_resource type="PackedScene" uid="uid://3siw543tqn3p" path="res://env/pova area di lavoro v02.blend" id="18_rvswv"]
 [ext_resource type="Resource" uid="uid://cq62bx5iw4ft1" path="res://resources/categories/pirata.tres" id="19_qhcbd"]
 [ext_resource type="Resource" uid="uid://cn35kagl2ycwj" path="res://resources/categories/zombie.tres" id="20_f1jbl"]
-[ext_resource type="Resource" uid="uid://cn35kagl2ycwj" path="res://resources/categories/mostro.tres" id="21_x5p1p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wiwsh"]
 bg_color = Color(0.14503565, 0.28519025, 0.17762923, 1)
@@ -239,7 +238,6 @@ text = "3X"
 
 [node name="DayTimerText" type="Label" parent="UI"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -306,13 +304,11 @@ offset_right = 20.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 64
 text = "TEST"
 
 [node name="PopupTimer" type="Timer" parent="UI/CustomPopup"]
 unique_name_in_owner = true
-wait_time = 3.0
-autostart = true
+wait_time = 2.0
 
 [node name="EndDayPanel" type="Control" parent="."]
 unique_name_in_owner = true
@@ -346,22 +342,6 @@ offset_bottom = 505.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "GO NEXT DAY"
-
-[node name="Label" type="Label" parent="EndDayPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 883.0
-offset_top = 392.0
-offset_right = 923.0
-offset_bottom = 415.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 64
-text = "FINE GIORNATA"
 
 [node name="EndGamePanel" type="Control" parent="."]
 unique_name_in_owner = true
@@ -432,7 +412,7 @@ environment = SubResource("Environment_e36ub")
 [node name="CharacterConfig" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_feb5d")
-category_db = Array[ExtResource("4_f1jbl")]([ExtResource("5_vaj68"), ExtResource("6_i2p71"), ExtResource("12_dhpj7"), ExtResource("8_vef74"), ExtResource("9_hve3p"), ExtResource("17_hb5m1"), ExtResource("20_f1jbl"), ExtResource("19_qhcbd"), ExtResource("21_x5p1p")])
+category_db = Array[ExtResource("4_f1jbl")]([ExtResource("5_vaj68"), ExtResource("6_i2p71"), ExtResource("12_dhpj7"), ExtResource("8_vef74"), ExtResource("9_hve3p"), ExtResource("17_hb5m1"), ExtResource("20_f1jbl"), ExtResource("19_qhcbd"), ExtResource("20_f1jbl")])
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_hve3p")
