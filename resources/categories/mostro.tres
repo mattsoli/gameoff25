@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="Category" load_steps=3 format=3 uid="uid://cn35kagl2ycwj"]
+[gd_resource type="Resource" script_class="Category" load_steps=3 format=3 uid="uid://bie3abaopl6h1"]
 
 [ext_resource type="Texture2D" uid="uid://cnfvy1opuqvh6" path="res://icons/icon_mostro.png" id="1_1a3c8"]
-[ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="1_322na"]
+[ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="2_mwyou"]
 
 [resource]
-script = ExtResource("1_322na")
+script = ExtResource("2_mwyou")
 icon = ExtResource("1_1a3c8")
 category_type = 6

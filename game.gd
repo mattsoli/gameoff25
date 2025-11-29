@@ -37,14 +37,18 @@ var current_day: GameDay
 @export var hail_point: int 
 
 @export_group("Combo Meter")
-@export var min_combo_counter: int = 5
+@export var min_combo_counter: int = 1
 @export var medium_combo_counter: int = 10
 @export var max_combo_counter: int = 20
 @export var combo_mul_1: float = 1.5
 @export var combo_mul_2: float = 2
 @export var combo_mul_3: float = 3
 
+@export_group("Crazy Moment")
+@export var crazy_moment_time: float
+
 @onready var popup: CustomPopup = %CustomPopup
+@onready var vecchietto: Vecchietto = %Vecchietto
 
 var current_day_index: int = 0
 
@@ -55,6 +59,8 @@ var is_day_over: bool = false
 
 var combo_counter: int = 0
 var combo_mul: float = 1
+
+var is_crazy_moment: bool = false
 
 func _ready() -> void:
 	show_popup("INIZIO " + str(current_day_index + 1) +  "° GIORNATA")
@@ -69,6 +75,9 @@ func _process(_delta: float) -> void:
 	handle_game_over()
 	handle_combo_meter()
 	update_day_ui()
+	
+	if day_timer.time_left <= crazy_moment_time:
+		start_crazy_moment()
 
 func start_day() -> void:
 	print("Start day " + str(current_day_index + 1))
@@ -76,9 +85,11 @@ func start_day() -> void:
 	
 	is_game_over = false
 	is_day_over = false
+	is_crazy_moment = false
 	
 	end_day_panel.hide()
 	end_game_panel.hide()
+	day_counter_text.show()
 	day_timer_text.show()
 	
 	target_config.set_target_config(current_day.max_valid_categories, current_day.max_invalid_categories)
@@ -112,9 +123,12 @@ func set_target_icons() -> void:
 		invalid_icons[index].texture = target_config.invalid_categories[index].icon
 
 func day_over() -> void:
+	is_crazy_moment = false
+	
 	end_day_panel.show()
 	spawn_timer.stop()
 	day_timer.stop()
+	day_counter_text.hide()
 	day_timer_text.hide()
 		
 	if happiness_bar.value < 50.0:
@@ -144,8 +158,12 @@ func spawn_person() -> void:
 
 	var spawnSide: int = randi_range(0, 1)
 	var spawnPosition: PathFollow3D
+	var additional_char_speed: float = current_day.additional_character_speed
+	
+	if not is_crazy_moment:
+		additional_char_speed = 0
 
-	characterInstance.set_character(spawnSide == 0, target_config.valid_category_types, target_config.invalid_category_types, current_day.additional_character_speed)
+	characterInstance.set_character(spawnSide == 0, target_config.valid_category_types, target_config.invalid_category_types, additional_char_speed)
 
 	spawnPosition = %SpawnPositionRight if spawnSide == 0 else %SpawnPositionLeft
 	spawnPosition.progress_ratio = randf()
@@ -167,12 +185,15 @@ func handle_combo_meter() -> void:
 		combo_mul = combo_mul_3
 	else:
 		combo_mul = 1
+		
+	#show_popup(str(combo_counter) + " DI FILA\n" + str(combo_mul) + "X")
 	
 	combo_counter_text.text = "Combo : " + str(combo_counter)
 	combo_meter_text.text = "Mul: " + str(combo_mul) + "X"
 
 func hail_character(_character: Character) -> void:
 	_character.is_hailed = true
+	vecchietto.hail()
 
 	if _character.is_target:
 		print("++++++++++++++++++++++")
@@ -196,13 +217,15 @@ func _on_next_day() -> void:
 	end_day_panel.hide()
 	
 	show_popup("INIZIO " + str(current_day_index + 1) +  "° GIORNATA")
-	
 
 func show_popup(main_text: String) -> void:
 	popup.show_popup()
 	popup.set_popup(main_text)
 	popup.start_popup_timer()
 
+func start_crazy_moment() -> void:
+	is_crazy_moment = true
+	
 func _on_restart_game() -> void:
 	current_day_index = 0
 	current_day = days[current_day_index]

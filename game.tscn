@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ccc4ybk76fv5p"]
+[gd_scene load_steps=41 format=3 uid="uid://ccc4ybk76fv5p"]
 
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://bc6jtpkfuaugi" path="res://resources/gamedays/gameDay.gd" id="2_80cx4"]
@@ -13,17 +13,97 @@
 [ext_resource type="Resource" uid="uid://b5ah3qsxvds08" path="res://resources/categories/animale.tres" id="6_i2p71"]
 [ext_resource type="Texture2D" uid="uid://bgo7ynlpg6ml2" path="res://env/textures/Cielo_background.PNG" id="8_e8heu"]
 [ext_resource type="Script" uid="uid://c2w1aljp4lcn7" path="res://popup.gd" id="8_hb5m1"]
+[ext_resource type="Script" uid="uid://cib6yxutybw0g" path="res://vecchietto.gd" id="8_vaj68"]
 [ext_resource type="Resource" uid="uid://di44yvh522t47" path="res://resources/categories/gentleman.tres" id="8_vef74"]
 [ext_resource type="Resource" uid="uid://bqjc8vpay8w4v" path="res://resources/categories/scienziato.tres" id="9_hve3p"]
+[ext_resource type="AudioStream" uid="uid://36088ly4ergv" path="res://audio/sfx/sfx_incorrect_PLACEHOLDER.wav" id="9_i2p71"]
 [ext_resource type="AudioStream" uid="uid://byihetp7k7053" path="res://audio/music/mx_ingame.mp3" id="10_hve3p"]
 [ext_resource type="AudioStream" uid="uid://bwju0rrmjqbr2" path="res://audio/sfx/sfx_correct_PLACEHOLDER.wav" id="10_qhcbd"]
+[ext_resource type="Texture2D" uid="uid://bf2nrrbmykfky" path="res://vecchietto/braccio sx.png" id="11_xa8c5"]
 [ext_resource type="Resource" uid="uid://db3fm50i4wqch" path="res://resources/categories/cyborg.tres" id="12_dhpj7"]
 [ext_resource type="Resource" uid="uid://b42xctlp2vwjq" path="res://resources/categories/mago.tres" id="17_hb5m1"]
 [ext_resource type="PackedScene" uid="uid://3siw543tqn3p" path="res://env/pova area di lavoro v02.blend" id="18_rvswv"]
 [ext_resource type="Resource" uid="uid://cq62bx5iw4ft1" path="res://resources/categories/pirata.tres" id="19_qhcbd"]
-[ext_resource type="Resource" uid="uid://cn35kagl2ycwj" path="res://resources/categories/zombie.tres" id="21_x5p1p"]
 [ext_resource type="Texture2D" uid="uid://b308833eigo11" path="res://vecchietto/vecchietto.png" id="24_f1jbl"]
 [ext_resource type="Texture2D" uid="uid://b8h6plgycig5u" path="res://vecchietto/panchina.png" id="25_vaj68"]
+[ext_resource type="Resource" uid="uid://cn35kagl2ycwj" path="res://resources/categories/zombie.tres" id="27_5b14r"]
+[ext_resource type="Resource" uid="uid://bie3abaopl6h1" path="res://resources/categories/mostro.tres" id="27_bnpwn"]
+
+[sub_resource type="Animation" id="Animation_5b14r"]
+resource_name = "hail"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.022566345, -0.39793506, 0.45029494, -0.022566345]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftArm:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_bnpwn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.022566345]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftArm:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_36jdj"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftArm:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bnpwn"]
+_data = {
+&"RESET": SubResource("Animation_bnpwn"),
+&"hail": SubResource("Animation_5b14r"),
+&"idle": SubResource("Animation_36jdj")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wiwsh"]
 bg_color = Color(0.14503565, 0.28519025, 0.17762923, 1)
@@ -86,7 +166,8 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 wait_time = 3.67
 
-[node name="ContainerVecchietto" type="Control" parent="."]
+[node name="Vecchietto" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -98,8 +179,10 @@ offset_top = -40.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
+script = ExtResource("8_vaj68")
+hail_sfx = ExtResource("9_i2p71")
 
-[node name="Vecchietto" type="TextureRect" parent="ContainerVecchietto"]
+[node name="Head" type="TextureRect" parent="Vecchietto"]
 layout_mode = 0
 offset_left = -771.0
 offset_top = -263.0
@@ -108,7 +191,19 @@ offset_bottom = 37.0
 texture = ExtResource("24_f1jbl")
 expand_mode = 1
 
-[node name="Panchina" type="TextureRect" parent="ContainerVecchietto"]
+[node name="LeftArm" type="TextureRect" parent="Vecchietto"]
+visible = false
+layout_mode = 0
+offset_left = -863.40137
+offset_top = -301.38626
+offset_right = -663.40137
+offset_bottom = -1.386261
+rotation = -0.022566345
+pivot_offset = Vector2(102.44009, 293.59064)
+texture = ExtResource("11_xa8c5")
+expand_mode = 1
+
+[node name="Panchina" type="TextureRect" parent="Vecchietto"]
 layout_mode = 0
 offset_left = -852.0
 offset_top = -64.0
@@ -116,6 +211,14 @@ offset_right = -252.0
 offset_bottom = 36.0
 texture = ExtResource("25_vaj68")
 expand_mode = 1
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="Vecchietto"]
+unique_name_in_owner = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Vecchietto"]
+libraries = {
+&"": SubResource("AnimationLibrary_bnpwn")
+}
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -470,12 +573,13 @@ environment = SubResource("Environment_e36ub")
 [node name="CharacterConfig" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_feb5d")
-category_db = Array[ExtResource("4_f1jbl")]([ExtResource("5_vaj68"), ExtResource("6_i2p71"), ExtResource("12_dhpj7"), ExtResource("8_vef74"), ExtResource("9_hve3p"), ExtResource("17_hb5m1"), ExtResource("21_x5p1p"), ExtResource("19_qhcbd"), ExtResource("21_x5p1p")])
+category_db = Array[ExtResource("4_f1jbl")]([ExtResource("5_vaj68"), ExtResource("6_i2p71"), ExtResource("12_dhpj7"), ExtResource("8_vef74"), ExtResource("9_hve3p"), ExtResource("17_hb5m1"), ExtResource("19_qhcbd"), ExtResource("27_5b14r"), ExtResource("27_bnpwn")])
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_hve3p")
 autoplay = true
 bus = &"Music"
 
+[connection signal="animation_finished" from="Vecchietto/AnimationPlayer" to="Vecchietto" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="UI/CustomPopup/PopupTimer" to="." method="_on_popup_timer_timeout"]
 [connection signal="timeout" from="UI/CustomPopup/PopupTimer" to="UI/CustomPopup" method="_on_popup_timer_timeout"]
