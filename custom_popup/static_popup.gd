@@ -1,10 +1,10 @@
 extends Control
 
-class_name CustomPopup
+class_name StaticPopup
 
-@onready var mainText: Label = %PopupMainText
-@onready var timer: Timer = %PopupTimer
-@onready var sfx: AudioStreamPlayer = %PopupSFX
+@onready var mainText: Label = %StaticPopupMainText
+@onready var timer: Timer = %StaticPopupTimer
+@onready var sfx: AudioStreamPlayer = %StaticPopupSFX
 
 signal on_popup_appeared
 signal on_popup_disappeared

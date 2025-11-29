@@ -527,7 +527,6 @@ stream = ExtResource("10_qhcbd")
 
 [node name="DynamicPopupTextTimer" type="Timer" parent="UI/DynamicPopup"]
 unique_name_in_owner = true
-autostart = true
 
 [node name="DynamicPopupAnimPlayer" type="AnimationPlayer" parent="UI/DynamicPopup"]
 unique_name_in_owner = true
@@ -661,4 +660,3 @@ bus = &"Music"
 [connection signal="timeout" from="UI/StaticPopup/StaticPopupTimer" to="." method="_on_popup_timer_timeout"]
 [connection signal="timeout" from="UI/StaticPopup/StaticPopupTimer" to="UI/StaticPopup" method="_on_popup_timer_timeout"]
 [connection signal="timeout" from="UI/DynamicPopup/DynamicPopupTimer" to="UI/DynamicPopup" method="_on_dynamic_popup_timer_timeout"]
-[connection signal="timeout" from="UI/DynamicPopup/DynamicPopupTextTimer" to="UI/DynamicPopup" method="_on_dynamic_popup_text_timer_timeout"]

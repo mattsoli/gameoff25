@@ -47,7 +47,8 @@ var current_day: GameDay
 @export_group("Crazy Moment")
 @export var crazy_moment_time: float
 
-@onready var popup: CustomPopup = %CustomPopup
+@onready var static_popup: StaticPopup = %StaticPopup
+@onready var dynamic_popup: DynamicPopup = %DynamicPopup
 @onready var vecchietto: Vecchietto = %Vecchietto
 
 var current_day_index: int = 0
@@ -62,18 +63,23 @@ var combo_mul: float = 1
 
 var is_crazy_moment: bool = false
 
+signal on_combo_meter_changed(counter: int)
+
 func _ready() -> void:
-	show_popup("INIZIO " + str(current_day_index + 1) +  "° GIORNATA")
+	show_dynamic_popup("INIZIO " + str(current_day_index + 1) +  "° GIORNATA", ["3", "2", "1"])
+	
+	combo_counter_text.text = "Combo Counter: 0"
+	combo_meter_text.text = "Mul: 1X"
 	
 	day_timer.timeout.connect(_on_day_timer_timeout)
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	next_day_btn.pressed.connect(_on_next_day)
 	restart_game_btn.pressed.connect(_on_restart_game)
-	popup.on_popup_disappeared.connect(start_day)
+	static_popup.on_popup_disappeared.connect(start_day)
+	on_combo_meter_changed.connect(handle_combo_meter)
 
 func _process(_delta: float) -> void:
 	handle_game_over()
-	handle_combo_meter()
 	update_day_ui()
 	
 	if day_timer.time_left <= crazy_moment_time:
@@ -81,6 +87,10 @@ func _process(_delta: float) -> void:
 
 func start_day() -> void:
 	print("Start day " + str(current_day_index + 1))
+	
+	combo_counter_text.text = "Combo Counter: 0"
+	combo_meter_text.text = "Mul: 1X"
+	
 	current_day = days[current_day_index]
 	
 	is_game_over = false
@@ -124,6 +134,8 @@ func set_target_icons() -> void:
 
 func day_over() -> void:
 	is_crazy_moment = false
+	combo_counter = 0
+	combo_mul = 1
 	
 	end_day_panel.show()
 	spawn_timer.stop()
@@ -186,9 +198,8 @@ func handle_combo_meter() -> void:
 	else:
 		combo_mul = 1
 		
-	#show_popup(str(combo_counter) + " DI FILA\n" + str(combo_mul) + "X")
+	show_dynamic_popup(str(combo_counter) + " DI FILA\n" + str(combo_mul) + "X", ["3", "2", "1"])
 	
-	combo_counter_text.text = "Combo : " + str(combo_counter)
 	combo_meter_text.text = "Mul: " + str(combo_mul) + "X"
 
 func hail_character(_character: Character) -> void:
@@ -199,12 +210,17 @@ func hail_character(_character: Character) -> void:
 		print("++++++++++++++++++++++")
 		print("Character riconosciuto")
 		combo_counter += 1
+		combo_counter_text.text = "Combo : " + str(combo_counter)
+		on_combo_meter_changed.emit()
 		happiness_bar.value += hail_point * combo_mul
 		print("Happiness ottenuta: ",  hail_point * combo_mul)
 	else:
 		print("-------------------------")
 		print("Sconosciuto salutato")
+		
 		combo_counter = 0
+		combo_counter_text.text = "Combo Counter: " + str(combo_counter)
+		
 		happiness_bar.value -= hail_point
 		print("Happiness rimossa: ", hail_point)	
 
@@ -216,12 +232,17 @@ func _on_next_day() -> void:
 	go_next_day()
 	end_day_panel.hide()
 	
-	show_popup("INIZIO " + str(current_day_index + 1) +  "° GIORNATA")
+	show_dynamic_popup("INIZIO " + str(current_day_index + 1) +  "° GIORNATA", ["3", "2", "1"])
 
-func show_popup(main_text: String) -> void:
-	popup.show_popup()
-	popup.set_popup(main_text)
-	popup.start_popup_timer()
+func show_static_popup(main_text: String) -> void:
+	static_popup.show_popup()
+	static_popup.set_popup(main_text)
+	static_popup.start_popup_timer()
+
+func show_dynamic_popup(main_text: String, secondary_text: Array[String]) -> void:
+	dynamic_popup.show_popup()
+	dynamic_popup.set_popup(main_text, secondary_text)
+	dynamic_popup.start_popup_timer()
 
 func start_crazy_moment() -> void:
 	is_crazy_moment = true
