@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://chs1pka73kqy5"]
+[gd_scene load_steps=15 format=3 uid="uid://chs1pka73kqy5"]
 
 [ext_resource type="Script" uid="uid://ct0nfspcam1p0" path="res://characters/Character.gd" id="1_25pii"]
 [ext_resource type="Texture2D" uid="uid://86lge7qikjsx" path="res://comics/comicOk.png" id="2_fwsyb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://goy28npdcv0a" path="res://characters/parts/heads/testa_alieno_1.png" id="5_fwsyb"]
 [ext_resource type="Texture2D" uid="uid://cw4xmdiabh6n3" path="res://characters/parts/bodies/busto_animale_2.png" id="6_25pii"]
 [ext_resource type="AudioStream" uid="uid://bwju0rrmjqbr2" path="res://audio/sfx/sfx_correct_PLACEHOLDER.wav" id="7_exdhi"]
+[ext_resource type="Texture2D" uid="uid://ts4xfcxi5ufb" path="res://icons/icon_mago.png" id="7_r87yu"]
 [ext_resource type="AudioStream" uid="uid://36088ly4ergv" path="res://audio/sfx/sfx_incorrect_PLACEHOLDER.wav" id="8_r87yu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dwpd4"]
@@ -106,12 +107,13 @@ render_priority = 90
 texture = ExtResource("6_25pii")
 
 [node name="Extra" type="Node3D" parent="Root"]
-transform = Transform3D(1, 0, 0, 0, 0.9999997, 0, 0, 0, 0.9999997, 1.9194448, -0.3810191, 0.36227)
+transform = Transform3D(1, 0, 0, 0, 0.9999997, 0, 0, 0, 0.9999997, 2.575662, -0.3810191, 0.36227)
 
 [node name="ExtraSprite" type="Sprite3D" parent="Root/Extra"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
 render_priority = 92
+texture = ExtResource("7_r87yu")
 
 [node name="ClickCollider" type="Area3D" parent="Root"]
 unique_name_in_owner = true

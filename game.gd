@@ -44,6 +44,8 @@ var current_day: GameDay
 @export var combo_mul_2: float = 2
 @export var combo_mul_3: float = 3
 
+@onready var popup: CustomPopup = %CustomPopup
+
 var current_day_index: int = 0
 
 var characterScene: PackedScene = preload("res://scenes/Character.tscn")
@@ -55,12 +57,14 @@ var combo_counter: int = 0
 var combo_mul: float = 1
 
 func _ready() -> void:
-	start_day()
+	popup.show_popup()
+	popup.set_popup("INIZIO " + str(current_day_index + 1) +  "° GIORNATA")
 	
 	day_timer.timeout.connect(_on_day_timer_timeout)
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	next_day_btn.pressed.connect(_on_next_day)
 	restart_game_btn.pressed.connect(_on_restart_game)
+	popup.on_popup_disappeared.connect(start_day)
 
 func _process(_delta: float) -> void:
 	handle_game_over()
@@ -68,6 +72,7 @@ func _process(_delta: float) -> void:
 	update_day_ui()
 
 func start_day() -> void:
+	print("Start day " + str(current_day_index + 1))
 	current_day = days[current_day_index]
 	
 	is_game_over = false
@@ -75,14 +80,19 @@ func start_day() -> void:
 	
 	end_day_panel.hide()
 	end_game_panel.hide()
+	day_timer_text.show()
 	
 	target_config.set_target_config(current_day.max_valid_categories, current_day.max_invalid_categories)
 	set_target_icons()
+	
+	start_timers()
+	
+func start_timers() -> void:
 	start_day_timer()
 	start_character_spawn_timer()
 
 func update_day_ui() -> void:
-	day_timer_text.text = str(floor(day_timer.time_left))
+	day_timer_text.text = str(int(day_timer.time_left))
 	day_counter_text.text = "Day: " + str(current_day_index + 1)
 
 func start_day_timer() -> void:
@@ -102,19 +112,20 @@ func set_target_icons() -> void:
 	for index: int in range(0, target_config.invalid_categories.size()):
 		invalid_icons[index].texture = target_config.invalid_categories[index].icon
 
-func handle_game_over() -> void:
-	if is_day_over:
-		end_day_panel.show()
-		spawn_timer.stop()
+func day_over() -> void:
+	end_day_panel.show()
+	spawn_timer.stop()
+	day_timer.stop()
+	day_timer_text.hide()
 		
-		if happiness_bar.value < 50.0:
-			# vecchietto triste
-			pass
-		elif happiness_bar.value >= 50.0:
-			# vecchietto felice
-			pass
-		return
+	if happiness_bar.value < 50.0:
+		# vecchietto finisce triste
+		pass
+	elif happiness_bar.value >= 50.0:
+		# vecchietto finisce felice
+		pass
 
+func handle_game_over() -> void:
 	if happiness_bar.value == 0:
 		# vecchietto finisce triste
 		gameover_text.text = "Happiness is 0\nYou Lose!"
@@ -126,18 +137,7 @@ func handle_game_over() -> void:
 
 func go_next_day() -> void:
 	current_day_index += 1
-	start_day()
 	pass
-
-func _on_day_timer_timeout() -> void:
-	is_day_over = true
-	gameover_text.text = "Day is over!"
-	
-	if current_day_index == 4:
-		end_game() 
-
-func _on_spawn_timer_timeout() -> void:
-	spawn_person()
 
 func spawn_person() -> void:
 	var characterInstance: Character = characterScene.instantiate() as Character
@@ -172,11 +172,6 @@ func handle_combo_meter() -> void:
 	combo_counter_text.text = "Combo : " + str(combo_counter)
 	combo_meter_text.text = "Mul: " + str(combo_mul) + "X"
 
-func _on_character_clicked(_character: Character) -> void:
-	if _character.is_hailed:
-		return
-	hail_character(_character)
-
 func hail_character(_character: Character) -> void:
 	_character.is_hailed = true
 
@@ -199,9 +194,27 @@ func end_game() -> void:
 	
 func _on_next_day() -> void:
 	go_next_day()
+	end_day_panel.hide()
+	popup.show_popup()
+	popup.set_popup("INIZIO " + str(current_day_index + 1) +  "° GIORNATA")
+	popup.start_popup_timer()
 
 func _on_restart_game() -> void:
 	current_day_index = 0
 	current_day = days[current_day_index]
 	
 	start_day()
+
+func _on_day_timer_timeout() -> void:
+	day_over()
+	
+	if current_day_index == 4:
+		end_game() 
+
+func _on_spawn_timer_timeout() -> void:
+	spawn_person()
+
+func _on_character_clicked(_character: Character) -> void:
+	if _character.is_hailed:
+		return
+	hail_character(_character)

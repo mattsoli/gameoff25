@@ -19,7 +19,7 @@ enum ClickType {
 @export var comicsError: Texture2D
 @export var comicsChecking: Texture2D
 
-const MAX_PART_ID: int = 9
+const MAX_PART_ID: int = 18
 
 @export var speed: float = 2.0
 @export var max_speed: float = 6.0
@@ -70,7 +70,7 @@ func generate_random_body_config() -> void:
 	var body_config: Dictionary = {}
 	
 	for part_type: int in BodyParts.PartType.values():
-		if part_type == BodyParts.PartType.extra: continue
+		#if part_type == BodyParts.PartType.extra: continue
 		
 		var part_name: String = BodyParts.PartType.keys()[part_type]
 		body_config[part_name] = randi_range(1, MAX_PART_ID)
