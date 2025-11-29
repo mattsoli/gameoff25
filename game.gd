@@ -75,7 +75,7 @@ func _ready() -> void:
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	next_day_btn.pressed.connect(_on_next_day)
 	restart_game_btn.pressed.connect(_on_restart_game)
-	static_popup.on_popup_disappeared.connect(start_day)
+	dynamic_popup.on_popup_disappeared.connect(start_day)
 	on_combo_meter_changed.connect(handle_combo_meter)
 
 func _process(_delta: float) -> void:
@@ -90,7 +90,7 @@ func start_day() -> void:
 	
 	combo_counter_text.text = "Combo Counter: 0"
 	combo_meter_text.text = "Mul: 1X"
-	
+
 	current_day = days[current_day_index]
 	
 	is_game_over = false
