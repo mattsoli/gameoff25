@@ -57,8 +57,7 @@ var combo_counter: int = 0
 var combo_mul: float = 1
 
 func _ready() -> void:
-	popup.show_popup()
-	popup.set_popup("INIZIO " + str(current_day_index + 1) +  "° GIORNATA")
+	show_popup("INIZIO " + str(current_day_index + 1) +  "° GIORNATA")
 	
 	day_timer.timeout.connect(_on_day_timer_timeout)
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
@@ -195,8 +194,13 @@ func end_game() -> void:
 func _on_next_day() -> void:
 	go_next_day()
 	end_day_panel.hide()
+	
+	show_popup("INIZIO " + str(current_day_index + 1) +  "° GIORNATA")
+	
+
+func show_popup(main_text: String) -> void:
 	popup.show_popup()
-	popup.set_popup("INIZIO " + str(current_day_index + 1) +  "° GIORNATA")
+	popup.set_popup(main_text)
 	popup.start_popup_timer()
 
 func _on_restart_game() -> void:
