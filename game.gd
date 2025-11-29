@@ -57,6 +57,7 @@ var combo_counter: int = 0
 var combo_mul: float = 1
 
 func _ready() -> void:
+	popup.show_popup()
 	popup.set_popup("INIZIO " + str(current_day_index + 1) +  "° GIORNATA")
 	
 	day_timer.timeout.connect(_on_day_timer_timeout)
@@ -115,6 +116,7 @@ func day_over() -> void:
 	end_day_panel.show()
 	spawn_timer.stop()
 	day_timer.stop()
+	day_timer_text.hide()
 		
 	if happiness_bar.value < 50.0:
 		# vecchietto finisce triste
@@ -192,6 +194,8 @@ func end_game() -> void:
 	
 func _on_next_day() -> void:
 	go_next_day()
+	end_day_panel.hide()
+	popup.show_popup()
 	popup.set_popup("INIZIO " + str(current_day_index + 1) +  "° GIORNATA")
 	popup.start_popup_timer()
 
