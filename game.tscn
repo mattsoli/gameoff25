@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://bc6jtpkfuaugi" path="res://resources/gamedays/gameDay.gd" id="2_80cx4"]
 [ext_resource type="Resource" uid="uid://cn36tvjb87ktu" path="res://resources/gamedays/day_1.tres" id="2_mfdv2"]
-[ext_resource type="Script" uid="uid://brqpqdij0ah7e" path="res://target_config.gd" id="3_feb5d"]
+[ext_resource type="Script" uid="uid://brqpqdij0ah7e" path="res://characters/target_config.gd" id="3_feb5d"]
 [ext_resource type="Resource" uid="uid://s7cejg8xsgcc" path="res://resources/gamedays/day_2.tres" id="3_iotsf"]
 [ext_resource type="Resource" uid="uid://cve6y0i4r4rr" path="res://resources/gamedays/day_3.tres" id="4_215e1"]
 [ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="4_f1jbl"]
@@ -12,8 +12,8 @@
 [ext_resource type="Resource" uid="uid://cbbp4lgm67o3w" path="res://resources/gamedays/day_5.tres" id="6_80cx4"]
 [ext_resource type="Resource" uid="uid://b5ah3qsxvds08" path="res://resources/categories/animale.tres" id="6_i2p71"]
 [ext_resource type="Texture2D" uid="uid://bgo7ynlpg6ml2" path="res://env/textures/Cielo_background.PNG" id="8_e8heu"]
-[ext_resource type="Script" uid="uid://c2w1aljp4lcn7" path="res://popup.gd" id="8_hb5m1"]
-[ext_resource type="Script" uid="uid://cib6yxutybw0g" path="res://vecchietto.gd" id="8_vaj68"]
+[ext_resource type="Script" uid="uid://c2w1aljp4lcn7" path="res://custom_popup/popup.gd" id="8_hb5m1"]
+[ext_resource type="Script" uid="uid://cib6yxutybw0g" path="res://vecchietto/vecchietto.gd" id="8_vaj68"]
 [ext_resource type="Resource" uid="uid://di44yvh522t47" path="res://resources/categories/gentleman.tres" id="8_vef74"]
 [ext_resource type="Resource" uid="uid://bqjc8vpay8w4v" path="res://resources/categories/scienziato.tres" id="9_hve3p"]
 [ext_resource type="AudioStream" uid="uid://36088ly4ergv" path="res://audio/sfx/sfx_incorrect_PLACEHOLDER.wav" id="9_i2p71"]
@@ -28,33 +28,6 @@
 [ext_resource type="Texture2D" uid="uid://b8h6plgycig5u" path="res://vecchietto/panchina.png" id="25_vaj68"]
 [ext_resource type="Resource" uid="uid://cn35kagl2ycwj" path="res://resources/categories/zombie.tres" id="27_5b14r"]
 [ext_resource type="Resource" uid="uid://bie3abaopl6h1" path="res://resources/categories/mostro.tres" id="27_bnpwn"]
-
-[sub_resource type="Animation" id="Animation_5b14r"]
-resource_name = "hail"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("LeftArm:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [-0.022566345, -0.39793506, 0.45029494, -0.022566345]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("LeftArm:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_bnpwn"]
 length = 0.001
@@ -81,6 +54,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_5b14r"]
+resource_name = "hail"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.022566345, -0.39793506, 0.45029494, -0.022566345]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftArm:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_36jdj"]
