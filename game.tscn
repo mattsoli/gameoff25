@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ccc4ybk76fv5p"]
+[gd_scene load_steps=34 format=3 uid="uid://ccc4ybk76fv5p"]
 
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://bc6jtpkfuaugi" path="res://resources/gamedays/gameDay.gd" id="2_80cx4"]
@@ -16,12 +16,15 @@
 [ext_resource type="Resource" uid="uid://di44yvh522t47" path="res://resources/categories/gentleman.tres" id="8_vef74"]
 [ext_resource type="Resource" uid="uid://bqjc8vpay8w4v" path="res://resources/categories/scienziato.tres" id="9_hve3p"]
 [ext_resource type="AudioStream" uid="uid://byihetp7k7053" path="res://audio/music/mx_ingame.mp3" id="10_hve3p"]
+[ext_resource type="AudioStream" uid="uid://bwju0rrmjqbr2" path="res://audio/sfx/sfx_correct_PLACEHOLDER.wav" id="10_qhcbd"]
 [ext_resource type="Resource" uid="uid://db3fm50i4wqch" path="res://resources/categories/cyborg.tres" id="12_dhpj7"]
 [ext_resource type="Resource" uid="uid://b42xctlp2vwjq" path="res://resources/categories/mago.tres" id="17_hb5m1"]
 [ext_resource type="PackedScene" uid="uid://3siw543tqn3p" path="res://env/pova area di lavoro v02.blend" id="18_rvswv"]
 [ext_resource type="Resource" uid="uid://cq62bx5iw4ft1" path="res://resources/categories/pirata.tres" id="19_qhcbd"]
 [ext_resource type="Resource" uid="uid://cn35kagl2ycwj" path="res://resources/categories/zombie.tres" id="20_f1jbl"]
 [ext_resource type="Resource" uid="uid://cn35kagl2ycwj" path="res://resources/categories/mostro.tres" id="21_x5p1p"]
+[ext_resource type="Texture2D" uid="uid://b308833eigo11" path="res://vecchietto/vecchietto.png" id="24_f1jbl"]
+[ext_resource type="Texture2D" uid="uid://b8h6plgycig5u" path="res://vecchietto/panchina.png" id="25_vaj68"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wiwsh"]
 bg_color = Color(0.14503565, 0.28519025, 0.17762923, 1)
@@ -315,6 +318,10 @@ unique_name_in_owner = true
 wait_time = 3.0
 autostart = true
 
+[node name="PopupSFX" type="AudioStreamPlayer" parent="UI/CustomPopup"]
+unique_name_in_owner = true
+stream = ExtResource("10_qhcbd")
+
 [node name="EndDayPanel" type="Control" parent="."]
 unique_name_in_owner = true
 visible = false
@@ -439,6 +446,37 @@ category_db = Array[ExtResource("4_f1jbl")]([ExtResource("5_vaj68"), ExtResource
 stream = ExtResource("10_hve3p")
 autoplay = true
 bus = &"Music"
+
+[node name="ContainerVecchietto" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Vecchietto" type="TextureRect" parent="ContainerVecchietto"]
+layout_mode = 0
+offset_left = -771.0
+offset_top = -263.0
+offset_right = -371.0
+offset_bottom = 37.0
+texture = ExtResource("24_f1jbl")
+expand_mode = 1
+
+[node name="Panchina" type="TextureRect" parent="ContainerVecchietto"]
+layout_mode = 0
+offset_left = -852.0
+offset_top = -64.0
+offset_right = -252.0
+offset_bottom = 36.0
+texture = ExtResource("25_vaj68")
+expand_mode = 1
 
 [connection signal="timeout" from="UI/CustomPopup/PopupTimer" to="." method="_on_popup_timer_timeout"]
 [connection signal="timeout" from="UI/CustomPopup/PopupTimer" to="UI/CustomPopup" method="_on_popup_timer_timeout"]
