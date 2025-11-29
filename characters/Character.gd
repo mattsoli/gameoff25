@@ -7,22 +7,23 @@ enum ClickType {
 	HOLD
 }
 
-
-
 @onready var headSlot: Sprite3D = %HeadSprite
 @onready var bodySlot: Sprite3D = %BodySprite
 @onready var extraSlot: Sprite3D = %ExtraSprite
 
 @onready var comicsSprite: Sprite3D = %ComicsSprite
+@onready var correct_audio_player: AudioStreamPlayer = $CorrectAudioPlayer
+@onready var incorrect_audio_player: AudioStreamPlayer = $IncorrectAudioPlayer
 
 @export var comicsOk: Texture2D
 @export var comicsError: Texture2D
 @export var comicsChecking: Texture2D
 
-const MAX_PART_ID: int = 9
+const MAX_PART_ID: int = 18
 
 @export var speed: float = 2.0
 @export var max_speed: float = 6.0
+var additional_speed: float
 
 var move_direction: Vector3
 var is_direction_left: bool
@@ -69,7 +70,7 @@ func generate_random_body_config() -> void:
 	var body_config: Dictionary = {}
 	
 	for part_type: int in BodyParts.PartType.values():
-		if part_type == BodyParts.PartType.extra: continue
+		#if part_type == BodyParts.PartType.extra: continue
 		
 		var part_name: String = BodyParts.PartType.keys()[part_type]
 		body_config[part_name] = randi_range(1, MAX_PART_ID)
@@ -99,11 +100,13 @@ func check_is_target() -> void:
 	
 	if is_target:
 		comicsSprite.texture = comicsOk
+		correct_audio_player.play()
 		print("✓ Target corretto!")
 		print("++++++++++++++++++++++")
 
 	else:
 		comicsSprite.texture = comicsError
+		incorrect_audio_player.play()
 		speed = max_speed
 		print("✗ Target sbagliato!")
 		print("-------------------------")
@@ -120,9 +123,10 @@ func handle_hold_click(delta: float) -> void:
 		hold_timer = 0.0
 		check_is_target()
 
-func set_character(_is_direction_left: bool, valid_category_types: Array[Category.CategoryType], invalid_category_types: Array[Category.CategoryType]) -> void:
+func set_character(_is_direction_left: bool, valid_category_types: Array[Category.CategoryType], invalid_category_types: Array[Category.CategoryType], _additional_speed: float) -> void:
 	is_target = set_is_target(valid_category_types, invalid_category_types)
 	
+	additional_speed = _additional_speed
 	click_type = ClickType.values().pick_random() 
 	move_direction = Vector3.LEFT if _is_direction_left else Vector3.RIGHT
 	
@@ -158,7 +162,7 @@ func set_is_target(valid_category_types: Array[Category.CategoryType], invalid_c
 	return true
 	
 func _physics_process(_delta: float) -> void:
-	velocity = move_direction * speed
+	velocity = move_direction * (speed + additional_speed)
 	move_and_slide()
 
 func _on_input_event(_camera: Camera3D, event: InputEvent, _position: Vector3, _normal: Vector3, _shape_idx: int) -> void:

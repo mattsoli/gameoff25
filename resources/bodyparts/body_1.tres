@@ -2,11 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="1_cemjs"]
 [ext_resource type="Resource" uid="uid://dg4o2eqgs8pd2" path="res://resources/categories/alieno.tres" id="1_eehmc"]
-[ext_resource type="Texture2D" uid="uid://ck8uxvtk7sicy" path="res://characters/parts/bodies/busto_alieno.png" id="3_eehmc"]
+[ext_resource type="Texture2D" uid="uid://ck8uxvtk7sicy" path="res://characters/parts/bodies/busto_alieno_1.png" id="3_eehmc"]
 
 [resource]
 script = ExtResource("1_cemjs")
 texture = ExtResource("3_eehmc")
 part_type = 1
 category = ExtResource("1_eehmc")
-id = 1

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BodyParts" load_steps=4 format=3 uid="uid://chs240uhd1fw2"]
+
+[ext_resource type="Resource" uid="uid://cq62bx5iw4ft1" path="res://resources/categories/pirata.tres" id="1_jm54m"]
+[ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="2_8pnr2"]
+[ext_resource type="Texture2D" uid="uid://0yt7juoh653g" path="res://characters/parts/heads/testa_pirata_2.png" id="3_jm54m"]
+
+[resource]
+script = ExtResource("2_8pnr2")
+texture = ExtResource("3_jm54m")
+category = ExtResource("1_jm54m")

@@ -5,16 +5,13 @@ class_name Category
 enum CategoryType {
 	Alieno,
 	Animale,
-	Cowboy,
+	Pirata,
 	Cyborg,
 	Gentleman,
-	Guerriero,
-	Morto,
+	Zombie,
 	Mostro,
 	Scienziato,
-	Stregone,
-	Supereroe,
-	Neutro,
+	Mago
 }
 
 @export var icon: Texture2D

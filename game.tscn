@@ -1,14 +1,30 @@
-[gd_scene load_steps=18 format=3 uid="uid://ccc4ybk76fv5p"]
+[gd_scene load_steps=34 format=3 uid="uid://ccc4ybk76fv5p"]
 
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://bc6jtpkfuaugi" path="res://resources/gamedays/gameDay.gd" id="2_80cx4"]
+[ext_resource type="Resource" uid="uid://cn36tvjb87ktu" path="res://resources/gamedays/day_1.tres" id="2_mfdv2"]
 [ext_resource type="Script" uid="uid://brqpqdij0ah7e" path="res://target_config.gd" id="3_feb5d"]
+[ext_resource type="Resource" uid="uid://s7cejg8xsgcc" path="res://resources/gamedays/day_2.tres" id="3_iotsf"]
+[ext_resource type="Resource" uid="uid://cve6y0i4r4rr" path="res://resources/gamedays/day_3.tres" id="4_215e1"]
 [ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="4_f1jbl"]
+[ext_resource type="Resource" uid="uid://wni0feprh452" path="res://resources/gamedays/day_4.tres" id="5_7sc4i"]
 [ext_resource type="Resource" uid="uid://dg4o2eqgs8pd2" path="res://resources/categories/alieno.tres" id="5_vaj68"]
+[ext_resource type="Resource" uid="uid://cbbp4lgm67o3w" path="res://resources/gamedays/day_5.tres" id="6_80cx4"]
 [ext_resource type="Resource" uid="uid://b5ah3qsxvds08" path="res://resources/categories/animale.tres" id="6_i2p71"]
+[ext_resource type="Texture2D" uid="uid://bgo7ynlpg6ml2" path="res://env/textures/Cielo_background.PNG" id="8_e8heu"]
+[ext_resource type="Script" uid="uid://c2w1aljp4lcn7" path="res://popup.gd" id="8_hb5m1"]
 [ext_resource type="Resource" uid="uid://di44yvh522t47" path="res://resources/categories/gentleman.tres" id="8_vef74"]
 [ext_resource type="Resource" uid="uid://bqjc8vpay8w4v" path="res://resources/categories/scienziato.tres" id="9_hve3p"]
+[ext_resource type="AudioStream" uid="uid://byihetp7k7053" path="res://audio/music/mx_ingame.mp3" id="10_hve3p"]
+[ext_resource type="AudioStream" uid="uid://bwju0rrmjqbr2" path="res://audio/sfx/sfx_correct_PLACEHOLDER.wav" id="10_qhcbd"]
 [ext_resource type="Resource" uid="uid://db3fm50i4wqch" path="res://resources/categories/cyborg.tres" id="12_dhpj7"]
+[ext_resource type="Resource" uid="uid://b42xctlp2vwjq" path="res://resources/categories/mago.tres" id="17_hb5m1"]
 [ext_resource type="PackedScene" uid="uid://3siw543tqn3p" path="res://env/pova area di lavoro v02.blend" id="18_rvswv"]
+[ext_resource type="Resource" uid="uid://cq62bx5iw4ft1" path="res://resources/categories/pirata.tres" id="19_qhcbd"]
+[ext_resource type="Resource" uid="uid://cn35kagl2ycwj" path="res://resources/categories/zombie.tres" id="20_f1jbl"]
+[ext_resource type="Resource" uid="uid://cn35kagl2ycwj" path="res://resources/categories/mostro.tres" id="21_x5p1p"]
+[ext_resource type="Texture2D" uid="uid://b308833eigo11" path="res://vecchietto/vecchietto.png" id="24_f1jbl"]
+[ext_resource type="Texture2D" uid="uid://b8h6plgycig5u" path="res://vecchietto/panchina.png" id="25_vaj68"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wiwsh"]
 bg_color = Color(0.14503565, 0.28519025, 0.17762923, 1)
@@ -59,7 +75,8 @@ glow_enabled = true
 
 [node name="game" type="Node3D" node_paths=PackedStringArray("valid_icons", "invalid_icons")]
 script = ExtResource("1_e2o6t")
-valid_icons = [NodePath("UI/TargetConfigContainer/ValidParts2/Valid1"), NodePath("UI/TargetConfigContainer/ValidParts2/Valid2"), NodePath("UI/TargetConfigContainer/ValidParts2/Valid3")]
+days = Array[ExtResource("2_80cx4")]([ExtResource("2_mfdv2"), ExtResource("3_iotsf"), ExtResource("4_215e1"), ExtResource("5_7sc4i"), ExtResource("6_80cx4")])
+valid_icons = [NodePath("UI/TargetConfigContainer/ValidParts2/Valid1"), NodePath("UI/TargetConfigContainer/ValidParts2/Valid2"), NodePath("UI/TargetConfigContainer/ValidParts2/Valid3"), NodePath("UI/TargetConfigContainer/ValidParts2/Valid4")]
 invalid_icons = [NodePath("UI/AntiTargetConfigContainer/InvalidParts2/Invalid1"), NodePath("UI/AntiTargetConfigContainer/InvalidParts2/Invalid2")]
 hail_point = 2
 
@@ -68,7 +85,7 @@ unique_name_in_owner = true
 
 [node name="CharacterSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 4.0
+wait_time = 3.67
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -85,10 +102,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_top = 49.0
-offset_right = 230.0
-offset_bottom = 79.0
+offset_left = -125.0
+offset_top = 45.0
+offset_right = 125.0
+offset_bottom = 75.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_wiwsh")
@@ -159,6 +176,12 @@ custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 expand_mode = 2
 
+[node name="Valid4" type="TextureRect" parent="UI/TargetConfigContainer/ValidParts2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+expand_mode = 2
+
 [node name="AntiTargetConfigContainer" type="VBoxContainer" parent="UI"]
 layout_mode = 0
 offset_left = 1428.0
@@ -217,6 +240,170 @@ offset_bottom = 335.0
 theme_override_font_sizes/font_size = 64
 text = "3X"
 
+[node name="DayTimerText" type="Label" parent="UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -38.0
+offset_top = 202.0
+offset_right = 38.0
+offset_bottom = 290.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "60"
+
+[node name="DayCounterText" type="Label" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -99.0
+offset_top = 114.0
+offset_right = 99.0
+offset_bottom = 202.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "DAY: 1"
+
+[node name="CustomPopup" type="Control" parent="UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -150.0
+offset_right = 250.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_hb5m1")
+
+[node name="Background" type="TextureRect" parent="UI/CustomPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_e8heu")
+expand_mode = 2
+
+[node name="PopupMainText" type="Label" parent="UI/CustomPopup"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "TEST"
+
+[node name="PopupTimer" type="Timer" parent="UI/CustomPopup"]
+unique_name_in_owner = true
+wait_time = 3.0
+autostart = true
+
+[node name="PopupSFX" type="AudioStreamPlayer" parent="UI/CustomPopup"]
+unique_name_in_owner = true
+stream = ExtResource("10_qhcbd")
+
+[node name="EndDayPanel" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="TextureRect" parent="EndDayPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(47.915924, 26.986698)
+texture = ExtResource("8_e8heu")
+expand_mode = 2
+
+[node name="NextDayButton" type="Button" parent="EndDayPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 896.0
+offset_top = 485.0
+offset_right = 1106.0
+offset_bottom = 505.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GO NEXT DAY"
+
+[node name="Label" type="Label" parent="EndDayPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 883.0
+offset_top = 392.0
+offset_right = 923.0
+offset_bottom = 415.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "FINE GIORNATA"
+
+[node name="EndGamePanel" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="TextureRect" parent="EndGamePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(47.915924, 26.986698)
+texture = ExtResource("8_e8heu")
+expand_mode = 2
+
+[node name="RestartGameButton" type="Button" parent="EndGamePanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 896.0
+offset_top = 485.0
+offset_right = 1106.0
+offset_bottom = 505.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESTART"
+
 [node name="SpawnPathRight" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.38544, 41.95878, 51.974)
 curve = SubResource("Curve3D_wiwsh")
@@ -253,6 +440,43 @@ environment = SubResource("Environment_e36ub")
 [node name="CharacterConfig" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_feb5d")
-category_db = Array[ExtResource("4_f1jbl")]([ExtResource("5_vaj68"), ExtResource("6_i2p71"), ExtResource("12_dhpj7"), ExtResource("8_vef74"), ExtResource("9_hve3p")])
-max_valid_category = 2
-max_invalid_category = 1
+category_db = Array[ExtResource("4_f1jbl")]([ExtResource("5_vaj68"), ExtResource("6_i2p71"), ExtResource("12_dhpj7"), ExtResource("8_vef74"), ExtResource("9_hve3p"), ExtResource("17_hb5m1"), ExtResource("20_f1jbl"), ExtResource("19_qhcbd"), ExtResource("21_x5p1p")])
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_hve3p")
+autoplay = true
+bus = &"Music"
+
+[node name="ContainerVecchietto" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Vecchietto" type="TextureRect" parent="ContainerVecchietto"]
+layout_mode = 0
+offset_left = -771.0
+offset_top = -263.0
+offset_right = -371.0
+offset_bottom = 37.0
+texture = ExtResource("24_f1jbl")
+expand_mode = 1
+
+[node name="Panchina" type="TextureRect" parent="ContainerVecchietto"]
+layout_mode = 0
+offset_left = -852.0
+offset_top = -64.0
+offset_right = -252.0
+offset_bottom = 36.0
+texture = ExtResource("25_vaj68")
+expand_mode = 1
+
+[connection signal="timeout" from="UI/CustomPopup/PopupTimer" to="." method="_on_popup_timer_timeout"]
+[connection signal="timeout" from="UI/CustomPopup/PopupTimer" to="UI/CustomPopup" method="_on_popup_timer_timeout"]

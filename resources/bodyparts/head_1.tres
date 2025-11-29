@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://dg4o2eqgs8pd2" path="res://resources/categories/alieno.tres" id="1_7u5rh"]
 [ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="2_sx8ul"]
-[ext_resource type="Texture2D" uid="uid://goy28npdcv0a" path="res://characters/parts/heads/testa_alieno.png" id="3_7u5rh"]
+[ext_resource type="Texture2D" uid="uid://goy28npdcv0a" path="res://characters/parts/heads/testa_alieno_1.png" id="3_7u5rh"]
 
 [resource]
 script = ExtResource("2_sx8ul")

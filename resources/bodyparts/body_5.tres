@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://db3fm50i4wqch" path="res://resources/categories/cyborg.tres" id="1_gneb4"]
 [ext_resource type="Script" uid="uid://cs5i51dwnlfjd" path="res://resources/bodyparts/bodyParts.gd" id="2_ksdax"]
-[ext_resource type="Texture2D" uid="uid://dcfurr0q5p1vn" path="res://characters/parts/bodies/busto_robot.png" id="3_gneb4"]
+[ext_resource type="Texture2D" uid="uid://dcfurr0q5p1vn" path="res://characters/parts/bodies/busto_cyborg_1.png" id="3_gneb4"]
 
 [resource]
 script = ExtResource("2_ksdax")

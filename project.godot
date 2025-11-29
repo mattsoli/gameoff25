@@ -28,4 +28,3 @@ window/size/viewport_height=1080
 [rendering]
 
 anti_aliasing/quality/screen_space_aa=1
-anti_aliasing/quality/use_taa=true

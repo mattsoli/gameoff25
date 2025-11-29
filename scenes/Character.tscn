@@ -1,16 +1,82 @@
-[gd_scene load_steps=9 format=3 uid="uid://chs1pka73kqy5"]
+[gd_scene load_steps=15 format=3 uid="uid://chs1pka73kqy5"]
 
 [ext_resource type="Script" uid="uid://ct0nfspcam1p0" path="res://characters/Character.gd" id="1_25pii"]
 [ext_resource type="Texture2D" uid="uid://86lge7qikjsx" path="res://comics/comicOk.png" id="2_fwsyb"]
 [ext_resource type="Texture2D" uid="uid://3skpvapbr436" path="res://comics/comicError.png" id="3_25pii"]
 [ext_resource type="Texture2D" uid="uid://cshn075eewv4c" path="res://comics/comicThinking.png" id="4_exdhi"]
-[ext_resource type="Texture2D" uid="uid://goy28npdcv0a" path="res://characters/parts/heads/testa_alieno.png" id="5_fwsyb"]
-[ext_resource type="Texture2D" uid="uid://cw4xmdiabh6n3" path="res://characters/parts/bodies/busto_gatto.png" id="6_25pii"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_jjdr7"]
+[ext_resource type="Texture2D" uid="uid://goy28npdcv0a" path="res://characters/parts/heads/testa_alieno_1.png" id="5_fwsyb"]
+[ext_resource type="Texture2D" uid="uid://cw4xmdiabh6n3" path="res://characters/parts/bodies/busto_animale_2.png" id="6_25pii"]
+[ext_resource type="AudioStream" uid="uid://bwju0rrmjqbr2" path="res://audio/sfx/sfx_correct_PLACEHOLDER.wav" id="7_exdhi"]
+[ext_resource type="Texture2D" uid="uid://ts4xfcxi5ufb" path="res://icons/icon_mago.png" id="7_r87yu"]
+[ext_resource type="AudioStream" uid="uid://36088ly4ergv" path="res://audio/sfx/sfx_incorrect_PLACEHOLDER.wav" id="8_r87yu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dwpd4"]
 size = Vector3(7.890686, 7.366333, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jjdr7"]
+
+[sub_resource type="Animation" id="Animation_r87yu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.5, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_exdhi"]
+resource_name = "movement"
+length = 0.2
+loop_mode = 2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector3(0, 0, 0.08726646), Vector3(0, 0, 0), Vector3(0, 0, -0.08726646)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector3(-0.5, 0, 0), Vector3(0, 0, 0), Vector3(0.5, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dfeyu"]
+_data = {
+&"RESET": SubResource("Animation_r87yu"),
+&"movement": SubResource("Animation_exdhi")
+}
 
 [node name="Character" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -19,31 +85,42 @@ comicsOk = ExtResource("2_fwsyb")
 comicsError = ExtResource("3_25pii")
 comicsChecking = ExtResource("4_exdhi")
 
-[node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 5.483351, 0)
+[node name="Root" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.5, 0, 0)
 
-[node name="HeadSprite" type="Sprite3D" parent="Head"]
+[node name="Head" type="Node3D" parent="Root"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 5.483351, 0)
+
+[node name="HeadSprite" type="Sprite3D" parent="Root/Head"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
 ignore_occlusion_culling = true
 render_priority = 91
 texture = ExtResource("5_fwsyb")
 
-[node name="Body" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.9322486, 0)
+[node name="Body" type="Node3D" parent="Root"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.93224865, 0)
 
-[node name="BodySprite" type="Sprite3D" parent="Body"]
+[node name="BodySprite" type="Sprite3D" parent="Root/Body"]
 unique_name_in_owner = true
 render_priority = 90
 texture = ExtResource("6_25pii")
 
-[node name="Extra" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 1.9194448, -0.38101906, 0.36227)
+[node name="Extra" type="Node3D" parent="Root"]
+transform = Transform3D(1, 0, 0, 0, 0.9999997, 0, 0, 0, 0.9999997, 2.575662, -0.3810191, 0.36227)
 
-[node name="ExtraSprite" type="Sprite3D" parent="Extra"]
+[node name="ExtraSprite" type="Sprite3D" parent="Root/Extra"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
 render_priority = 92
+texture = ExtResource("7_r87yu")
+
+[node name="ClickCollider" type="Area3D" parent="Root"]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Root/ClickCollider"]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_dwpd4")
 
 [node name="ComicsSprite" type="Sprite3D" parent="."]
 unique_name_in_owner = true
@@ -55,9 +132,17 @@ texture = ExtResource("2_fwsyb")
 shape = SubResource("BoxShape3D_jjdr7")
 disabled = true
 
-[node name="ClickCollider" type="Area3D" parent="."]
-unique_name_in_owner = true
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Root")
+libraries = {
+&"": SubResource("AnimationLibrary_dfeyu")
+}
+autoplay = "movement"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickCollider"]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_dwpd4")
+[node name="CorrectAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_exdhi")
+bus = &"SFX"
+
+[node name="IncorrectAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_r87yu")
+bus = &"SFX"

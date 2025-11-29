@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Category" load_steps=3 format=3 uid="uid://dg4o2eqgs8pd2"]
 
-[ext_resource type="Texture2D" uid="uid://dl6855tqlv87m" path="res://icons/alien.png" id="1_25j1e"]
+[ext_resource type="Texture2D" uid="uid://dl6855tqlv87m" path="res://icons/icon_alieno.png" id="1_25j1e"]
 [ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="2_sxcb2"]
 
 [resource]
