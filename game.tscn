@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://ccc4ybk76fv5p"]
+[gd_scene load_steps=42 format=3 uid="uid://ccc4ybk76fv5p"]
 
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://bc6jtpkfuaugi" path="res://resources/gamedays/gameDay.gd" id="2_80cx4"]
@@ -16,11 +16,12 @@
 [ext_resource type="Script" uid="uid://cib6yxutybw0g" path="res://vecchietto.gd" id="8_vaj68"]
 [ext_resource type="Resource" uid="uid://di44yvh522t47" path="res://resources/categories/gentleman.tres" id="8_vef74"]
 [ext_resource type="Resource" uid="uid://bqjc8vpay8w4v" path="res://resources/categories/scienziato.tres" id="9_hve3p"]
-[ext_resource type="AudioStream" uid="uid://36088ly4ergv" path="res://audio/sfx/sfx_incorrect_PLACEHOLDER.wav" id="9_i2p71"]
 [ext_resource type="AudioStream" uid="uid://byihetp7k7053" path="res://audio/music/mx_ingame.mp3" id="10_hve3p"]
 [ext_resource type="AudioStream" uid="uid://bwju0rrmjqbr2" path="res://audio/sfx/sfx_correct_PLACEHOLDER.wav" id="10_qhcbd"]
+[ext_resource type="Texture2D" uid="uid://c25bg60ewanj3" path="res://vecchietto/braccio incazzato.png" id="11_bnpwn"]
 [ext_resource type="Texture2D" uid="uid://bf2nrrbmykfky" path="res://vecchietto/braccio sx.png" id="11_xa8c5"]
 [ext_resource type="Resource" uid="uid://db3fm50i4wqch" path="res://resources/categories/cyborg.tres" id="12_dhpj7"]
+[ext_resource type="AudioStream" uid="uid://0bma0x5u200l" path="res://audio/sfx/sfx_vecchietto_saluto.ogg" id="14_36jdj"]
 [ext_resource type="Resource" uid="uid://b42xctlp2vwjq" path="res://resources/categories/mago.tres" id="17_hb5m1"]
 [ext_resource type="PackedScene" uid="uid://3siw543tqn3p" path="res://env/pova area di lavoro v02.blend" id="18_rvswv"]
 [ext_resource type="Resource" uid="uid://cq62bx5iw4ft1" path="res://resources/categories/pirata.tres" id="19_qhcbd"]
@@ -28,33 +29,6 @@
 [ext_resource type="Texture2D" uid="uid://b8h6plgycig5u" path="res://vecchietto/panchina.png" id="25_vaj68"]
 [ext_resource type="Resource" uid="uid://cn35kagl2ycwj" path="res://resources/categories/zombie.tres" id="27_5b14r"]
 [ext_resource type="Resource" uid="uid://bie3abaopl6h1" path="res://resources/categories/mostro.tres" id="27_bnpwn"]
-
-[sub_resource type="Animation" id="Animation_5b14r"]
-resource_name = "hail"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("LeftArm:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [-0.022566345, -0.39793506, 0.45029494, -0.022566345]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("LeftArm:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_bnpwn"]
 length = 0.001
@@ -82,9 +56,51 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WrongArm:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_5b14r"]
+resource_name = "hail"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [-0.39793506, 0.45029494, -0.39793506, 0.45029494, -0.022566345]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftArm:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_36jdj"]
 resource_name = "idle"
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -92,6 +108,18 @@ tracks/0/path = NodePath("LeftArm:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WrongArm:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -136,7 +164,7 @@ corner_radius_bottom_left = 5
 [sub_resource type="Curve3D" id="Curve3D_wiwsh"]
 closed = true
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.2113342, -0.4173584, -4.5890884, 0, 0, 0, 0, 0, 0, 1.8553505, 0.42142868, -3.1198845),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.211, -0.417, -36, 0, 0, 0, 0, 0, 0, 1.855, 0.421, 6),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -169,56 +197,79 @@ wait_time = 3.67
 [node name="Vecchietto" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("8_vaj68")
-hail_sfx = ExtResource("9_i2p71")
-
-[node name="Head" type="TextureRect" parent="Vecchietto"]
-layout_mode = 0
-offset_left = -771.0
-offset_top = -263.0
-offset_right = -371.0
-offset_bottom = 37.0
-texture = ExtResource("24_f1jbl")
-expand_mode = 1
+hail_sfx = ExtResource("14_36jdj")
 
 [node name="LeftArm" type="TextureRect" parent="Vecchietto"]
 visible = false
 layout_mode = 0
-offset_left = -863.40137
-offset_top = -301.38626
-offset_right = -663.40137
-offset_bottom = -1.386261
+offset_left = 666.0
+offset_top = 733.0001
+offset_right = 866.0
+offset_bottom = 1033.0001
 rotation = -0.022566345
 pivot_offset = Vector2(102.44009, 293.59064)
 texture = ExtResource("11_xa8c5")
 expand_mode = 1
 
-[node name="Panchina" type="TextureRect" parent="Vecchietto"]
+[node name="WrongArm" type="TextureRect" parent="Vecchietto"]
 layout_mode = 0
-offset_left = -852.0
-offset_top = -64.0
-offset_right = -252.0
-offset_bottom = 36.0
-texture = ExtResource("25_vaj68")
+offset_left = 693.00006
+offset_top = 737.0
+offset_right = 835.00006
+offset_bottom = 1037.0
+scale = Vector2(0.95999753, 1)
+pivot_offset = Vector2(102.44009, 293.59064)
+texture = ExtResource("11_bnpwn")
 expand_mode = 1
+
+[node name="Head" type="TextureRect" parent="Vecchietto"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -300.0
+offset_right = 200.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("24_f1jbl")
+expand_mode = 1
+
+[node name="Panchina" type="TextureRect" parent="Vecchietto"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -720.0
+offset_top = -116.0
+offset_right = 4096.0
+offset_bottom = 271.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("25_vaj68")
+expand_mode = 5
 
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="Vecchietto"]
 unique_name_in_owner = true
+bus = &"SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Vecchietto"]
 libraries = {
 &"": SubResource("AnimationLibrary_bnpwn")
 }
+autoplay = "idle"
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -543,7 +594,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionRight" type="PathFollow3D" parent="SpawnPathRight"]
 unique_name_in_owner = true
-transform = Transform3D(-0.9158395, -0.18602017, -0.35575724, 1.490061e-08, 0.8861451, -0.46334952, 0.40145236, -0.42437068, -0.8115944, 1.2113342, -0.4173584, -4.5890884)
+transform = Transform3D(-0.99983335, -0.000305793, -0.015327782, 0, 0.9997655, -0.019945158, 0.01533078, -0.019943018, -0.9996377, 1.211, -0.417, -36)
 
 [node name="SpawnPathLeft" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.851616, 42.460957, 51.223686)
@@ -551,7 +602,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionLeft" type="PathFollow3D" parent="SpawnPathLeft"]
 unique_name_in_owner = true
-transform = Transform3D(-0.9158395, -0.18602017, -0.35575724, 1.490061e-08, 0.8861451, -0.46334952, 0.40145236, -0.42437068, -0.8115944, 1.2113342, -0.4173584, -4.5890884)
+transform = Transform3D(-0.99983335, -0.000305793, -0.015327782, 0, 0.9997655, -0.019945158, 0.01533078, -0.019943018, -0.9996377, 1.211, -0.417, -36)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 60, 52.65686, 56.412292)

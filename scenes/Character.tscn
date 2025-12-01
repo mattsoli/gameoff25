@@ -79,7 +79,7 @@ _data = {
 }
 
 [node name="Character" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 5.4, 0)
 script = ExtResource("1_25pii")
 comicsOk = ExtResource("2_fwsyb")
 comicsError = ExtResource("3_25pii")
@@ -107,7 +107,7 @@ render_priority = 90
 texture = ExtResource("6_25pii")
 
 [node name="Extra" type="Node3D" parent="Root"]
-transform = Transform3D(1, 0, 0, 0, 0.9999997, 0, 0, 0, 0.9999997, 2.575662, -0.3810191, 0.36227)
+transform = Transform3D(1, 0, 0, 0, 0.9999997, 0, 0, 0, 0.9999997, 2.576, -0.381, 0)
 
 [node name="ExtraSprite" type="Sprite3D" parent="Root/Extra"]
 unique_name_in_owner = true
