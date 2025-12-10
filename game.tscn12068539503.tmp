@@ -153,10 +153,6 @@ _data = {
 &"idle": SubResource("Animation_36jdj")
 }
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_80cx4"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_e8heu"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wiwsh"]
 bg_color = Color(0.14503565, 0.28519025, 0.17762923, 1)
 border_width_left = 1
@@ -180,6 +176,10 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_80cx4"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_e8heu"]
 
 [sub_resource type="Curve3D" id="Curve3D_wiwsh"]
 closed = true
@@ -299,6 +299,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="HappinessBar" type="ProgressBar" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 45.0
+offset_right = 125.0
+offset_bottom = 75.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_wiwsh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pt58c")
+step = 1.0
+value = 50.0
+show_percentage = false
 
 [node name="GameOverText" type="Label" parent="UI"]
 unique_name_in_owner = true
@@ -439,41 +457,17 @@ offset_bottom = 1074.0
 texture = SubResource("CompressedTexture2D_e8heu")
 expand_mode = 1
 
-[node name="HUD" type="Control" parent="UI"]
-unique_name_in_owner = true
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="HappinessBar" type="ProgressBar" parent="UI/HUD"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 815.0
-offset_top = 45.0
-offset_right = 1065.0
-offset_bottom = 75.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_wiwsh")
-theme_override_styles/fill = SubResource("StyleBoxFlat_pt58c")
-step = 1.0
-value = 50.0
-show_percentage = false
-
-[node name="ComboMeterText" type="Label" parent="UI/HUD"]
+[node name="ComboMeterText" type="Label" parent="UI"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 38.0
+offset_left = 37.0
 offset_top = 333.0
-offset_right = 114.0
+offset_right = 113.0
 offset_bottom = 421.0
 theme_override_font_sizes/font_size = 64
 text = "3X"
 
-[node name="ComboCounterText" type="Label" parent="UI/HUD"]
+[node name="ComboCounterText" type="Label" parent="UI"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 37.0
@@ -483,31 +477,31 @@ offset_bottom = 335.0
 theme_override_font_sizes/font_size = 64
 text = "3X"
 
-[node name="DayTimerText" type="Label" parent="UI/HUD"]
+[node name="DayTimerText" type="Label" parent="UI"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 902.0
+offset_left = -38.0
 offset_top = 202.0
-offset_right = 978.0
+offset_right = 38.0
 offset_bottom = 290.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "60"
 
-[node name="DayCounterText" type="Label" parent="UI/HUD"]
+[node name="DayCounterText" type="Label" parent="UI"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 841.0
+offset_left = -99.0
 offset_top = 114.0
-offset_right = 1039.0
+offset_right = 99.0
 offset_bottom = 202.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -537,6 +531,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("8_e8heu")
 expand_mode = 2
 
 [node name="PopupText" type="Label" parent="UI/CustomPopup"]
@@ -547,10 +542,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -92.0
-offset_top = -145.0
-offset_right = 93.0
-offset_bottom = -57.0
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 64
@@ -581,10 +576,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = 37.0
-offset_right = 101.0
-offset_bottom = 125.0
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 64
@@ -687,7 +682,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionRight" type="PathFollow3D" parent="SpawnPathRight"]
 unique_name_in_owner = true
-transform = Transform3D(-0.9998324, -0.000305793, -0.0153277675, 0, 0.9997655, -0.019945139, 0.015330766, -0.019943018, -0.99963677, 1.211, -0.417, -36)
+transform = Transform3D(-0.9998326, -0.000305793, -0.01532777, 0, 0.9997655, -0.019945143, 0.015330769, -0.019943018, -0.99963695, 1.211, -0.417, -36)
 
 [node name="SpawnPathLeft" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.851616, 42.460957, 51.223686)
@@ -695,7 +690,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionLeft" type="PathFollow3D" parent="SpawnPathLeft"]
 unique_name_in_owner = true
-transform = Transform3D(-0.9998324, -0.000305793, -0.0153277675, 0, 0.9997655, -0.019945139, 0.015330766, -0.019943018, -0.99963677, 1.211, -0.417, -36)
+transform = Transform3D(-0.9998326, -0.000305793, -0.01532777, 0, 0.9997655, -0.019945143, 0.015330769, -0.019943018, -0.99963695, 1.211, -0.417, -36)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9815706, 0.19110024, 0, -0.19110025, 0.98157054, 60, 55.020317, 89.91083)

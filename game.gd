@@ -3,7 +3,6 @@ extends Node3D
 @export_group("Days Config")
 @export var days: Array[GameDay]
 var current_day: GameDay
-
 @onready var happiness_bar: ProgressBar = %HappinessBar
 @onready var gameover_text: Label = %GameOverText
 @onready var debug_target_text: Label = %TargetConfigText
@@ -13,6 +12,7 @@ var current_day: GameDay
 @onready var combo_counter_text: Label = %ComboCounterText
 @onready var day_timer_text: Label = %DayTimerText
 @onready var day_counter_text: Label = %DayCounterText
+@onready var hud: Control = %HUD
 
 # END DAY PANEL
 @onready var end_day_panel: Control = %EndDayPanel
@@ -37,7 +37,7 @@ var current_day: GameDay
 @export var hail_point: int 
 
 @export_group("Combo Meter")
-@export var min_combo_counter: int = 1
+@export var min_combo_counter: int = 5
 @export var medium_combo_counter: int = 10
 @export var max_combo_counter: int = 20
 @export var combo_mul_1: float = 1.5
@@ -63,7 +63,9 @@ var combo_mul: float = 1
 var is_crazy_moment: bool = false
 
 func _ready() -> void:
-	show_popup("INIZIO " + str(current_day_index + 1) +  "° GIORNATA")
+	show_popup(["INIZIO", str(current_day_index + 1) + "°", "GIORNATA"])
+	
+	hud.hide()
 	
 	day_timer.timeout.connect(_on_day_timer_timeout)
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
@@ -91,9 +93,10 @@ func start_day() -> void:
 	end_game_panel.hide()
 	day_counter_text.show()
 	day_timer_text.show()
+	hud.show()
 	
 	target_config.set_target_config(current_day.max_valid_categories, current_day.max_invalid_categories)
-	set_target_icons()
+	set_categories_icons()
 	
 	start_timers()
 	
@@ -113,7 +116,7 @@ func start_character_spawn_timer() -> void:
 	spawn_timer.wait_time = character_spawn_time
 	spawn_timer.start()
 
-func set_target_icons() -> void:
+func set_categories_icons() -> void:
 	# Valid categories icons
 	for index: int in range(0, target_config.valid_categories.size()):
 		valid_icons[index].texture = target_config.valid_categories[index].icon
@@ -177,6 +180,8 @@ func spawn_person() -> void:
 			characterInstance.character_hold_clicked.connect(_on_character_clicked)
 
 func handle_combo_meter() -> void:
+	combo_meter_text.show()
+	
 	if combo_counter >= min_combo_counter and combo_counter < medium_combo_counter:
 		combo_mul = combo_mul_1
 	elif combo_counter >= medium_combo_counter and combo_counter < max_combo_counter:
@@ -185,9 +190,9 @@ func handle_combo_meter() -> void:
 		combo_mul = combo_mul_3
 	else:
 		combo_mul = 1
+		combo_meter_text.hide()
 		
 	#show_popup(str(combo_counter) + " DI FILA\n" + str(combo_mul) + "X")
-	
 	combo_counter_text.text = "Combo : " + str(combo_counter)
 	combo_meter_text.text = "Mul: " + str(combo_mul) + "X"
 
@@ -217,9 +222,9 @@ func _on_next_day() -> void:
 	go_next_day()
 	end_day_panel.hide()
 	
-	show_popup("INIZIO " + str(current_day_index + 1) +  "° GIORNATA")
+	show_popup(["INIZIO ", str(current_day_index + 1) + "°", "GIORNATA"])
 
-func show_popup(main_text: String) -> void:
+func show_popup(main_text: Array[String]) -> void:
 	popup.show_popup()
 	popup.set_popup(main_text)
 	popup.start_popup_timer()

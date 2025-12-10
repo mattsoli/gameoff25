@@ -2,15 +2,19 @@ extends Control
 
 class_name CustomPopup
 
-@onready var mainText: Label = %PopupMainText
+@onready var text: Label = %PopupText
+@onready var text2: Label = %PopupText2
+@onready var text3: Label = %PopupText3
 @onready var timer: Timer = %PopupTimer
 @onready var sfx: AudioStreamPlayer = %PopupSFX
 
 signal on_popup_appeared
 signal on_popup_disappeared
 
-func set_popup(_mainText: String) -> void:
-	mainText.text = _mainText
+func set_popup(content: Array[String]) -> void:
+	text.text = content[0]
+	text2.text = content[1]
+	text3.text = content[2]
 
 func show_popup() -> void:
 	show()
