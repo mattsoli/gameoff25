@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dud1u0yu0ltby"
-path="res://.godot/imported/comicError.png-970bcce639a80dab8d8922c02c883c20.ctex"
+uid="uid://dw1kmy2mur6f7"
+path="res://.godot/imported/comicWait.png-8089eecb76dd4ca26b9cea37dab13cb6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://comics/comicError.png"
-dest_files=["res://.godot/imported/comicError.png-970bcce639a80dab8d8922c02c883c20.ctex"]
+source_file="res://comics/comicWait.png"
+dest_files=["res://.godot/imported/comicWait.png-8089eecb76dd4ca26b9cea37dab13cb6.ctex"]
 
 [params]
 

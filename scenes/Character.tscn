@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://chs1pka73kqy5"]
 
 [ext_resource type="Script" uid="uid://ct0nfspcam1p0" path="res://characters/Character.gd" id="1_25pii"]
-[ext_resource type="Texture2D" uid="uid://86lge7qikjsx" path="res://comics/comicOk.png" id="2_fwsyb"]
-[ext_resource type="Texture2D" uid="uid://3skpvapbr436" path="res://comics/comicError.png" id="3_25pii"]
-[ext_resource type="Texture2D" uid="uid://cshn075eewv4c" path="res://comics/comicThinking.png" id="4_exdhi"]
+[ext_resource type="Texture2D" uid="uid://cyjbl7kruwpb6" path="res://comics/comicDONE.png" id="2_r87yu"]
+[ext_resource type="Texture2D" uid="uid://dud1u0yu0ltby" path="res://comics/comicError.png" id="3_25pii"]
+[ext_resource type="Texture2D" uid="uid://dw1kmy2mur6f7" path="res://comics/comicWait.png" id="4_dfeyu"]
 [ext_resource type="Texture2D" uid="uid://goy28npdcv0a" path="res://characters/parts/heads/testa_alieno_1.png" id="5_fwsyb"]
 [ext_resource type="Texture2D" uid="uid://cw4xmdiabh6n3" path="res://characters/parts/bodies/busto_animale_2.png" id="6_25pii"]
 [ext_resource type="AudioStream" uid="uid://bwju0rrmjqbr2" path="res://audio/sfx/sfx_correct_PLACEHOLDER.wav" id="7_exdhi"]
@@ -79,11 +79,11 @@ _data = {
 }
 
 [node name="Character" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 5.4, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 script = ExtResource("1_25pii")
-comicsOk = ExtResource("2_fwsyb")
+comicsOk = ExtResource("2_r87yu")
 comicsError = ExtResource("3_25pii")
-comicsChecking = ExtResource("4_exdhi")
+comicsChecking = ExtResource("4_dfeyu")
 
 [node name="Root" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.5, 0, 0)
@@ -124,9 +124,9 @@ shape = SubResource("BoxShape3D_dwpd4")
 
 [node name="ComicsSprite" type="Sprite3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(5.8756614, 0, 0, 0, 4.0420365, 0, 0, 0, 0.9999995, 7.344107, 12.256889, 0.6724186)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 12.608, 0.672)
 render_priority = 90
-texture = ExtResource("2_fwsyb")
+texture = ExtResource("2_r87yu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_jjdr7")

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://86lge7qikjsx"
-path.s3tc="res://.godot/imported/comicOk.png-2d2ca01e58fbe22a3b1283b4849c6091.s3tc.ctex"
+uid="uid://cxuw64tih8ie7"
+path.s3tc="res://.godot/imported/Alberi secondo piano.PNG-da669bcedafd4f8b680ba547416bfbfe.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://comics/comicOk.png"
-dest_files=["res://.godot/imported/comicOk.png-2d2ca01e58fbe22a3b1283b4849c6091.s3tc.ctex"]
+source_file="res://background/Alberi secondo piano.PNG"
+dest_files=["res://.godot/imported/Alberi secondo piano.PNG-da669bcedafd4f8b680ba547416bfbfe.s3tc.ctex"]
 
 [params]
 
