@@ -193,7 +193,6 @@ func handle_combo_meter() -> void:
 
 func hail_character(_character: Character) -> void:
 	_character.is_hailed = true
-	vecchietto.hail()
 
 	if _character.is_target:
 		print("++++++++++++++++++++++")
@@ -207,6 +206,8 @@ func hail_character(_character: Character) -> void:
 		combo_counter = 0
 		happiness_bar.value -= hail_point
 		print("Happiness rimossa: ", hail_point)	
+
+	vecchietto.hail(_character.is_target)
 
 func end_game() -> void:
 	end_day_panel.hide()

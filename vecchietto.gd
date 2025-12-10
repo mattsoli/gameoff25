@@ -7,11 +7,14 @@ class_name Vecchietto
 @export var wrong_sfx: AudioStream
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 
-func hail() -> void:
+func hail(is_target: bool) -> void:
 	audio_player.stream = hail_sfx
 	audio_player.play()
 	
-	anim_player.play("hail")
+	if is_target:
+		anim_player.play("hail")
+	else:
+		anim_player.play("fuck_off")
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	anim_player.play("idle")
