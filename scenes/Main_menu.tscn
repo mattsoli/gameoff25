@@ -1,9 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnkp5cnerc3kf"]
+[gd_scene load_steps=3 format=3 uid="uid://dnkp5cnerc3kf"]
 
 [ext_resource type="Script" uid="uid://b4t3xr7tf0oho" path="res://main_menu/main_menu.gd" id="1_u5440"]
+[ext_resource type="Texture2D" uid="uid://vkbnfw7a46av" path="res://main_menu/sfondo.jpg" id="2_d1rr7"]
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_u5440")
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_d1rr7")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 offset_left = 759.0
@@ -16,3 +29,13 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "PLAY"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 680.00006
+offset_top = -192.99997
+offset_right = 1801.0
+offset_bottom = -17.99997
+rotation = 0.2617994
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 128
+text = "Swomp and swing"

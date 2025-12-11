@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://ccc4ybk76fv5p"]
+[gd_scene load_steps=48 format=3 uid="uid://ccc4ybk76fv5p"]
 
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://bc6jtpkfuaugi" path="res://resources/gamedays/gameDay.gd" id="2_80cx4"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://3siw543tqn3p" path="res://env/pova area di lavoro v02.blend" id="18_rvswv"]
 [ext_resource type="Resource" uid="uid://cq62bx5iw4ft1" path="res://resources/categories/pirata.tres" id="19_qhcbd"]
 [ext_resource type="Texture2D" uid="uid://dxl6yc6ay3k2v" path="res://background/Palazzi_terzo piano.PNG" id="19_xfvwf"]
+[ext_resource type="Texture2D" uid="uid://c1j1r6payaj2t" path="res://env/Paesaggio/Prato.png" id="22_082n1"]
 [ext_resource type="Texture2D" uid="uid://b308833eigo11" path="res://vecchietto/vecchietto.png" id="24_f1jbl"]
 [ext_resource type="Texture2D" uid="uid://b8h6plgycig5u" path="res://vecchietto/panchina.png" id="25_vaj68"]
 [ext_resource type="Resource" uid="uid://cn35kagl2ycwj" path="res://resources/categories/zombie.tres" id="27_5b14r"]
@@ -688,7 +689,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionRight" type="PathFollow3D" parent="SpawnPathRight"]
 unique_name_in_owner = true
-transform = Transform3D(-0.9998298, -0.000305793, -0.015327728, 0, 0.9997655, -0.019945087, 0.015330727, -0.019943018, -0.9996342, 1.211, -0.417, -36)
+transform = Transform3D(-0.99982965, -0.000305793, -0.015327726, 0, 0.9997655, -0.019945083, 0.015330724, -0.019943018, -0.999634, 1.211, -0.417, -36)
 
 [node name="SpawnPathLeft" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.176, 3, 0)
@@ -696,7 +697,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionLeft" type="PathFollow3D" parent="SpawnPathLeft"]
 unique_name_in_owner = true
-transform = Transform3D(-0.9998298, -0.000305793, -0.015327728, 0, 0.9997655, -0.019945087, 0.015330727, -0.019943018, -0.9996342, 1.211, -0.417, -36)
+transform = Transform3D(-0.99982965, -0.000305793, -0.015327726, 0, 0.9997655, -0.019945083, 0.015330724, -0.019943018, -0.999634, 1.211, -0.417, -36)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9815706, 0.19110024, 0, -0.19110025, 0.98157054, 0, 19.931236, 27.754038)
@@ -707,6 +708,7 @@ near = 0.001
 [node name="Node3D" type="Node3D" parent="."]
 
 [node name="Environment" parent="Node3D" instance=ExtResource("18_rvswv")]
+visible = false
 
 [node name="Cielo" type="Sprite3D" parent="Node3D"]
 transform = Transform3D(1.4256, 0, 0, 0, 1.32, 0, 0, 0, 1.5, -0.12287903, 2.3498716, -68.37944)
@@ -714,7 +716,7 @@ sorting_offset = 1.0
 texture = ExtResource("8_e8heu")
 
 [node name="Alberi" type="Sprite3D" parent="Node3D"]
-transform = Transform3D(1.296, 0, 0, 0, 1.2, 0, 0, 0, 1, -0.0020561218, -1.0720501, -51.59647)
+transform = Transform3D(1.296, 0, 0, 0, 1.2, 0, 0, 0, 1, -0.0020561218, -0.60531616, -51.59647)
 sorting_offset = 1.0
 texture = ExtResource("18_36jdj")
 
@@ -722,6 +724,10 @@ texture = ExtResource("18_36jdj")
 transform = Transform3D(1.2830399, 0, 0, 0, 1.2, 0, 0, 0, 1.08, 0.1691761, -1.2723904, -57.592926)
 sorting_offset = 2.0
 texture = ExtResource("19_xfvwf")
+
+[node name="Terrain" type="Sprite3D" parent="Node3D"]
+transform = Transform3D(1.4, 0, 0, 0, -1.3987645e-07, 1.0000001, 0, -3.2, -4.3711392e-08, -1, 1, -19)
+texture = ExtResource("22_082n1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.99999845, -0.0015114987, 0.0008726641, 0, 0.49999997, 0.86602545, -0.0017453283, -0.8660241, 0.4999992, 25, 43, 46)
