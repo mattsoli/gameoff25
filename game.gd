@@ -50,6 +50,8 @@ var current_day: GameDay
 @onready var popup: CustomPopup = %CustomPopup
 @onready var vecchietto: Vecchietto = %Vecchietto
 
+var spawned_characters: Array[Character]
+
 var current_day_index: int = 0
 
 var characterScene: PackedScene = preload("res://scenes/Character.tscn")
@@ -74,6 +76,8 @@ func _ready() -> void:
 	popup.on_popup_disappeared.connect(start_day)
 
 func _process(_delta: float) -> void:
+	despawn_character_out_of_map()
+	
 	handle_game_over()
 	handle_combo_meter()
 	update_day_ui()
@@ -133,6 +137,7 @@ func day_over() -> void:
 	day_timer.stop()
 	day_counter_text.hide()
 	day_timer_text.hide()
+	despawn_all_characters()
 		
 	if happiness_bar.value < 50.0:
 		# vecchietto finisce triste
@@ -178,6 +183,20 @@ func spawn_person() -> void:
 			characterInstance.character_clicked.connect(_on_character_clicked)
 		Character.ClickType.HOLD:
 			characterInstance.character_hold_clicked.connect(_on_character_clicked)
+			
+	spawned_characters.append(characterInstance)
+
+func despawn_character_out_of_map() -> void:
+	for character: Character in spawned_characters.duplicate():
+		if character.position.x >= 35 or character.position.x <= -35:
+			character.queue_free()
+			spawned_characters.erase(character)
+
+			
+func despawn_all_characters() -> void:
+	for character: Character in spawned_characters.duplicate():
+		character.queue_free()
+		spawned_characters.erase(character)
 
 func handle_combo_meter() -> void:
 	combo_meter_text.show()
@@ -251,3 +270,15 @@ func _on_character_clicked(_character: Character) -> void:
 	if _character.is_hailed:
 		return
 	hail_character(_character)
+
+
+func _on_character_despawn_1_body_entered(body: Node3D) -> void:
+	if body is Character:
+		print("character enter 1")
+	pass # Replace with function body.
+
+
+func _on_character_despawn_2_body_entered(body: Node3D) -> void:
+	pass # Replace with function body.
+	if body is Character:
+		print("character enter 2")

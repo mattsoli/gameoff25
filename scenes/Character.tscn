@@ -86,7 +86,7 @@ comicsError = ExtResource("3_25pii")
 comicsChecking = ExtResource("4_dfeyu")
 
 [node name="Root" type="Node3D" parent="."]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -0.5, 0, 0)
+transform = Transform3D(0.75, 0, 0, 0, 0.7499998, 0, 0, 0, 0.7499998, -0.5, 0, 0)
 
 [node name="Head" type="Node3D" parent="Root"]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 5.483351, 0)
@@ -124,7 +124,7 @@ shape = SubResource("BoxShape3D_dwpd4")
 
 [node name="ComicsSprite" type="Sprite3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(3, 0, 0, 0, 2.9999998, 0, 0, 0, 2.9999998, 0, 9.317753, 0.6719999)
+transform = Transform3D(3, 0, 0, 0, 2.9999986, 0, 0, 0, 2.9999986, -0.40627193, 12.317553, 0.6719996)
 render_priority = 90
 texture = ExtResource("2_r87yu")
 

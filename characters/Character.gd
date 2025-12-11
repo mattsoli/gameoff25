@@ -54,6 +54,8 @@ func _ready() -> void:
 	clickArea.input_event.connect(_on_input_event)
 	
 func _process(delta: float) -> void:
+	
+	
 	if is_hailed or click_processed:
 		return
 		

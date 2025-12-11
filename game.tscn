@@ -73,6 +73,21 @@ tracks/2/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_7knny"]
+resource_name = "fuck"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WrongArm:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="Animation" id="Animation_5b14r"]
 resource_name = "hail"
 length = 0.3
@@ -128,21 +143,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_7knny"]
-resource_name = "fuck"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WrongArm:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bnpwn"]
@@ -475,6 +475,7 @@ text = "3X"
 
 [node name="ComboCounterText" type="Label" parent="UI/HUD"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 37.0
 offset_top = 247.0
@@ -682,23 +683,23 @@ grow_vertical = 2
 text = "RESTART"
 
 [node name="SpawnPathRight" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.38544, 41.95878, 51.974)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.574, 3, 0)
 curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionRight" type="PathFollow3D" parent="SpawnPathRight"]
 unique_name_in_owner = true
-transform = Transform3D(-0.9998324, -0.000305793, -0.0153277675, 0, 0.9997655, -0.019945139, 0.015330766, -0.019943018, -0.99963677, 1.211, -0.417, -36)
+transform = Transform3D(-0.9998298, -0.000305793, -0.015327728, 0, 0.9997655, -0.019945087, 0.015330727, -0.019943018, -0.9996342, 1.211, -0.417, -36)
 
 [node name="SpawnPathLeft" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.851616, 42.460957, 51.223686)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.176, 3, 0)
 curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionLeft" type="PathFollow3D" parent="SpawnPathLeft"]
 unique_name_in_owner = true
-transform = Transform3D(-0.9998324, -0.000305793, -0.0153277675, 0, 0.9997655, -0.019945139, 0.015330766, -0.019943018, -0.99963677, 1.211, -0.417, -36)
+transform = Transform3D(-0.9998298, -0.000305793, -0.015327728, 0, 0.9997655, -0.019945087, 0.015330727, -0.019943018, -0.9996342, 1.211, -0.417, -36)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9815706, 0.19110024, 0, -0.19110025, 0.98157054, 60, 55.020317, 89.91083)
+transform = Transform3D(1, 0, 0, 0, 0.9815706, 0.19110024, 0, -0.19110025, 0.98157054, 0, 19.931236, 27.754038)
 projection = 1
 size = 28.0
 near = 0.001
@@ -706,20 +707,19 @@ near = 0.001
 [node name="Node3D" type="Node3D" parent="."]
 
 [node name="Environment" parent="Node3D" instance=ExtResource("18_rvswv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 39.38962, 65)
 
 [node name="Cielo" type="Sprite3D" parent="Node3D"]
-transform = Transform3D(1.296, 0, 0, 0, 1.2, 0, 0, 0, 1, 60, 37.486465, -8)
+transform = Transform3D(1.4256, 0, 0, 0, 1.32, 0, 0, 0, 1.5, -0.12287903, 2.3498716, -68.37944)
 sorting_offset = 1.0
 texture = ExtResource("8_e8heu")
 
 [node name="Alberi" type="Sprite3D" parent="Node3D"]
-transform = Transform3D(1.296, 0, 0, 0, 1.2, 0, 0, 0, 1, 60, 38.651295, 11)
+transform = Transform3D(1.296, 0, 0, 0, 1.2, 0, 0, 0, 1, -0.0020561218, -1.0720501, -51.59647)
 sorting_offset = 1.0
 texture = ExtResource("18_36jdj")
 
 [node name="Edifici" type="Sprite3D" parent="Node3D"]
-transform = Transform3D(1.1664, 0, 0, 0, 1.2, 0, 0, 0, 0.9, 60.39069, 37.821175, 8.786214)
+transform = Transform3D(1.2830399, 0, 0, 0, 1.2, 0, 0, 0, 1.08, 0.1691761, -1.2723904, -57.592926)
 sorting_offset = 2.0
 texture = ExtResource("19_xfvwf")
 
