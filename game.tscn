@@ -185,7 +185,7 @@ corner_radius_bottom_left = 5
 [sub_resource type="Curve3D" id="Curve3D_wiwsh"]
 closed = true
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.211, -0.417, -36, 0, 0, 0, 0, 0, 0, 1.855, 0.421, 6),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.2110004, -0.41700006, -24.294794, 0, 0, 0, 0, 0, 0, 1.8549995, -0.45567656, -2.0108337),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -204,8 +204,8 @@ glow_enabled = true
 [node name="game" type="Node3D" node_paths=PackedStringArray("valid_icons", "invalid_icons")]
 script = ExtResource("1_e2o6t")
 days = Array[ExtResource("2_80cx4")]([ExtResource("2_mfdv2"), ExtResource("3_iotsf"), ExtResource("4_215e1"), ExtResource("5_7sc4i"), ExtResource("6_80cx4")])
-valid_icons = [NodePath("UI/TargetConfig/Valid1"), NodePath("UI/TargetConfig/Valid2"), NodePath("UI/TargetConfig/Valid3"), NodePath("UI/TargetConfig/Valid4")]
-invalid_icons = [NodePath("UI/AntiTarget/Invalid1"), NodePath("UI/AntiTarget/Invalid2")]
+valid_icons = [NodePath("UI/TargetConfig/ValidIcons/Valid1"), NodePath("UI/TargetConfig/ValidIcons/Valid2"), NodePath("UI/TargetConfig/ValidIcons/Valid3"), NodePath("UI/TargetConfig/ValidIcons/Valid4")]
+invalid_icons = [NodePath("UI/AntiTarget/InvalidIcons/Invalid1"), NodePath("UI/AntiTarget/InvalidIcons/Invalid2")]
 hail_point = 2
 
 [node name="DayTimer" type="Timer" parent="."]
@@ -351,7 +351,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Valid1" type="TextureRect" parent="UI/TargetConfig"]
+[node name="ValidIcons" type="Control" parent="UI/TargetConfig"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Valid1" type="TextureRect" parent="UI/TargetConfig/ValidIcons"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 12.0
@@ -360,7 +366,7 @@ offset_right = 112.0
 offset_bottom = 927.0
 expand_mode = 1
 
-[node name="Valid2" type="TextureRect" parent="UI/TargetConfig"]
+[node name="Valid2" type="TextureRect" parent="UI/TargetConfig/ValidIcons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
@@ -370,7 +376,7 @@ offset_right = 252.0
 offset_bottom = 1060.0
 expand_mode = 2
 
-[node name="Valid3" type="TextureRect" parent="UI/TargetConfig"]
+[node name="Valid3" type="TextureRect" parent="UI/TargetConfig/ValidIcons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
@@ -380,7 +386,7 @@ offset_right = 138.0
 offset_bottom = 1075.0
 expand_mode = 2
 
-[node name="Valid4" type="TextureRect" parent="UI/TargetConfig"]
+[node name="Valid4" type="TextureRect" parent="UI/TargetConfig/ValidIcons"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 288.0
@@ -420,7 +426,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Invalid1" type="TextureRect" parent="UI/AntiTarget"]
+[node name="InvalidIcons" type="Control" parent="UI/AntiTarget"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Invalid1" type="TextureRect" parent="UI/AntiTarget/InvalidIcons"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 1798.0
@@ -430,7 +442,7 @@ offset_bottom = 1062.0
 texture = SubResource("CompressedTexture2D_80cx4")
 expand_mode = 1
 
-[node name="Invalid2" type="TextureRect" parent="UI/AntiTarget"]
+[node name="Invalid2" type="TextureRect" parent="UI/AntiTarget/InvalidIcons"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 1697.0
@@ -471,6 +483,7 @@ offset_left = 38.0
 offset_top = 333.0
 offset_right = 114.0
 offset_bottom = 421.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "3X"
 
@@ -684,23 +697,23 @@ grow_vertical = 2
 text = "RESTART"
 
 [node name="SpawnPathRight" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.574, 3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.574, 3, -23.619854)
 curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionRight" type="PathFollow3D" parent="SpawnPathRight"]
 unique_name_in_owner = true
-transform = Transform3D(-0.99982965, -0.000305793, -0.015327726, 0, 0.9997655, -0.019945083, 0.015330724, -0.019943018, -0.999634, 1.211, -0.417, -36)
+transform = Transform3D(-0.9995132, 5.0114733e-05, -0.028885942, 3.6377266e-12, 0.9999517, 0.0017347909, 0.028885689, 0.0017340883, -0.999522, 1.2110004, -0.41700006, -24.294794)
 
 [node name="SpawnPathLeft" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.176, 3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.225323, 3, -19.881332)
 curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionLeft" type="PathFollow3D" parent="SpawnPathLeft"]
 unique_name_in_owner = true
-transform = Transform3D(-0.99982965, -0.000305793, -0.015327726, 0, 0.9997655, -0.019945083, 0.015330724, -0.019943018, -0.999634, 1.211, -0.417, -36)
+transform = Transform3D(-0.9995132, 5.0114733e-05, -0.028885942, 3.6377266e-12, 0.9999517, 0.0017347909, 0.028885689, 0.0017340883, -0.999522, 1.2110004, -0.41700006, -24.294794)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9815706, 0.19110024, 0, -0.19110025, 0.98157054, 0, 19.931236, 27.754038)
+transform = Transform3D(1, 0, 0, 0, 0.9815706, 0.19110024, 0, -0.19110025, 0.98157054, 0, 24.409706, 46.585445)
 projection = 1
 size = 28.0
 near = 0.001

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://chs1pka73kqy5"]
+[gd_scene load_steps=14 format=3 uid="uid://chs1pka73kqy5"]
 
 [ext_resource type="Script" uid="uid://ct0nfspcam1p0" path="res://characters/Character.gd" id="1_25pii"]
 [ext_resource type="Texture2D" uid="uid://cyjbl7kruwpb6" path="res://comics/comicDONE.png" id="2_r87yu"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://goy28npdcv0a" path="res://characters/parts/heads/testa_alieno_1.png" id="5_fwsyb"]
 [ext_resource type="Texture2D" uid="uid://cw4xmdiabh6n3" path="res://characters/parts/bodies/busto_animale_2.png" id="6_25pii"]
 [ext_resource type="AudioStream" uid="uid://bwju0rrmjqbr2" path="res://audio/sfx/sfx_correct_PLACEHOLDER.wav" id="7_exdhi"]
-[ext_resource type="Texture2D" uid="uid://ts4xfcxi5ufb" path="res://icons/icon_mago.png" id="7_r87yu"]
 [ext_resource type="AudioStream" uid="uid://36088ly4ergv" path="res://audio/sfx/sfx_incorrect_PLACEHOLDER.wav" id="8_r87yu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dwpd4"]
@@ -111,9 +110,8 @@ transform = Transform3D(1, 0, 0, 0, 0.9999997, 0, 0, 0, 0.9999997, 2.576, -0.381
 
 [node name="ExtraSprite" type="Sprite3D" parent="Root/Extra"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
-render_priority = 92
-texture = ExtResource("7_r87yu")
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0.05487223)
+render_priority = 90
 
 [node name="ClickCollider" type="Area3D" parent="Root"]
 unique_name_in_owner = true
@@ -124,7 +122,7 @@ shape = SubResource("BoxShape3D_dwpd4")
 
 [node name="ComicsSprite" type="Sprite3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(3, 0, 0, 0, 2.9999986, 0, 0, 0, 2.9999986, -0.40627193, 12.317553, 0.6719996)
+transform = Transform3D(3, 0, 0, 0, 2.999998, 0, 0, 0, 2.999998, -0.40627193, 9.599749, 0.67199945)
 render_priority = 90
 texture = ExtResource("2_r87yu")
 

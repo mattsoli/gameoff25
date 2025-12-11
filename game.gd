@@ -13,6 +13,8 @@ var current_day: GameDay
 @onready var day_timer_text: Label = %DayTimerText
 @onready var day_counter_text: Label = %DayCounterText
 @onready var hud: Control = %HUD
+@onready var valid_icons_container: Control = %ValidIcons
+@onready var invalid_icons_container: Control = %InvalidIcons
 
 # END DAY PANEL
 @onready var end_day_panel: Control = %EndDayPanel
@@ -68,6 +70,8 @@ func _ready() -> void:
 	show_popup(["INIZIO", str(current_day_index + 1) + "°", "GIORNATA"])
 	
 	hud.hide()
+	invalid_icons_container.hide()
+	valid_icons_container.hide()
 	
 	day_timer.timeout.connect(_on_day_timer_timeout)
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
@@ -98,11 +102,14 @@ func start_day() -> void:
 	day_counter_text.show()
 	day_timer_text.show()
 	hud.show()
+	valid_icons_container.show()
+	invalid_icons_container.show()
 	
 	target_config.set_target_config(current_day.max_valid_categories, current_day.max_invalid_categories)
 	set_categories_icons()
 	
 	start_timers()
+	spawn_character()
 	
 func start_timers() -> void:
 	start_day_timer()
@@ -132,6 +139,9 @@ func set_categories_icons() -> void:
 func day_over() -> void:
 	is_crazy_moment = false
 	
+	hud.hide()
+	invalid_icons_container.hide()
+	valid_icons_container.hide()
 	end_day_panel.show()
 	spawn_timer.stop()
 	day_timer.stop()
@@ -160,7 +170,7 @@ func go_next_day() -> void:
 	current_day_index += 1
 	pass
 
-func spawn_person() -> void:
+func spawn_character() -> void:
 	var characterInstance: Character = characterScene.instantiate() as Character
 	add_child(characterInstance)
 
@@ -264,7 +274,7 @@ func _on_day_timer_timeout() -> void:
 		end_game() 
 
 func _on_spawn_timer_timeout() -> void:
-	spawn_person()
+	spawn_character()
 
 func _on_character_clicked(_character: Character) -> void:
 	if _character.is_hailed:
