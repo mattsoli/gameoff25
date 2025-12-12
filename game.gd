@@ -270,7 +270,7 @@ func _on_restart_game() -> void:
 func _on_day_timer_timeout() -> void:
 	day_over()
 	
-	if current_day_index == 4:
+	if current_day_index == days.size() - 1:
 		end_game() 
 
 func _on_spawn_timer_timeout() -> void:

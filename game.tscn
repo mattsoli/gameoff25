@@ -1,13 +1,11 @@
-[gd_scene load_steps=49 format=3 uid="uid://ccc4ybk76fv5p"]
+[gd_scene load_steps=47 format=3 uid="uid://ccc4ybk76fv5p"]
 
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://bc6jtpkfuaugi" path="res://resources/gamedays/gameDay.gd" id="2_80cx4"]
 [ext_resource type="Resource" uid="uid://cn36tvjb87ktu" path="res://resources/gamedays/day_1.tres" id="2_mfdv2"]
 [ext_resource type="Script" path="res://target_config.gd" id="3_feb5d"]
-[ext_resource type="Resource" uid="uid://s7cejg8xsgcc" path="res://resources/gamedays/day_2.tres" id="3_iotsf"]
 [ext_resource type="Resource" uid="uid://cve6y0i4r4rr" path="res://resources/gamedays/day_3.tres" id="4_215e1"]
 [ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="4_f1jbl"]
-[ext_resource type="Resource" uid="uid://wni0feprh452" path="res://resources/gamedays/day_4.tres" id="5_7sc4i"]
 [ext_resource type="Resource" uid="uid://dg4o2eqgs8pd2" path="res://resources/categories/alieno.tres" id="5_vaj68"]
 [ext_resource type="Resource" uid="uid://cbbp4lgm67o3w" path="res://resources/gamedays/day_5.tres" id="6_80cx4"]
 [ext_resource type="Resource" uid="uid://b5ah3qsxvds08" path="res://resources/categories/animale.tres" id="6_i2p71"]
@@ -204,7 +202,7 @@ glow_enabled = true
 
 [node name="game" type="Node3D" node_paths=PackedStringArray("valid_icons", "invalid_icons")]
 script = ExtResource("1_e2o6t")
-days = Array[ExtResource("2_80cx4")]([ExtResource("2_mfdv2"), ExtResource("3_iotsf"), ExtResource("4_215e1"), ExtResource("5_7sc4i"), ExtResource("6_80cx4")])
+days = Array[ExtResource("2_80cx4")]([ExtResource("2_mfdv2"), ExtResource("4_215e1"), ExtResource("6_80cx4")])
 valid_icons = [NodePath("UI/TargetConfig/ValidIcons/Valid1"), NodePath("UI/TargetConfig/ValidIcons/Valid2"), NodePath("UI/TargetConfig/ValidIcons/Valid3"), NodePath("UI/TargetConfig/ValidIcons/Valid4")]
 invalid_icons = [NodePath("UI/AntiTarget/InvalidIcons/Invalid1"), NodePath("UI/AntiTarget/InvalidIcons/Invalid2")]
 hail_point = 2
@@ -624,6 +622,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Background" type="TextureRect" parent="EndDayPanel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -640,9 +639,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 896.0
+offset_left = 795.0
 offset_top = 485.0
-offset_right = 1106.0
+offset_right = 1005.0
 offset_bottom = 505.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -703,7 +702,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionRight" type="PathFollow3D" parent="SpawnPathRight"]
 unique_name_in_owner = true
-transform = Transform3D(-0.99951315, 5.0114733e-05, -0.02888594, 3.6377264e-12, 0.9999517, 0.0017347907, 0.028885687, 0.0017340883, -0.9995219, 1.2110004, -0.41700006, -24.294794)
+transform = Transform3D(-0.99951303, 5.0114733e-05, -0.028885936, 3.637726e-12, 0.9999517, 0.0017347905, 0.028885683, 0.0017340883, -0.9995218, 1.2110004, -0.41700006, -24.294794)
 
 [node name="SpawnPathLeft" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.225323, 3, -19.881332)
@@ -711,7 +710,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionLeft" type="PathFollow3D" parent="SpawnPathLeft"]
 unique_name_in_owner = true
-transform = Transform3D(-0.99951315, 5.0114733e-05, -0.02888594, 3.6377264e-12, 0.9999517, 0.0017347907, 0.028885687, 0.0017340883, -0.9995219, 1.2110004, -0.41700006, -24.294794)
+transform = Transform3D(-0.99951303, 5.0114733e-05, -0.028885936, 3.637726e-12, 0.9999517, 0.0017347905, 0.028885683, 0.0017340883, -0.9995218, 1.2110004, -0.41700006, -24.294794)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9815706, 0.19110024, 0, -0.19110025, 0.98157054, 0, 24.409706, 46.585445)
