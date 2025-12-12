@@ -6,7 +6,7 @@
 script = ExtResource("1_yyyni")
 max_valid_categories = 4
 max_invalid_categories = 2
-max_day_duration = 3.0
+max_day_duration = 60.0
 additional_character_speed = 10.0
 has_crazy_moment = true
 are_parts_change = true

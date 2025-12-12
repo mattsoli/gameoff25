@@ -222,6 +222,8 @@ func handle_combo_meter() -> void:
 		combo_meter_text.hide()
 		
 	#show_popup(str(combo_counter) + " DI FILA\n" + str(combo_mul) + "X")
+	#show_popup([str(combo_counter) + " DI FILA\n", str(combo_mul) + "X", ""])
+	
 	combo_counter_text.text = "Combo : " + str(combo_counter)
 	combo_meter_text.text = "Mul: " + str(combo_mul) + "X"
 
@@ -280,15 +282,3 @@ func _on_character_clicked(_character: Character) -> void:
 	if _character.is_hailed:
 		return
 	hail_character(_character)
-
-
-func _on_character_despawn_1_body_entered(body: Node3D) -> void:
-	if body is Character:
-		print("character enter 1")
-	pass # Replace with function body.
-
-
-func _on_character_despawn_2_body_entered(body: Node3D) -> void:
-	pass # Replace with function body.
-	if body is Character:
-		print("character enter 2")

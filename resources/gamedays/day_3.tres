@@ -6,5 +6,5 @@
 script = ExtResource("1_lmp66")
 max_valid_categories = 3
 max_invalid_categories = 1
-max_day_duration = 3.0
+max_day_duration = 60.0
 additional_character_speed = 10.0

@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_djhvv")
 max_valid_categories = 2
-max_day_duration = 3.0
+max_day_duration = 60.0
 additional_character_speed = 10.0
