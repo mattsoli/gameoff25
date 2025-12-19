@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://bc6jtpkfuaugi" path="res://resources/gamedays/gameDay.gd" id="2_80cx4"]
 [ext_resource type="Resource" uid="uid://cn36tvjb87ktu" path="res://resources/gamedays/day_1.tres" id="2_mfdv2"]
-[ext_resource type="Script" path="res://target_config.gd" id="3_feb5d"]
+[ext_resource type="Script" uid="uid://brqpqdij0ah7e" path="res://target_config.gd" id="3_feb5d"]
 [ext_resource type="Resource" uid="uid://cve6y0i4r4rr" path="res://resources/gamedays/day_3.tres" id="4_215e1"]
 [ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="4_f1jbl"]
 [ext_resource type="Resource" uid="uid://dg4o2eqgs8pd2" path="res://resources/categories/alieno.tres" id="5_vaj68"]
@@ -75,9 +75,22 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WrongArm:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(693, 780)]
+}
 
 [sub_resource type="Animation" id="Animation_7knny"]
 resource_name = "fuck"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -85,10 +98,22 @@ tracks/0/path = NodePath("WrongArm:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WrongArm:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10000001),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [Vector2(693, 780), Vector2(693, 715)]
 }
 
 [sub_resource type="Animation" id="Animation_5b14r"]
@@ -102,10 +127,10 @@ tracks/0/path = NodePath("LeftArm:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.099999994, 0.2, 0.3, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.099999994, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [-0.39793506, 0.45029494, -0.39793506, 0.45029494, -0.022566345]
+"values": [-0.39793506, 0.45029494, -0.39793506, 0.45029494]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -245,10 +270,10 @@ expand_mode = 1
 
 [node name="WrongArm" type="TextureRect" parent="Vecchietto"]
 layout_mode = 0
-offset_left = 693.00006
-offset_top = 737.0
-offset_right = 835.00006
-offset_bottom = 1037.0
+offset_left = 693.0
+offset_top = 780.0
+offset_right = 835.0
+offset_bottom = 1080.0006
 scale = Vector2(0.95999753, 1)
 pivot_offset = Vector2(102.44009, 293.59064)
 texture = ExtResource("11_bnpwn")
@@ -740,7 +765,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionRight" type="PathFollow3D" parent="SpawnPathRight"]
 unique_name_in_owner = true
-transform = Transform3D(-0.9995126, 5.0114733e-05, -0.028885925, 3.6377245e-12, 0.9999517, 0.0017347898, 0.028885672, 0.0017340883, -0.9995214, 1.2110004, -0.41700006, -24.294794)
+transform = Transform3D(-0.99951255, 5.0114733e-05, -0.028885923, 3.6377242e-12, 0.9999517, 0.0017347897, 0.02888567, 0.0017340883, -0.9995213, 1.2110004, -0.41700006, -24.294794)
 
 [node name="SpawnPathLeft" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.225323, 3, -19.881332)
@@ -748,7 +773,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionLeft" type="PathFollow3D" parent="SpawnPathLeft"]
 unique_name_in_owner = true
-transform = Transform3D(-0.9995126, 5.0114733e-05, -0.028885925, 3.6377245e-12, 0.9999517, 0.0017347898, 0.028885672, 0.0017340883, -0.9995214, 1.2110004, -0.41700006, -24.294794)
+transform = Transform3D(-0.99951255, 5.0114733e-05, -0.028885923, 3.6377242e-12, 0.9999517, 0.0017347897, 0.02888567, 0.0017340883, -0.9995213, 1.2110004, -0.41700006, -24.294794)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9815706, 0.19110024, 0, -0.19110025, 0.98157054, 0, 24.409706, 46.585445)
