@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://ccc4ybk76fv5p"]
+[gd_scene load_steps=58 format=3 uid="uid://ccc4ybk76fv5p"]
 
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://bc6jtpkfuaugi" path="res://resources/gamedays/gameDay.gd" id="2_80cx4"]
@@ -15,13 +15,14 @@
 [ext_resource type="Resource" uid="uid://di44yvh522t47" path="res://resources/categories/gentleman.tres" id="8_vef74"]
 [ext_resource type="Resource" uid="uid://bqjc8vpay8w4v" path="res://resources/categories/scienziato.tres" id="9_hve3p"]
 [ext_resource type="AudioStream" uid="uid://byihetp7k7053" path="res://audio/music/mx_ingame.mp3" id="10_hve3p"]
-[ext_resource type="AudioStream" uid="uid://bwju0rrmjqbr2" path="res://audio/sfx/sfx_correct_PLACEHOLDER.wav" id="10_qhcbd"]
 [ext_resource type="Texture2D" uid="uid://c25bg60ewanj3" path="res://vecchietto/braccio incazzato.png" id="11_bnpwn"]
 [ext_resource type="Texture2D" uid="uid://bf2nrrbmykfky" path="res://vecchietto/braccio sx.png" id="11_xa8c5"]
 [ext_resource type="Resource" uid="uid://db3fm50i4wqch" path="res://resources/categories/cyborg.tres" id="12_dhpj7"]
 [ext_resource type="AudioStream" uid="uid://0bma0x5u200l" path="res://audio/sfx/sfx_vecchietto_saluto.ogg" id="14_36jdj"]
 [ext_resource type="Texture2D" uid="uid://cktr3doksfecc" path="res://background/Cespuglio verde.PNG" id="14_dhpj7"]
 [ext_resource type="Texture2D" uid="uid://s1mwwkx56ify" path="res://background/Cespuglio rosso.PNG" id="15_7knny"]
+[ext_resource type="AudioStream" uid="uid://b78p06o5h3hef" path="res://audio/sfx/sfx_popup_inizio.wav" id="15_aa0lp"]
+[ext_resource type="FontFile" uid="uid://7dt4s6lynlo" path="res://fonts/Barrio-Regular.ttf" id="15_iu0sx"]
 [ext_resource type="Texture2D" uid="uid://0h4ibp8yfhud" path="res://ui/Vittoria.JPG" id="17_082n1"]
 [ext_resource type="Resource" uid="uid://b42xctlp2vwjq" path="res://resources/categories/mago.tres" id="17_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://cxuw64tih8ie7" path="res://background/Alberi secondo piano.PNG" id="18_36jdj"]
@@ -208,6 +209,246 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_4v2jo"]
+font = ExtResource("15_iu0sx")
+font_size = 72
+outline_color = Color(0.11119685, 0.11119684, 0.11119684, 1)
+stacked_outline_count = 1
+stacked_outline_0/size = 20
+stacked_outline_0/color = Color(0.103743516, 0.10374353, 0.103743516, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iu0sx"]
+font = ExtResource("15_iu0sx")
+font_size = 180
+outline_color = Color(0.11119685, 0.11119684, 0.11119684, 1)
+stacked_outline_count = 1
+stacked_outline_0/size = 20
+stacked_outline_0/color = Color(0.103743516, 0.10374353, 0.103743516, 1)
+
+[sub_resource type="Animation" id="Animation_iu0sx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%PopupText:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%PopupText2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%PopupText3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%PopupSFX:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%PopupText:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%PopupText2:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%PopupText3:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_aa0lp"]
+resource_name = "show"
+length = 3.0
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%PopupText:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%PopupText2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%PopupText3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.6, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%PopupSFX:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.025, 0.825, 1.625),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%PopupText:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.025),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%PopupText2:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.8, 0.825),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%PopupText3:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.6, 1.625),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4v2jo"]
+resource_name = "idle"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%PopupText:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%PopupText2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%PopupText3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4v2jo"]
+_data = {
+&"RESET": SubResource("Animation_iu0sx"),
+&"idle": SubResource("Animation_4v2jo"),
+&"show": SubResource("Animation_aa0lp")
+}
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xex6t"]
 
@@ -566,10 +807,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -150.0
-offset_right = 250.0
-offset_bottom = 150.0
+offset_left = -375.0
+offset_top = -240.0
+offset_right = 375.0
+offset_bottom = 8.999878
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_hb5m1")
@@ -585,57 +826,55 @@ expand_mode = 2
 
 [node name="PopupText" type="Label" parent="UI/CustomPopup"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -92.0
-offset_top = -145.0
-offset_right = 93.0
-offset_bottom = -57.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 375.0
+offset_bottom = 82.0
+pivot_offset = Vector2(187.5, 41)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "TEXT1"
+label_settings = SubResource("LabelSettings_4v2jo")
+horizontal_alignment = 1
 
 [node name="PopupText2" type="Label" parent="UI/CustomPopup"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = -1
+anchor_left = 0.75000006
+anchor_top = 0.20700002
+anchor_right = 0.75000006
+anchor_bottom = 0.20700002
+offset_left = -187.50006
+offset_top = -51.54298
+offset_right = 187.49994
+offset_bottom = 51.45702
+grow_horizontal = 0
+pivot_offset = Vector2(187.5, 41)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "TEXT 2"
+label_settings = SubResource("LabelSettings_4v2jo")
+horizontal_alignment = 1
 
 [node name="PopupText3" type="Label" parent="UI/CustomPopup"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = 37.0
-offset_right = 101.0
-offset_bottom = 125.0
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -82.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+pivot_offset = Vector2(375, 102)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "TEXT 3"
+label_settings = SubResource("LabelSettings_iu0sx")
+horizontal_alignment = 1
 
 [node name="PopupTimer" type="Timer" parent="UI/CustomPopup"]
 unique_name_in_owner = true
@@ -644,7 +883,14 @@ autostart = true
 
 [node name="PopupSFX" type="AudioStreamPlayer" parent="UI/CustomPopup"]
 unique_name_in_owner = true
-stream = ExtResource("10_qhcbd")
+stream = ExtResource("15_aa0lp")
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/CustomPopup"]
+libraries = {
+&"": SubResource("AnimationLibrary_4v2jo")
+}
+autoplay = "idle"
 
 [node name="EndDayPanel" type="Control" parent="."]
 unique_name_in_owner = true
@@ -823,7 +1069,7 @@ unique_name_in_owner = true
 script = ExtResource("3_feb5d")
 category_db = Array[ExtResource("4_f1jbl")]([ExtResource("5_vaj68"), ExtResource("6_i2p71"), ExtResource("12_dhpj7"), ExtResource("8_vef74"), ExtResource("9_hve3p"), ExtResource("17_hb5m1"), ExtResource("19_qhcbd"), ExtResource("27_5b14r"), ExtResource("27_bnpwn")])
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="IngameMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_hve3p")
 autoplay = true
 bus = &"Music"

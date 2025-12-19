@@ -67,7 +67,7 @@ var combo_mul: float = 1
 var is_crazy_moment: bool = false
 
 func _ready() -> void:
-	show_popup(["INIZIO", str(current_day_index + 1) + "°", "GIORNATA"])
+	show_popup(["Starting", "Day", str(current_day_index + 1)])
 	
 	hud.hide()
 	invalid_icons_container.hide()
