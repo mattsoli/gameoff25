@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://ccc4ybk76fv5p"]
+[gd_scene load_steps=64 format=3 uid="uid://ccc4ybk76fv5p"]
 
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://bc6jtpkfuaugi" path="res://resources/gamedays/gameDay.gd" id="2_80cx4"]
@@ -25,10 +25,12 @@
 [ext_resource type="FontFile" uid="uid://7dt4s6lynlo" path="res://fonts/Barrio-Regular.ttf" id="15_iu0sx"]
 [ext_resource type="Texture2D" uid="uid://0h4ibp8yfhud" path="res://ui/Vittoria.JPG" id="17_082n1"]
 [ext_resource type="Resource" uid="uid://b42xctlp2vwjq" path="res://resources/categories/mago.tres" id="17_hb5m1"]
+[ext_resource type="Texture2D" uid="uid://drrlkdhjghqqs" path="res://icons/arrow_forward.svg" id="18_4v2jo"]
 [ext_resource type="Texture2D" uid="uid://cxuw64tih8ie7" path="res://background/Alberi secondo piano.PNG" id="18_36jdj"]
 [ext_resource type="PackedScene" uid="uid://3siw543tqn3p" path="res://env/pova area di lavoro v02.blend" id="18_rvswv"]
 [ext_resource type="Texture2D" uid="uid://pln5ax7wejpv" path="res://main_menu/BOTTONE_OFF.png" id="18_xex6t"]
 [ext_resource type="Texture2D" uid="uid://chy1fjlqlmbfx" path="res://main_menu/BOTTONE_ON_contorno.png" id="19_aa0lp"]
+[ext_resource type="AudioStream" uid="uid://ygoh7l3rwwqc" path="res://audio/sfx/sfx_endday.ogg" id="19_l1i01"]
 [ext_resource type="Resource" uid="uid://cq62bx5iw4ft1" path="res://resources/categories/pirata.tres" id="19_qhcbd"]
 [ext_resource type="Texture2D" uid="uid://dxl6yc6ay3k2v" path="res://background/Palazzi_terzo piano.PNG" id="19_xfvwf"]
 [ext_resource type="Texture2D" uid="uid://c1j1r6payaj2t" path="res://env/Paesaggio/Prato.png" id="22_082n1"]
@@ -313,6 +315,47 @@ tracks/6/keys = {
 "values": [Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_4v2jo"]
+resource_name = "idle"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%PopupText:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%PopupText2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%PopupText3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_aa0lp"]
 resource_name = "show"
 length = 3.0
@@ -402,14 +445,55 @@ tracks/6/keys = {
 "values": [Vector2(0, 0), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_4v2jo"]
-resource_name = "idle"
-length = 0.1
-step = 0.05
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4v2jo"]
+_data = {
+&"RESET": SubResource("Animation_iu0sx"),
+&"idle": SubResource("Animation_4v2jo"),
+&"show": SubResource("Animation_aa0lp")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_l1i01"]
+font = ExtResource("15_iu0sx")
+font_size = 92
+stacked_outline_count = 1
+stacked_outline_0/size = 20
+stacked_outline_0/color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+
+[sub_resource type="Animation" id="Animation_r62pu"]
+resource_name = "show"
+length = 0.6
+step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%PopupText:visible")
+tracks/0/path = NodePath("EndDayPanelSFX:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.025),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.025),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2.5, 2.5), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_klri6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EndDayPanelSFX:playing")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -421,33 +505,20 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%PopupText2:visible")
+tracks/1/path = NodePath("Label:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("%PopupText3:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4v2jo"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eu6ph"]
 _data = {
-&"RESET": SubResource("Animation_iu0sx"),
-&"idle": SubResource("Animation_4v2jo"),
-&"show": SubResource("Animation_aa0lp")
+&"RESET": SubResource("Animation_klri6"),
+&"show": SubResource("Animation_r62pu")
 }
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xex6t"]
@@ -896,9 +967,11 @@ autoplay = "idle"
 unique_name_in_owner = true
 visible = false
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Background" type="TextureRect" parent="EndDayPanel"]
 visible = false
@@ -915,32 +988,47 @@ expand_mode = 2
 [node name="NextDayButton" type="Button" parent="EndDayPanel"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 795.0
-offset_top = 485.0
-offset_right = 1005.0
-offset_bottom = 505.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "GO NEXT DAY"
-
-[node name="Label" type="Label" parent="EndDayPanel"]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 883.0
-offset_top = 392.0
-offset_right = 923.0
-offset_bottom = 415.0
+offset_left = -75.0
+offset_top = -20.0
+offset_right = 75.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(75, 20)
+text = "Continue"
+icon = ExtResource("18_4v2jo")
+icon_alignment = 2
+
+[node name="Label" type="Label" parent="EndDayPanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -140.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(960, 52)
 theme_override_font_sizes/font_size = 64
-text = "FINE GIORNATA"
+text = "End Day"
+label_settings = SubResource("LabelSettings_l1i01")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EndDayPanelSFX" type="AudioStreamPlayer" parent="EndDayPanel"]
+stream = ExtResource("19_l1i01")
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EndDayPanel"]
+libraries = {
+&"": SubResource("AnimationLibrary_eu6ph")
+}
 
 [node name="EndGamePanel" type="Control" parent="."]
 unique_name_in_owner = true
@@ -1011,7 +1099,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionRight" type="PathFollow3D" parent="SpawnPathRight"]
 unique_name_in_owner = true
-transform = Transform3D(-0.99951255, 5.0114733e-05, -0.028885923, 3.6377242e-12, 0.9999517, 0.0017347897, 0.02888567, 0.0017340883, -0.9995213, 1.2110004, -0.41700006, -24.294794)
+transform = Transform3D(-0.9995125, 5.0114733e-05, -0.028885921, 3.637724e-12, 0.9999517, 0.0017347896, 0.028885668, 0.0017340883, -0.99952126, 1.2110004, -0.41700006, -24.294794)
 
 [node name="SpawnPathLeft" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.225323, 3, -19.881332)
@@ -1019,7 +1107,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionLeft" type="PathFollow3D" parent="SpawnPathLeft"]
 unique_name_in_owner = true
-transform = Transform3D(-0.99951255, 5.0114733e-05, -0.028885923, 3.6377242e-12, 0.9999517, 0.0017347897, 0.02888567, 0.0017340883, -0.9995213, 1.2110004, -0.41700006, -24.294794)
+transform = Transform3D(-0.9995125, 5.0114733e-05, -0.028885921, 3.637724e-12, 0.9999517, 0.0017347896, 0.028885668, 0.0017340883, -0.99952126, 1.2110004, -0.41700006, -24.294794)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9815706, 0.19110024, 0, -0.19110025, 0.98157054, 0, 24.409706, 46.585445)

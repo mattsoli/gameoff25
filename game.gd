@@ -143,6 +143,7 @@ func day_over() -> void:
 	invalid_icons_container.hide()
 	valid_icons_container.hide()
 	end_day_panel.show()
+	$EndDayPanel/AnimationPlayer.play("show")
 	spawn_timer.stop()
 	day_timer.stop()
 	day_counter_text.hide()
