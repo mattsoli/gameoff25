@@ -254,7 +254,7 @@ func _on_next_day() -> void:
 	go_next_day()
 	end_day_panel.hide()
 	
-	show_popup(["INIZIO ", str(current_day_index + 1) + "°", "GIORNATA"])
+	show_popup(["STARTING ", str(current_day_index + 1) + "°", "DAY"])
 
 func show_popup(main_text: Array[String]) -> void:
 	popup.show_popup()
