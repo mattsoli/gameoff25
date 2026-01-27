@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://be4lo1on7ucaa" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://bc6jtpkfuaugi" path="res://resources/gamedays/gameDay.gd" id="2_80cx4"]
 [ext_resource type="Resource" uid="uid://cn36tvjb87ktu" path="res://resources/gamedays/day_1.tres" id="2_mfdv2"]
-[ext_resource type="Script" uid="uid://brqpqdij0ah7e" path="res://target_config.gd" id="3_feb5d"]
+[ext_resource type="Script" path="res://target_config.gd" id="3_feb5d"]
 [ext_resource type="Resource" uid="uid://cve6y0i4r4rr" path="res://resources/gamedays/day_3.tres" id="4_215e1"]
 [ext_resource type="Script" uid="uid://dr2isvasb8vax" path="res://resources/categories/category.gd" id="4_f1jbl"]
 [ext_resource type="Resource" uid="uid://dg4o2eqgs8pd2" path="res://resources/categories/alieno.tres" id="5_vaj68"]
@@ -16,10 +16,10 @@
 [ext_resource type="AudioStream" uid="uid://byihetp7k7053" path="res://audio/music/mx_ingame.mp3" id="10_hve3p"]
 [ext_resource type="Texture2D" uid="uid://c25bg60ewanj3" path="res://vecchietto/braccio incazzato.png" id="11_bnpwn"]
 [ext_resource type="Texture2D" uid="uid://bf2nrrbmykfky" path="res://vecchietto/braccio sx.png" id="11_xa8c5"]
+[ext_resource type="Texture2D" uid="uid://pbkt1f8pvpkd" path="res://env/Paesaggio/Cespuglio verde.PNG" id="12_4v2jo"]
 [ext_resource type="Resource" uid="uid://db3fm50i4wqch" path="res://resources/categories/cyborg.tres" id="12_dhpj7"]
+[ext_resource type="Texture2D" uid="uid://cl5jey465lof2" path="res://env/Paesaggio/Cespuglio rosso.PNG" id="13_4v2jo"]
 [ext_resource type="AudioStream" uid="uid://0bma0x5u200l" path="res://audio/sfx/sfx_vecchietto_saluto.ogg" id="14_36jdj"]
-[ext_resource type="Texture2D" uid="uid://cktr3doksfecc" path="res://background/Cespuglio verde.PNG" id="14_dhpj7"]
-[ext_resource type="Texture2D" uid="uid://s1mwwkx56ify" path="res://background/Cespuglio rosso.PNG" id="15_7knny"]
 [ext_resource type="AudioStream" uid="uid://b78p06o5h3hef" path="res://audio/sfx/sfx_popup_inizio.wav" id="15_aa0lp"]
 [ext_resource type="FontFile" uid="uid://7dt4s6lynlo" path="res://fonts/Barrio-Regular.ttf" id="15_iu0sx"]
 [ext_resource type="Texture2D" uid="uid://0h4ibp8yfhud" path="res://ui/Vittoria.JPG" id="17_082n1"]
@@ -642,6 +642,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 mouse_filter = 2
 
 [node name="GameOverText" type="Label" parent="UI"]
@@ -665,30 +666,39 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="TargetConfig" type="Control" parent="UI"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Background" type="TextureRect" parent="UI/TargetConfig"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -97.0
-offset_right = 1920.0
-offset_bottom = 983.0
+offset_left = 260.0
+offset_top = -185.0
+offset_right = 260.0
+offset_bottom = -185.0
 grow_vertical = 0
+
+[node name="Background" type="TextureRect" parent="UI/TargetConfig"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -185.0
+offset_right = 259.0
+offset_bottom = 185.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_behavior_recursive = 1
-texture = ExtResource("14_dhpj7")
-expand_mode = 1
+texture = ExtResource("12_4v2jo")
 
 [node name="TargetConfigText" type="Label" parent="UI/TargetConfig"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 9.0
-offset_top = 669.0
-offset_right = 178.0
-offset_bottom = 742.0
+offset_left = -258.0
+offset_top = -110.0
+offset_right = -89.0
+offset_bottom = -37.0
 size_flags_horizontal = 4
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -707,62 +717,79 @@ offset_bottom = 40.0
 [node name="Valid1" type="TextureRect" parent="UI/TargetConfig/ValidIcons"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 50.0
-offset_top = 755.0
-offset_right = 122.0
-offset_bottom = 827.0
+offset_left = -216.0
+offset_top = -27.0
+offset_right = -144.0
+offset_bottom = 45.0
 expand_mode = 1
 
 [node name="Valid2" type="TextureRect" parent="UI/TargetConfig/ValidIcons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 0
-offset_left = 219.0
-offset_top = 787.0
-offset_right = 291.0
-offset_bottom = 859.0
+offset_left = -53.0
+offset_top = -9.0
+offset_right = 19.0
+offset_bottom = 63.0
 expand_mode = 1
 
 [node name="Valid3" type="TextureRect" parent="UI/TargetConfig/ValidIcons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 0
-offset_left = 90.0
-offset_top = 869.0
-offset_right = 162.0
-offset_bottom = 941.0
+offset_left = -210.0
+offset_top = 65.0
+offset_right = -138.0
+offset_bottom = 137.0
 expand_mode = 2
 
 [node name="Valid4" type="TextureRect" parent="UI/TargetConfig/ValidIcons"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 288.0
-offset_top = 896.0
-offset_right = 360.0
-offset_bottom = 968.0
+offset_left = -6.0
+offset_top = 81.0
+offset_right = 66.0
+offset_bottom = 153.0
 expand_mode = 1
 
 [node name="AntiTarget" type="Control" parent="UI"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -482.0
+offset_top = -1.0
+offset_right = -482.0
+offset_bottom = -1.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="Background" type="TextureRect" parent="UI/AntiTarget"]
-layout_mode = 0
-offset_left = -42.0
-offset_top = -74.0
-offset_right = 1878.0
-offset_bottom = 1006.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -343.0
+offset_right = 487.0
+offset_bottom = 8.0
+grow_vertical = 0
 mouse_behavior_recursive = 1
-texture = ExtResource("15_7knny")
+texture = ExtResource("13_4v2jo")
 
 [node name="AntiTargetConfigText" type="Label" parent="UI/AntiTarget"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 1642.0
-offset_top = 713.0
-offset_right = 1830.0
-offset_bottom = 755.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 286.0
+offset_top = -276.0
+offset_right = 474.0
+offset_bottom = -234.0
+grow_horizontal = 2
 size_flags_horizontal = 8
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -775,26 +802,28 @@ uppercase = true
 [node name="InvalidIcons" type="Control" parent="UI/AntiTarget"]
 unique_name_in_owner = true
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 185.0
+offset_top = -142.0
+offset_right = 225.0
+offset_bottom = -102.0
 
 [node name="Invalid1" type="TextureRect" parent="UI/AntiTarget/InvalidIcons"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 1529.0
-offset_top = 847.0
-offset_right = 1629.0
-offset_bottom = 947.0
+offset_left = -18.0
+offset_top = -22.0
+offset_right = 82.0
+offset_bottom = 78.0
 texture = SubResource("CompressedTexture2D_80cx4")
 expand_mode = 1
 
 [node name="Invalid2" type="TextureRect" parent="UI/AntiTarget/InvalidIcons"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 1680.0
-offset_top = 787.0
-offset_right = 1780.0
-offset_bottom = 887.0
+offset_left = 145.0
+offset_top = -35.0
+offset_right = 245.0
+offset_bottom = 65.0
 texture = SubResource("CompressedTexture2D_e8heu")
 expand_mode = 1
 
@@ -1104,7 +1133,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionRight" type="PathFollow3D" parent="SpawnPathRight"]
 unique_name_in_owner = true
-transform = Transform3D(-0.99951124, 5.0114733e-05, -0.028885886, 3.6377195e-12, 0.9999517, 0.0017347875, 0.028885633, 0.0017340883, -0.99952, 1.2110004, -0.41700006, -24.294794)
+transform = Transform3D(-0.99951124, 5.0114733e-05, -0.028885882, 3.6377192e-12, 0.9999517, 0.0017347872, 0.02888563, 0.0017340883, -0.9995199, 1.2110004, -0.41700006, -24.294794)
 
 [node name="SpawnPathLeft" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 5.08, -18.151)
@@ -1112,7 +1141,7 @@ curve = SubResource("Curve3D_wiwsh")
 
 [node name="SpawnPositionLeft" type="PathFollow3D" parent="SpawnPathLeft"]
 unique_name_in_owner = true
-transform = Transform3D(-0.99951124, 5.0114733e-05, -0.028885886, 3.6377195e-12, 0.9999517, 0.0017347875, 0.028885633, 0.0017340883, -0.99952, 1.2110004, -0.41700006, -24.294794)
+transform = Transform3D(-0.99951124, 5.0114733e-05, -0.028885882, 3.6377192e-12, 0.9999517, 0.0017347872, 0.02888563, 0.0017340883, -0.9995199, 1.2110004, -0.41700006, -24.294794)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9815706, 0.19110024, 0, -0.19110025, 0.98157054, 0, 24.409706, 46.585445)
